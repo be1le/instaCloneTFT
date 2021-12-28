@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유효성 검사</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Log In</h1>
+    <fieldset>
+        <label>ID</label>
+        <input type="text" id ="username">
+        <div class="failure-message hide">아이디는 네 글자 이상 이어야 합니다</div>
+        <div class="success-message hide">사용할 수 있는 아이디입니다</div>
+    </fieldset>
+     
+    <fieldset>
+        <label>Password</label>
+        <input type="password" id="password">
+        <div class="failure-password hide">비밀번호는 여덟 글자 이상이어야 합니다</div>
+        <div class="success-password hide">사용할 수 있는 비밀번호입니다</div>
+        
+    </fieldset>   
+        
+    <fieldset>
+            <label>Password-Check</label>
+            <input type="password" id="repassword">
+            <div class="false hide">비밀번호가 일치하지 않습니다</div>
+            <div class="true hide">비밀번호가 일치합니다</div>
+
+        </fieldset>
+        
+        <fieldset>
+           <button>join the membership</button>
+        </fieldset>
+    <script src="script.js"></script>
+</body>
+</html>
