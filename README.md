@@ -1,5 +1,6 @@
 # instaCloneTFT
-Implement Instagram with flask.
+
+Development Instagram with flask.
 
 
 ---
