@@ -9,4 +9,3 @@ sign_up = Blueprint("sign_up", __name__ , url_prefix="/sign", static_folder="sta
 def sign():
     return render_template("sign_up.html")
 
-#1

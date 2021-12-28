@@ -19,4 +19,3 @@ def fail():
 def sign_up():
     return "회원가입 페이지"
 
-#1
