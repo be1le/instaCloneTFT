@@ -18,3 +18,5 @@ def fail():
 @login.route("/sign_up")
 def sign_up():
     return "회원가입 페이지"
+
+#1
