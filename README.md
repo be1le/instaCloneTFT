@@ -11,5 +11,4 @@ Development Instagram with flask.
 https://github.com/be1le/instaCloneTFT/wiki/Blue_club
 
 # 블루클럽 notion
-The place where manly men live and breathe.
-https://www.notion.so/2-66b44c479d0441418fe881746a883127
+* [The place where manly men live and breathe.](https://www.notion.so/2-66b44c479d0441418fe881746a883127)
