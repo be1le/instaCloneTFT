@@ -8,3 +8,4 @@ sign_up = Blueprint("sign_up", __name__ , url_prefix="/sign", static_folder="sta
 @sign_up.route("/")
 def sign():
     return render_template("sign_up.html")
+
