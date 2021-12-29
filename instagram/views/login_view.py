@@ -17,7 +17,7 @@ login = Blueprint("login", __name__, url_prefix="/" ,  static_folder="static", t
 
 @login.route("/")
 def home():
-    return render_template("login.html")
+    return render_template("index.html")
 
 @login.route("/api/login", methods=["POST"])
 def api_login():
