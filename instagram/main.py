@@ -1,4 +1,5 @@
 
+from re import template
 from flask import Blueprint, render_template, jsonify, request,redirect,url_for
 from flask.helpers import url_for
 import jwt
@@ -16,7 +17,11 @@ main = Blueprint("main", __name__, url_prefix="/main", static_folder="static", t
 
 
 @main.route("/")
+def home():
+    return render_template('feed_page.html')
 
+
+@main.route("/nickname")
 def success():
 
     token_receive = request.cookies.get('mytoken')
@@ -26,7 +31,7 @@ def success():
         
         user_info = db.user.find_one({'id': payload['id']})
 
-        return render_template('index.html', nickname=user_info['nick']) # db에 저장될 닉네임 값 userinfo
+        return render_template('feed_page.html', nickname = user_info['nick']) # db에 저장될 닉네임 값 userinfo
 
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
