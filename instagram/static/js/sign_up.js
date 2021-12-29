@@ -17,11 +17,17 @@ function register() {
 
                 console.log(response['token']);
                 $.cookie ('mytoken', response['token'], {path: '/'});
-                alert('회원가입이 완료되었습니다.');
                 
-                
-                
-                window.location.href = '/main/good';
+                var login_sound = new Audio();
+                login_sound.src = "../static/sounds/Click_Sound_02.mp3"
+                login_sound.currentTime = 0;
+                login_sound.volume - 1.0;
+                login_sound.play();
+                // alert('회원가입이 완료되었습니다.');
+                window.setTimeout(function() {
+                    window.location.href = '/main/good';
+                }, 100);
+
                 } else {
                     
                     alert(response['msg'])

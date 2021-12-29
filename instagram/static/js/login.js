@@ -1,4 +1,26 @@
+
+window.onload = function disa() {
+    $('#userid').on('input', disa);
+    $('#userpw').on('input', disa);
+    var id = $('#userid').val();
+    var password = $('#userpw').val();
+    if (id == "" || password =="") {
+        $('#login-btn').attr("disabled",true);
+        $('#login-btn').css('background-color', '#9B9B9B');
+    } else {
+        $('#login-btn').attr("disabled",false);
+        $('#login-btn').css('background-color', 'rgb(75, 186, 255)');
+    }
+};
+
+    
+
+
 function login() {
+    let id = $('#userid').val()
+    let password = $('#userpw').val()
+
+
     $.ajax({
         type: "POST",
         url: "/api/login",
@@ -8,9 +30,16 @@ function login() {
                 // 로그인이 정상적으로 되면, 토큰을 받아옵니다.
                 // 이 토큰을 mytoken이라는 키 값으로 쿠키에 저장합니다.
                 $.cookie('mytoken', response['token']);
+                var login_sound = new Audio();
+                login_sound.src = "../static/sounds/Click_Sound_02.mp3"
+                login_sound.currentTime = 0;
+                login_sound.volume - 1.0;
+                login_sound.play();
+                // alert('로그인 완료!');
+                window.setTimeout(function() {
+                    window.location.href = '/main';
+                }, 100);
 
-                alert('로그인 완료!')
-                window.location.href = '/main'
             } else {
                 // 로그인이 안되면 에러메시지를 띄웁니다.
                 alert(response['msg'])
@@ -18,3 +47,6 @@ function login() {
         }
     })
 }
+
+
+
