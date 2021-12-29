@@ -209,11 +209,63 @@ const calulator = {
 
 function logout(){
     $.removeCookie('mytoken', {path: '/'});
-    alert('로그아웃!')
-    window.location.href='/'
+    // alert('로그아웃!')
     
+    
+    var logout_sound = new Audio();
+    logout_sound.src = "../static/sounds/Page_Turned.mp3"
+    logout_sound.currentTime = 0;
+    logout_sound.volume - 1.0;
+    logout_sound.play();
+    
+    window.setTimeout(function() {
+        window.location.href='/';
+    }, 400);
 }
 
 function mypage(){
-    window.location.href='https://www.naver.com'
+
+    var mypage_sound = new Audio();
+    mypage_sound.src = "../static/sounds/Click_Sound_03.mp3"
+    mypage_sound.currentTime = 0;
+    mypage_sound.volume - 1.0;
+    mypage_sound.play();
+    
+    window.setTimeout(function() {
+        window.location.href='https://www.naver.com';
+    }, 200);
+}
+
+function home(){
+    var home_sound = new Audio();
+    home_sound.src = "../static/sounds/Page_Turned.mp3"
+    home_sound.currentTime = 0;
+    home_sound.volume - 1.0;
+    home_sound.play();
+    
+    window.setTimeout(function() {
+        window.location.href = '/main';
+    }, 300);
+}
+
+function like(){
+    
+    
+    document.getElementById("like").src = "../static/images/instagram_like.png";
+    var home_sound = new Audio();
+    home_sound.src = "../static/sounds/Page_Turned.mp3"
+    home_sound.currentTime = 0;
+    home_sound.volume - 1.0;
+    home_sound.play();
+    
+}
+
+function save() {
+    document.getElementById("save").src = "../static/images/save_color.png";
+    var home_sound = new Audio();
+    home_sound.src = "../static/sounds/Page_Turned.mp3"
+    home_sound.currentTime = 0;
+    home_sound.volume - 1.0;
+    home_sound.play();
+    
 }

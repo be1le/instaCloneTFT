@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="../static/css/style.css">
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+
     <script src="../static/js/login.js"></script>
 
-    <title>로그인 페이지</title>
+    <title>BLUECLUB</title>
 </head>
 
 <body>
@@ -25,7 +27,8 @@
                         placeholder="전화번호, 사용자 이름 또는 이메일">
                     <input required, id="userpw" minlength="8" type="text" class='login-bar' placeholder="비밀번호">
                 </form>
-                <button id='login-btn' onclick="login()">로그인</button>
+                <button id='login-btn' onclick="login()" disabled="true">로그인</button>
+                
                 <div id='or-line'>
                     또는
                 </div>
@@ -37,12 +40,12 @@
             </div>
             <div id='lower-container'>
                 <p id='q-register'>계정이 없으신가요?</p>
-                <a id='register' href="/sign">가입하기</a>
+                <a id='register' onclick="sign_up()" >가입하기</a>
             </div>
             <div id='download'>
                 앱을 다운로드하세요.
             </div>
-            <div id=down-root>
+            <div id='down-root'>
                 <a href=""><img class='downimg' src="../static/images/appstore.jpg"></a>
                 <a href=""><img class='downimg' src="../static/images/googleplay.jpg"></a>
             </div>

@@ -23,6 +23,15 @@ def sign():
     return render_template("sign_up.html")
 
 
+@sign_up.route('/check_dup', methods=['POST'])
+def check_dup():
+    username_receive = request.form['userid_give']
+
+    exists = bool(db.users.find_one({"id": username_receive}))
+    
+    return jsonify({'result': 'success', 'exists': exists})
+
+
 @sign_up.route("/register", methods=['POST'])
 def register():
     id_receive = request.form['id_give']
