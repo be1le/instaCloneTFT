@@ -34,7 +34,8 @@
                                     <div class="field">
                                         <div class="control">
                                             <input type="text" class="input" id="userid" aria-describedby="emailHelp"
-                                                placeholder="휴대폰 번호 또는 이메일주소">
+                                                placeholder="아이디를 입력하세요">
+                                                <button onclick="check_dup()">중복확인</button>
                                         </div>
                                     </div>
                                 </div>
@@ -54,6 +55,7 @@
                                         <div class="control">
                                             <input type="text" class="input" id="usernick" placeholder="사용자 이름">
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +68,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="button-is-primary" onclick="register()">가입</button>
+                            <button id= sign-up-btn class="button-is-primary" onclick="register()">가입</button>
                         </div>
                 </div>
                 <div id = 'lower-container'>

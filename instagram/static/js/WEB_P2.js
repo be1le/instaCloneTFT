@@ -247,3 +247,25 @@ function home(){
         window.location.href = '/main';
     }, 300);
 }
+
+function like(){
+    
+    
+    document.getElementById("like").src = "../static/images/instagram_like.png";
+    var home_sound = new Audio();
+    home_sound.src = "../static/sounds/Page_Turned.mp3"
+    home_sound.currentTime = 0;
+    home_sound.volume - 1.0;
+    home_sound.play();
+    
+}
+
+function save() {
+    document.getElementById("save").src = "../static/images/save_color.png";
+    var home_sound = new Audio();
+    home_sound.src = "../static/sounds/Page_Turned.mp3"
+    home_sound.currentTime = 0;
+    home_sound.volume - 1.0;
+    home_sound.play();
+    
+}

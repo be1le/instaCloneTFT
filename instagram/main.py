@@ -16,10 +16,6 @@ SECRET_KEY = 'BLUECLUB'
 main = Blueprint("main", __name__, url_prefix="/main", static_folder="static", template_folder="templates")
 
 
-# @main.route("/")
-# def home():
-#     return render_template('feed_page.html')
-
 
 @main.route("/")
 def success():

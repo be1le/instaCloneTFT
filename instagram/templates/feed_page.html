@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../static/css/WEB_P2.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    
+
 <!--#region main images -->
     <script>
         let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>`
@@ -48,10 +48,10 @@
         <img src="../static/images/cover 1.png" class="post-image" alt="">
         <div class="post-content">
             <div class="reaction-wrapper">
-                <img src="../static/images/like.PNG" class="icon" alt="">
+                <img src="../static/images/like.PNG" id='like' class="icon" alt="" onclick=like()>
                 <img src="../static/images/comment.PNG" class="icon" alt="">
                 <img src="../static/images/send.PNG" class="icon" alt="">
-                <img src="../static/images/save.PNG" class="save icon" alt="">
+                <img src="../static/images/save.PNG" id='save' class="save icon" alt="" onclick=save()>
             </div>
             <p class="likes">1,012 likes</p>
             <p class="description"><span>story-username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur tenetur veritatis placeat, molestiae impedit aut provident eum quo natus molestias?</p>
@@ -179,6 +179,7 @@
                         </div>`
     </script>
 <!--#endregion -->
+
 
 </head>
 <body>
