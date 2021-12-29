@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <!-- Webpage Title -->
+        <title>회원가입 페이지</title>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bulma CSS 링크 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+        <link rel="stylesheet" href="static/sign_up.css">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+        <script src="static/sign_up.js"></script>
+    </head>
+    <body>
+        <div id='all-container'>
+            <div id='body-container'>
+                <div id='upper-container'>
+                        <img id='logo' src="images/logo.PNG" alt ='인스타그램'>
+                        <div id='upper-info'>친구들과 사진과 동영상을 보려면 가입하세요.</div>
+                        <button class="upper-btn" onclick="register()"><img id="btnimg" src="images/facebookwhite.png">Facebook으로 로그인</button>
+                        <div id='or-line'>
+                            또는
+                        </div>
+                        <div class="container">
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" id="userid" aria-describedby="emailHelp"
+                                                placeholder="휴대폰 번호 또는 이메일 주소">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="password" class="input" id="userpw" placeholder="성명">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" id="usernick" placeholder="사용자 이름">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-horizontal">
+                                <div class="field-body">
+                                    <div class="field">
+                                        <div class="control">
+                                            <input type="text" class="input" id="usernick" placeholder="비밀번호">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="button-is-primary" onclick="register()">가입</button>
+                        </div>
+                </div>
+                <div id = 'lower-container'>
+                    <p id = 'q-register'>계정이 있으신가요?</p>
+                    <a id ='register' href="">로그인</a>
+                </div>
+                <div id = 'download'>
+                    앱을 다운로드하세요.
+                </div>
+                <div id = down-root>
+                    <a href=""><img class='downimg' src="images/appstore.jpg"></a>
+                    <a href=""><img class='downimg' src="images/googleplay.jpg"></a>
+                </div>
+            </div>
+            <footer id = loginfooter>
+                <div id='footer1'>
+                    <a class='footers' href="https://about.facebook.com/meta">Meta</a>
+                    <a class='footers' href="https://about.instagram.com/">소개</a>
+                    <a class='footers' href="https://about.instagram.com/blog">블로그</a>
+                    <a class='footers' href="https://about.instagram.com/about-us/careers">채용 정보</a>
+                    <a class='footers' href="https://help.instagram.com/">도움말</a>
+                    <a class='footers' href="https://developers.facebook.com/docs/instagram">API</a>
+                    <a class='footers' href="https://help.instagram.com/519522125107875">개인정보처리방침</a>
+                    <a class='footers' href="https://help.instagram.com/581066165581870">약관</a>
+                    <a class='footers' href="https://www.instagram.com/directory/profiles/">인기 계정</a>
+                    <a class='footers' href="https://www.instagram.com/directory/hashtags/">해시태그</a>
+                    <a class='footers' href="https://www.instagram.com/explore/locations/">위치</a>
+                    <a class='footers' href="https://www.instagram.com/web/lite/">Instagram Lite</a>
+                </div>
+                <div id='footer2'>
+                    <select id='select'>
+                        <option>한국어</option>
+                        <option>English</option>
+                        <option>Español (España)</option>
+                        <option>日本語</option>
+                    </select>
+                    <p>© 2021 Instagram from Meta</p>
+                </div>
+            </footer>
+        </div>
+    </div>  
+    </body>
+</html>
