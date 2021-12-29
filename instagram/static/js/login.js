@@ -38,7 +38,7 @@ function login() {
                 // alert('로그인 완료!');
                 window.setTimeout(function() {
                     window.location.href = '/main';
-                }, 100);
+                }, 200);
 
             } else {
                 // 로그인이 안되면 에러메시지를 띄웁니다.
@@ -49,4 +49,15 @@ function login() {
 }
 
 
+function sign_up() {
+    var sign_up_sound = new Audio();
+    sign_up_sound.src = "../static/sounds/Signed_up.mp3"
+    sign_up_sound.currentTime = 0;
+    sign_up_sound.volume - 1.0;
+    sign_up_sound.play();
+    // alert('로그인 완료!');
+    window.setTimeout(function() {
+    window.location.href = '/sign';
+    }, 400);
+}
 
