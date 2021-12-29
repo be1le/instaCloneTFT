@@ -1,4 +1,4 @@
-from flask import render_template, request, url_for, session, redirect, jsonify
+from flask import render_template, request, jsonify
 from flask.blueprints import Blueprint
 
 from pymongo import MongoClient
@@ -33,26 +33,42 @@ def register():
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
     db.user.insert_one({'id': id_receive, 'pw': pw_hash, 'name': name_receive, 'nick': nickname_receive})
-
-    id_receive = request.form['id_give']
-    pw_receive = request.form['pw_give']
-
-    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+    
 
     result = db.user.find_one({'id': id_receive, 'pw': pw_hash})
     
     if result is not None:
         payload = {
-            'id' : id_receive, 
-            'exp' : datetime.datetime.utcnow() + datetime.timedelta(seconds=60 * 60 * 24)  
-            }
+                'id' : id_receive, 
+                'exp' : datetime.datetime.utcnow() + datetime.timedelta(seconds=60 * 60 )  
+                }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
         return jsonify({'result': 'success', 'token': token})
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지않습니다'})
 
-    return jsonify({'result': 'success'})
+
+@sign_up.route("/api/nickname", methods=['GET'])
+def api_valid():
+    token_receive = request.cookies.get('mytoken')
+    print(token_receive)
+
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms='HS256')
+        print(payload)
+
+        userinfo = db.user.find_one({'id': payload['id']} , {'_id': 0})
+        return jsonify({'result': 'success', 'nickname': userinfo['nick']}) # db에 저장될 닉네임 값 userinfo
+
+    except jwt.ExpiredSignatureError:
+        # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
+        return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
+    except jwt.exceptions.DecodeError:
+        return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
 
-# id , pw , pw확인조건 수정하기
+
+
+# id , pw  조건 수정하기
+

@@ -11,7 +11,7 @@
 <!--#region main images -->
     <script>
         let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="">`
-        let Instagram_Home = `<img src="Images/home.PNG" class="icon" alt="" id="Home">`
+        let Instagram_Home = `<img src="../static/images/home.PNG" class="icon" alt="" id="Home">`
         let Instagram_Messenger = `<img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">`
         let Instagram_Post = `<img src="../static/images/post.PNG" class="icon" alt="">`
         let Instagram_Explore = `<img src="../static/images/explore.PNG" class="icon" alt="">`
@@ -65,7 +65,7 @@
         let Instagram_profile_02 = `<div class="post">
         <div class="info">
             <div class="user">
-                <div class="profile-pic"><img src="Images/cover 2.png" alt=""></div>
+                <div class="profile-pic"><img src="../static/images/cover 2.png" alt=""></div>
                 <p class="feed-username">modern_web_channel</p>
             </div>
             <img src="../static/images/option.PNG" class="options" alt="">
@@ -102,7 +102,7 @@
                 <img src="../static/images/like.PNG" class="icon" alt="">
                 <img src="../static/images/comment.PNG" class="icon" alt="">
                 <img src="../static/images/send.PNG" class="icon" alt="">
-                <img src="../static/imagess/save.PNG" class="save icon" alt="">
+                <img src="../static/images/save.PNG" class="save icon" alt="">
             </div>
             <p class="likes">521 likes</p>
             <p class="description"><span>story-username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur tenetur veritatis placeat, molestiae impedit aut provident eum quo natus molestias?</p>
@@ -196,7 +196,7 @@
                     append_Value('.nav-items', Instagram_Explore)
                     append_Value('.nav-items', Instagram_Liked)
                 </script>
-                <div class="icon user-profile" id="user-profile"></div>
+                <div class="icon user-profile" id="user-profile" onclick="mypage()"></div>
             </div>
         </div>
     </nav>
@@ -229,7 +229,7 @@
                     </div>
                     <div>
                         <p class="username">{{nickname}}</p>
-                        <p class="sub-text">{{nickname}}</p>
+                        <p class="sub-text">{{name}}</p>
                     </div>
                     <button class="action-btn" onclick="logout()">switch</button>
                 </div>

@@ -17,7 +17,8 @@ login = Blueprint("login", __name__, url_prefix="/" ,  static_folder="static", t
 
 @login.route("/")
 def home():
-    return render_template("index.html")
+    msg = request.args.get("msg")
+    return render_template("index.html" , msg = msg)
 
 @login.route("/api/login", methods=["POST"])
 def api_login():
@@ -31,11 +32,12 @@ def api_login():
     if result is not None:
         payload = {
             'id' : id_receive, 
-            'exp' : datetime.datetime.utcnow() + datetime.timedelta(seconds=60 * 60 * 24)  
+            'exp' : datetime.datetime.utcnow() + datetime.timedelta(seconds=60 * 60 )  
             }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
         return jsonify({'result': 'success', 'token': token})
+    
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지않습니다'})
 

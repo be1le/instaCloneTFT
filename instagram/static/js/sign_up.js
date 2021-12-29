@@ -14,21 +14,21 @@ function register() {
         },
         success: function (response) {
             if (response['result'] == 'success') {
-                alert('회원가입이 완료되었습니다.')
-                if (response['result'] == 'success') {
-                    // 로그인이 정상적으로 되면, 토큰을 받아옵니다.
-                    // 이 토큰을 mytoken이라는 키 값으로 쿠키에 저장합니다.
-                    $.cookie('mytoken', response['token']);
-    
-                    window.location.href = '/main'
+
+                console.log(response['token']);
+                $.cookie ('mytoken', response['token'], {path: '/'});
+                alert('회원가입이 완료되었습니다.');
+                
+                
+                
+                window.location.href = '/main/good';
                 } else {
                     
                     alert(response['msg'])
                 }
 
-            } else {
-                alert(response['msg'])
-            }
+
+            } 
         }
-    })
+    )
 }

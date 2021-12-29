@@ -208,7 +208,12 @@ const calulator = {
 
 
 function logout(){
-    $.removeCookie('mytoken');
+    $.removeCookie('mytoken', {path: '/'});
     alert('로그아웃!')
     window.location.href='/'
+    
+}
+
+function mypage(){
+    window.location.href='https://www.naver.com'
 }
