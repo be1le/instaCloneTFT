@@ -77,23 +77,14 @@ function register() {
 }
 
 
-window.onload = function check_dup() {
-    $('#userid').on('input', check_dup);
-    $('#username').on('input', check_dup);
-    $('#usernick').on('input', check_dup)
-    $('#userpw').on('input',check_dup)
-
+function disa() {
+    
     var id = $('#userid').val();
     var password = $('#userpw').val();
     var nick = $('#usernick').val();
     var name = $('#username').val();
 
-    if (id == "" || password =="" || nick =='' || name =='') {
-        $('#sign-up-btn').attr("disabled",true);
-        $('#sign-up-btn').css('background-color', '#9B9B9B');
-        
-    } 
-    else {
+    if (id != "" && password !="" && nick !='' && name !='') {
         $('#sign-up-btn').attr("disabled",false);
         $('#sign-up-btn').css('background-color', 'rgb(75, 186, 255)');
     }

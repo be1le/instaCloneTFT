@@ -9,7 +9,7 @@ client = MongoClient('mongodb+srv://test:sparta@cluster0.0pi7g.mongodb.net/Clust
 db = client.dbsparta
 
 
-SECRET_KEY = 'BLUECLUB'
+SECRET_KEY = 'dev'
 
 
 login = Blueprint("login", __name__, url_prefix="/" ,  static_folder="static", template_folder="templates")
@@ -62,9 +62,4 @@ def api_valid():
 
 
 
-
-
-@login.route("/fail")
-def fail():
-    return "로그인 실패"
 

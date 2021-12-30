@@ -24,10 +24,10 @@
                 <img id='logo' src="../static/images/logo.PNG" alt='인스타그램'>
                 <form id='inputs'>
                     <input required, id="userid" maxlength="20" type="text" class='login-bar'
-                        placeholder="전화번호, 사용자 이름 또는 이메일">
-                    <input required, id="userpw" minlength="8" type="text" class='login-bar' placeholder="비밀번호">
+                    placeholder="전화번호, 사용자 이름 또는 이메일">
+                    <input required, id="userpw" minlength="8" type="text" class='login-bar' onchange="disa()" placeholder="비밀번호">
                 </form>
-                <button id='login-btn' onclick="login()" disabled="true">로그인</button>
+                <button id='login-btn' onclick="login()"  disabled="">로그인</button>
                 
                 <div id='or-line'>
                     또는

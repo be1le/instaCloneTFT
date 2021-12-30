@@ -13,11 +13,11 @@ db = client.dbsparta
 
 SECRET_KEY = 'dev'
 
-main = Blueprint("main", __name__, url_prefix="/main", static_folder="static", template_folder="templates")
+mypage = Blueprint("mypage", __name__, url_prefix="/mypage", static_folder="static", template_folder="templates")
 
 
 
-@main.route("/")
+@mypage.route("/")
 def success():
 
     token_receive = request.cookies.get('mytoken')
@@ -27,7 +27,7 @@ def success():
         
         user_info = db.user.find_one({'id': payload['id']})
 
-        return render_template('feed_page.html', nickname = user_info['nick'], name = user_info['name']) # db에 저장될 닉네임 값 userinfo
+        return render_template('my_page.html', nickname = user_info['nick'], name = user_info['name']) # db에 저장될 닉네임 값 userinfo
 
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
@@ -35,7 +35,7 @@ def success():
     except jwt.exceptions.DecodeError:
         return redirect(url_for('login.home', msg = '로그인 정보가 존재하지 않습니다.'))
 
-@main.route("/good")
+@mypage.route("/good")
 def good():
 
     token_receive = request.cookies.get('mytoken')

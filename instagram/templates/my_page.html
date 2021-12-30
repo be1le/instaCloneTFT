@@ -10,8 +10,8 @@
 
 <!--#region main images -->
     <script>
-        let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="">`
-        let Instagram_Home = `<img src="../static/images/home.PNG" class="icon" alt="" id="Home">`
+        let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>`
+        let Instagram_Home = `<img src="../static/images/home.PNG" class="icon" alt="" id="Home" onclick=home()>`
         let Instagram_Messenger = `<img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">`
         let Instagram_Post = `<img src="../static/images/post.PNG" class="icon" alt="">`
         let Instagram_Explore = `<img src="../static/images/explore.PNG" class="icon" alt="">`
@@ -70,7 +70,7 @@
                                 <p>30</p>
                             </div>     
                         </div>
-                        <p id='desk-mini-name'>이용자</p>
+                        <p id='desk-mini-name'>{{name}}</p>
                     </div>
                 </div>
                 <p id='mini-name'>이용자</p>
