@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Momentum</title>
+    <script src="../static/js/my_page.js"></script>
+    <link rel="stylesheet" href="../static/css/my_page.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--#region main images -->
+    <script>
+        let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="">`
+        let Instagram_Home = `<img src="../static/images/home.PNG" class="icon" alt="" id="Home">`
+        let Instagram_Messenger = `<img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">`
+        let Instagram_Post = `<img src="../static/images/post.PNG" class="icon" alt="">`
+        let Instagram_Explore = `<img src="../static/images/explore.PNG" class="icon" alt="">`
+        let Instagram_Liked = `<img src="../static/images/like.PNG" class="icon" alt="">`
+    </script>
+<!--#endregion -->
+
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <script>
+                append_Value('.nav-wrapper', Instagram_Logo)
+            </script>
+            <input type="text" class="search-box" placeholder="search">
+            <div class="nav-items">
+                <script>
+                    append_Value('.nav-items', Instagram_Home)
+                    append_Value('.nav-items', Instagram_Messenger)
+                    append_Value('.nav-items', Instagram_Post)
+                    append_Value('.nav-items', Instagram_Explore)
+                    append_Value('.nav-items', Instagram_Liked)
+                </script>
+                <div class="icon user-profile" id="user-profile" onclick="mypage()"></div>
+            </div>
+        </div>
+    </nav>
+</header>
+<article>
+    <section class="main">
+        <div class='upper-wrap'>
+            <div class="upper-col">
+                <div class="profile-card">
+                    <div onclick="" class="profile-pic">
+                        <img  src="../static/images/profile-pic.png" alt="">
+                    </div>
+                    <div class='desk-profile'>
+                        <div class='profile-name'>
+                            <p class="username">{{nickname}}</p>
+                            <button class="desk-setting" onclick="">프로필 편집</button>
+                            <img id='settingimg' onclick="" src="../static/images/setting.png">
+                        </div>
+                        <button class="setting" onclick="">프로필 편집</button>
+                        <div class='desk-info'>
+                            <div class='desk-info-name'>
+                                <p class='desk-info-title'>게시물</p>
+                                <p>30</p>
+                            </div>
+                            <div class='desk-info-name'>
+                                <p class='desk-info-title'>팔로워</p>
+                                <p>30</p>
+                            </div>
+                            <div class='desk-info-name'>
+                                <p class='desk-info-title'>팔로우</p>
+                                <p>30</p>
+                            </div>     
+                        </div>
+                        <p id='desk-mini-name'>이용자</p>
+                    </div>
+                </div>
+                <p id='mini-name'>이용자</p>
+                <div class="status-wrapper">
+                    <div class="status-card">
+                        <div class="profile-pic"><img src="../static/images/cover 1.png" alt=""></div>
+                        <p class="story-username">Daily</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img src="../static/images/cover 2.png" alt=""></div>
+                        <p class="story-username">Nice Place</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img src="../static/images/cover 3.png" alt=""></div>
+                        <p class="story-username">With</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div id='lower-col'>
+                <div id='post-info'>
+                    <div class='info-name'>
+                        <p class='info-title'>게시물</p>
+                        <p>30</p>
+                    </div>
+                    <div class='info-name'>
+                        <p class='info-title'>팔로워</p>
+                        <p>30</p>
+                    </div>
+                    <div class='info-name'>
+                        <p class='info-title'>팔로우</p>
+                        <p>30</p>
+                    </div>
+                </div>
+            <!-- desktop info start -->
+                <div id='desktop-postinfo'>
+                    <div class='desktop-info' onclick=" ">
+                        <img class='desktop-infoicon' src="../static/images/feedgrid.png">
+                        <p class='desktop-infotitle'>게시물</p>
+                    </div>
+                    <div class='desktop-info' onclick=" ">
+                        <img class='desktop-infoicon' src="../static/images/save.PNG">
+                        <p class='desktop-infotitle'>저장됨</p>
+                    </div>
+                </div>
+            <!-- desktop info end -->
+                <div id='post-icon'>
+                    <img class='iconimg' onclick="" src="../static/images/feedgrid.png">
+                    <img class='iconimg' onclick="" src="../static/images/saveblack.png">
+                </div>
+                <section id="post-feed">
+                <a href="" class="post">
+                    <figure class="post-image">
+                        <img src="../static/images/cover 1.png" alt="">
+                    </figure>
+                    <span class="post-overlay">
+                        <p>
+                        <span class="post-likes"><img class='white-icon' src="../static/images/heart-white.png">150</span>
+                        <span class="post-comments"><img class='white-icon' src="../static/images/speechbubble-white.png">10</span>
+                        </p>
+                    </span>
+                    </a>
+                    <a href="" class="post">
+                    <figure class="post-image">
+                        <img src="../static/images/cover 2.png" alt="">
+                    </figure>
+                    <span class="post-overlay">
+                        <p>
+                        <span class="post-likes"><img class='white-icon' src="../static/images/heart-white.png">150</span>
+                        <span class="post-comments"><img class='white-icon' src="../static/images/speechbubble-white.png">10</span>
+                        </p>
+                    </span>
+                    </a>
+                    <a href="" class="post">
+                    <figure class="post-image">
+                        <img src="../static/images/cover 3.png" alt="">
+                    </figure>
+                    <span class="post-overlay">
+                        <p>
+                        <span class="post-likes"><img class='white-icon' src="../static/images/heart-white.png">150</span>
+                        <span class="post-comments"><img class='white-icon' src="../static/images/speechbubble-white.png">10</span>
+                        </p>
+                    </span>
+                    </a>
+                    <a href="" class="post">
+                    <figure class="post-image">
+                        <img src="../static/images/cover 4.png" alt="">
+                    </figure>
+                    <span class="post-overlay">
+                        <p>
+                        <span class="post-likes"><img class='white-icon' src="../static/images/heart-white.png">150</span>
+                        <span class="post-comments"><img class='white-icon' src="../static/images/speechbubble-white.png">10</span>
+                        </p>
+                    </span>
+                    </a>
+                    <a href="" class="post">
+                    <figure class="post-image">
+                        <img src="../static/images/cover 5.png" alt="">
+                    </figure>
+                    <span class="post-overlay">
+                        <p>
+                        <span class="post-likes"><img class='white-icon' src="../static/images/heart-white.png">150</span>
+                        <span class="post-comments"><img class='white-icon' src="../static/images/speechbubble-white.png">10</span>
+                        </p>
+                    </span>
+                    </a>
+                    <a href="" class="post">
+                    <figure class="post-image">
+                        <img src="../static/images/cover 6.png" alt="">
+                    </figure>
+                    <span class="post-overlay">
+                        <p>
+                        <span class="post-likes"><img class='white-icon' src="../static/images/heart-white.png">150</span>
+                        <span class="post-comments"><img class='white-icon' src="../static/images/speechbubble-white.png">10</span>
+                        </p>
+                    </span>
+                    </a>
+                </section>
+            </div>
+    </section>
+    <footer id=loginfooter>
+        <div id='footer1'>
+            <a class='footers' href="https://about.facebook.com/meta">Meta</a>
+            <a class='footers' href="https://about.instagram.com/">소개</a>
+            <a class='footers' href="https://about.instagram.com/blog">블로그</a>
+            <a class='footers' href="https://about.instagram.com/about-us/careers">채용 정보</a>
+            <a class='footers' href="https://help.instagram.com/">도움말</a>
+            <a class='footers' href="https://developers.facebook.com/docs/instagram">API</a>
+            <a class='footers' href="https://help.instagram.com/519522125107875">개인정보처리방침</a>
+            <a class='footers' href="https://help.instagram.com/581066165581870">약관</a>
+            <a class='footers' href="https://www.instagram.com/directory/profiles/">인기 계정</a>
+            <a class='footers' href="https://www.instagram.com/directory/hashtags/">해시태그</a>
+            <a class='footers' href="https://www.instagram.com/explore/locations/">위치</a>
+            <a class='footers' href="https://www.instagram.com/web/lite/">Instagram Lite</a>
+        </div>
+        <div id='footer2'>
+            <select id='select'>
+                <option>한국어</option>
+                <option>English</option>
+                <option>Español (España)</option>
+                <option>日本語</option>
+            </select>
+            <p>© 2021 Instagram from Meta</p>
+        </div>
+    </footer>
+</article>
+</body>
+</html>

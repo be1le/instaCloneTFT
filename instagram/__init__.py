@@ -1,8 +1,8 @@
 from flask import Flask , render_template, request, jsonify
-# from flask.helpers import url_for
 
 
 from pymongo import MongoClient
+
 
 
 def create_app():
@@ -22,4 +22,5 @@ def create_app():
     회원가입 페이지
     게시물 페이지
     나의 게시물 페이지
+    글작성 페이지
     '''
