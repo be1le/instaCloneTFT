@@ -1,19 +1,12 @@
-
-window.onload = function disa() {
-    $('#userid').on('input', disa);
-    $('#userpw').on('input', disa);
+function disa() {
     var id = $('#userid').val();
     var password = $('#userpw').val();
-    if (id == "" || password =="") {
-        $('#login-btn').attr("disabled",true);
-        $('#login-btn').css('background-color', '#9B9B9B');
-    } else {
+    if (id != "" && password !="") {
         $('#login-btn').attr("disabled",false);
         $('#login-btn').css('background-color', 'rgb(75, 186, 255)');
     }
 };
 
-    
 
 
 function login() {

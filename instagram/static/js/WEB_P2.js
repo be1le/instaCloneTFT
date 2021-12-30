@@ -232,7 +232,7 @@ function mypage(){
     mypage_sound.play();
     
     window.setTimeout(function() {
-        window.location.href='https://www.naver.com';
+        window.location.href='/mypage';
     }, 200);
 }
 

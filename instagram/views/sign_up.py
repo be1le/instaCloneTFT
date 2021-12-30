@@ -11,7 +11,7 @@ import hashlib
 import datetime
 import jwt
 
-SECRET_KEY = 'BLUECLUB'
+SECRET_KEY = 'dev'
 
 
 
