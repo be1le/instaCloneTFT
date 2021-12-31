@@ -24,6 +24,7 @@
   let Instagram_Post = `<img src="../static/images/post.PNG" class="icon" alt="">`
   let Instagram_Explore = `<img src="../static/images/explore.PNG" class="icon" alt="">`
   let Instagram_Liked = `<img src="../static/images/like.PNG" class="icon" alt="">`
+  let Instagram_Profile = `<img src="../static/images/profile_images/{{image}}" class="icon" alt="" onclick=mypage()>`
 
 </script>
 
@@ -42,8 +43,8 @@
                     append_Value('.nav-items', Instagram_Post)
                     append_Value('.nav-items', Instagram_Explore)
                     append_Value('.nav-items', Instagram_Liked)
+                    append_Value('.nav-items', Instagram_Profile)
                 </script>
-                <div class="icon user-profile" id="user-profile" onclick="mypage()"></div>
             </div>
         </div>
     </nav>

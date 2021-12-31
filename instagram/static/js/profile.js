@@ -224,7 +224,40 @@ function posting() {
         processData: false,
         success: function (response) {
             alert(response["result"])
-            window.location.reload()
+            var profile_sound = new Audio();
+            profile_sound.src = "../static/sounds/profile.mp3"
+            profile_sound.currentTime = 0;
+            profile_sound.volume - 1.0;
+            profile_sound.play();
+
+            window.setTimeout(function() {
+                window.location.href = '/main';
+            }, 700);
         }
     });
-  }
+}
+
+function mypage(){
+
+    var mypage_sound = new Audio();
+    mypage_sound.src = "../static/sounds/Click_Sound_03.mp3"
+    mypage_sound.currentTime = 0;
+    mypage_sound.volume - 1.0;
+    mypage_sound.play();
+    
+    window.setTimeout(function() {
+        window.location.href='/mypage';
+    }, 200);
+}
+
+function home(){
+    var home_sound = new Audio();
+    home_sound.src = "../static/sounds/Page_Turned.mp3"
+    home_sound.currentTime = 0;
+    home_sound.volume - 1.0;
+    home_sound.play();
+    
+    window.setTimeout(function() {
+        window.location.href = '/main';
+    }, 300);
+}

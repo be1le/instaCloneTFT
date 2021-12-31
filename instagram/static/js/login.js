@@ -4,6 +4,7 @@ function disa() {
     if (id != "" && password !="") {
         $('#login-btn').attr("disabled",false);
         $('#login-btn').css('background-color', 'rgb(75, 186, 255)');
+        $("#login-btn").focus()
     }
 };
 

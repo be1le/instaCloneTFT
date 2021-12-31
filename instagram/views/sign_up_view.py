@@ -27,7 +27,7 @@ def sign():
 def check_dup():
     username_receive = request.form['userid_give']
 
-    exists = bool(db.users.find_one({"id": username_receive}))
+    exists = bool(db.user.find_one({"id": username_receive}))
     
     return jsonify({'result': 'success', 'exists': exists})
 

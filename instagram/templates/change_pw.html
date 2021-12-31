@@ -8,6 +8,7 @@
   <script src="../static/js/pw.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   <title>BLUECLUB password</title>
 </head>
 
@@ -24,6 +25,7 @@
   let Instagram_Post = `<img src="../static/images/post.PNG" class="icon" alt="">`
   let Instagram_Explore = `<img src="../static/images/explore.PNG" class="icon" alt="">`
   let Instagram_Liked = `<img src="../static/images/like.PNG" class="icon" alt="">`
+  let Instagram_Profile = `<img src="../static/images/profile_images/{{image}}" class="icon" alt="" onclick=mypage()>`
 
 </script>
 
@@ -42,8 +44,8 @@
                     append_Value('.nav-items', Instagram_Post)
                     append_Value('.nav-items', Instagram_Explore)
                     append_Value('.nav-items', Instagram_Liked)
+                    append_Value('.nav-items', Instagram_Profile)
                 </script>
-                <div class="icon user-profile" id="user-profile" onclick="mypage()"></div>
             </div>
         </div>
     </nav>
@@ -62,18 +64,18 @@
         <div id = "inputs">
           <div class="password-upload">
             <p class="title-old">이전 비밀번호</p>
-            <input style="width:300px;" type="text" id="input-bar" placeholder="">
+            <input style="width:300px;" type="text" id="input-bar-1" placeholder="">
           </div>
           <div class="password-upload">
             <p class="title-new">새 비밀번호</p>
-            <input style="width:300px;" type="text" id="input-bar" placeholder="">
+            <input style="width:300px;" type="text" id="input-bar-2" placeholder="">
           </div>
           <div class="password-upload">
             <p class="title-new">새 비밀번호 확인</p>
-            <input style="width:300px;" type="text" id="input-bar" placeholder="">
+            <input style="width:300px;" type="text" id="input-bar-3" placeholder="">
           </div>
         </div>
-            <button id = 'submit' onclick="posting()">비밀번호 변경</button>
+            <button id = 'submit' onclick="change()">비밀번호 변경</button>
             <p id = 'q-pw' onclick=" ">비밀번호를 잊으셨나요?</p>
       </div>
     </div>

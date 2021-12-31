@@ -217,12 +217,13 @@ const calulator = {
 
 
 function logout(){
+
     $.removeCookie('mytoken', {path: '/'});
     // alert('로그아웃!')
     
     
     var logout_sound = new Audio();
-    logout_sound.src = "../static/sounds/Page_Turned.mp3"
+    logout_sound.src = "../static/sounds/log_out.mp3"
     logout_sound.currentTime = 0;
     logout_sound.volume - 1.0;
     logout_sound.play();

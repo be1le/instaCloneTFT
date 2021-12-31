@@ -202,3 +202,75 @@ const calulator = {
 // Object.removeEventListener(handleObjectClick) 이런식으로 이벤트 리스너 삭제 가능함.
 // *******************************************************************************************************************
 //#endregion
+const delCookie = function delCookie_by_name(name){
+    let date = new Date();
+    date.setDate(date.getDate() - 100);
+    let Cookie = `${name}=;Expires=${date.toUTCString()}`
+    document.cookie = Cookie;
+}
+
+function change() {
+
+    
+    $.ajax({
+        type: "POST",
+        url: "/change_pw/go",
+        data: {
+            old_password_give: $('#input-bar-1').val(),
+            new_password_give: $('#input-bar-2').val(),
+            check_new_password_give: $('#input-bar-3').val(),
+        },
+        success: function (response) {
+            if (response['result'] == "fail") {
+                alert(response['msg'])
+
+                } else {
+                console.log(response['result']);
+                alert(response['msg'])
+                
+                $.removeCookie('mytoken', {path: '/'});
+                
+                
+                var login_sound = new Audio();
+                login_sound.src = "../static/sounds/log_out.mp3"
+                login_sound.currentTime = 0;
+                login_sound.volume - 1.0;
+                login_sound.play();
+
+                window.setTimeout(function() {
+                    window.location.href = '/';
+                }, 500);
+                
+                
+                }
+
+
+            } 
+        }
+    )
+}
+
+function mypage(){
+
+    var mypage_sound = new Audio();
+    mypage_sound.src = "../static/sounds/Click_Sound_03.mp3"
+    mypage_sound.currentTime = 0;
+    mypage_sound.volume - 1.0;
+    mypage_sound.play();
+    
+    window.setTimeout(function() {
+        window.location.href='/mypage';
+    }, 200);
+}
+
+function home(){
+    var home_sound = new Audio();
+    home_sound.src = "../static/sounds/Page_Turned.mp3"
+    home_sound.currentTime = 0;
+    home_sound.volume - 1.0;
+    home_sound.play();
+    
+    window.setTimeout(function() {
+        window.location.href = '/main';
+    }, 300);
+}

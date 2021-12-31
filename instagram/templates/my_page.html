@@ -16,6 +16,7 @@
         let Instagram_Post = `<img src="../static/images/post.PNG" class="icon" alt="">`
         let Instagram_Explore = `<img src="../static/images/explore.PNG" class="icon" alt="">`
         let Instagram_Liked = `<img src="../static/images/like.PNG" class="icon" alt="">`
+        let Instagram_Profile = `<img src="../static/images/profile_images/{{image}}" class="icon" alt="" onclick=mypage()>`
     </script>
 <!--#endregion -->
 
@@ -35,8 +36,8 @@
                     append_Value('.nav-items', Instagram_Post)
                     append_Value('.nav-items', Instagram_Explore)
                     append_Value('.nav-items', Instagram_Liked)
+                    append_Value('.nav-items', Instagram_Profile)
                 </script>
-                <div class="icon user-profile" id="user-profile" onclick="mypage()"></div>
             </div>
         </div>
     </nav>
@@ -52,10 +53,10 @@
                     <div class='desk-profile'>
                         <div class='profile-name'>
                             <p class="username">{{nickname}}</p>
-                            <button class="desk-setting" onclick="">프로필 편집</button>
-                            <img id='settingimg' onclick="" src="../static/images/setting.png">
+                            <button class="desk-setting" onclick="profile()">프로필 편집</button>
+                            <img id='settingimg' onclick="change_pw()" src="../static/images/setting.png">
                         </div>
-                        <button class="setting" onclick="">프로필 편집</button>
+                        
                         <div class='desk-info'>
                             <div class='desk-info-name'>
                                 <p class='desk-info-title'>게시물</p>

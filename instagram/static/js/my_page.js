@@ -269,3 +269,29 @@ function save() {
     home_sound.play();
     
 }
+
+function profile(){
+    
+    var profile_sound = new Audio();
+    profile_sound.src = "../static/sounds/profile.mp3"
+    profile_sound.currentTime = 0;
+    profile_sound.volume - 1.0;
+    profile_sound.play();
+
+    window.setTimeout(function() {
+        window.location.href = '/profile';
+    }, 700);
+    
+}
+
+function change_pw() {
+    var profile_sound = new Audio();
+    profile_sound.src = "../static/sounds/profile.mp3"
+    profile_sound.currentTime = 0;
+    profile_sound.volume - 1.0;
+    profile_sound.play();
+
+    window.setTimeout(function() {
+        window.location.href = '/change_pw';
+    }, 700);
+}
