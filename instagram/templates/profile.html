@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Document</title>
+</head>
+<script>
+  function posting() {
+    let nick = $('#nick').val()
+    let file = $('#file')[0].files[0]
+    let form_data = new FormData()
+
+    form_data.append("nick_give", nick)
+    form_data.append("file_give", file)
+
+    $.ajax({
+        type: "POST",
+        url: "/profile/fileupload",
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            alert(response["result"])
+            window.location.reload()
+        }
+    });
+  }
+
+  function find_img() {
+    let title = $('#find_title').val()
+    document.getElementById('link').href = '/fileshow/'+title
+  }
+
+</script>
+<body>
+  <div class="file-upload">
+    <input style="width:300px;" type="text" id="nick" placeholder="변경할 닉네임">
+    <input type="file" id="file">
+    <button onclick="posting()">업로드</button>
+  </div>
+  <hr>
+  <div>
+    <input style="width:300px;" onchange="find_img()" type="text" id="find_title" placeholder="볼 이미지의 제목을 입력해주세요">
+    <a id='link' href="#">업로드 한 이미지 보기</a>
+  </div>
+</body>
+</html>
