@@ -9,13 +9,15 @@
 </head>
 <script>
   function posting() {
+
     let nick = $('#nick').val()
     let file = $('#file')[0].files[0]
     let form_data = new FormData()
 
     form_data.append("nick_give", nick)
-    form_data.append("file_give", file)
-
+    if (file) {
+        form_data.append("file_give", file)
+    }
     $.ajax({
         type: "POST",
         url: "/profile/fileupload",
@@ -38,9 +40,11 @@
 </script>
 <body>
   <div class="file-upload">
-    <input style="width:300px;" type="text" id="nick" placeholder="변경할 닉네임">
+    <input style="width:300px;" type="text" id="nick" placeholder="{{nickname}}">
     <input type="file" id="file">
     <button onclick="posting()">업로드</button>
+    <img src="../static/images/profile_images/{{image}}">
+    {{nickname}}
   </div>
   <hr>
   <div>

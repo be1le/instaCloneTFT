@@ -25,8 +25,10 @@ def success():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms='HS256')
         
         user_info = db.user.find_one({'id': payload['id']})
+        
+        user_pic = db.pic.find_one({'id': payload['id']})
 
-        return render_template('profile.html', nickname = user_info['nick'], name = user_info['name']) # db에 저장될 닉네임 값 userinfo
+        return render_template('profile.html', nickname = user_info['nick'], image = user_pic['img'] ) # db에 저장될 닉네임 값 userinfo
 
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
@@ -36,50 +38,59 @@ def success():
 
 
 
-#닉네임 변경 , 프로필 사진 변경 
+#닉네임 변경 , 프로필 사진 변경 (기존 파일 삭제 및 추가)
 
 @profile.route('/fileupload', methods=['POST'])
 def file_upload():
+    ##### file_give 가  none 일 경우
+    ########### files 값 여부 확인하고 ...?
+    try:
+        nick_receive = request.form['nick_give'] # input 닉네임
+        file = request.files['file_give'] #upload 파일
+        
+        token_receive = request.cookies.get('mytoken')
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms='HS256')
+        user = db.user.find_one({'id': payload['id']})
+        user_id = user['id']
 
-    # and 닉네임 변경 
-    nick_receive = request.form['nick_give'] # input 닉네임
-
-    file = request.files['file_give'] #upload 파일
-
-    token_receive = request.cookies.get('mytoken')
-
-    payload = jwt.decode(token_receive, SECRET_KEY, algorithms='HS256')
-
-    user = db.user.find_one({'id': payload['id']})
-
-    user_id = user['id']
-
-    
-    extension = file.filename.split('.')[-1]
+        
+        extension = file.filename.split('.')[-1]
 
 
-    today = datetime.now()
-    mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
-    filename = f'{user_id}-{mytime}'
+        today = datetime.now()
+        mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+        filename = f'{user_id}-{mytime}'
 
-    # 파일 저장 경로 설정 (파일은 db가 아니라, 서버 컴퓨터 자체에 저장됨)
-    save_to = f'instagram/static/images/profile/{filename}.{extension}'
-    # 파일 저장!
-    file.save(save_to)
-    
-    # 아래와 같이 입력하면 db에 추가 가능!
-    doc = {'id': user_id, 'img':f'{filename}.{extension}'}
-    db.pic.insert_one(doc)
+        profile = db.pic.find_one({'id': user_id})
+        
+        if profile != None :
+            profile_pic = profile['img']
+            os.remove( f'instagram/static/images/profile_images/{profile_pic}' )
+        
+        db.pic.delete_one({ 'id': user_id })
 
-    db.user.update_one({'id': user_id },{'$set':{'nick': nick_receive }})
+        # 파일 저장 경로 설정 (파일은 db가 아니라, 서버 컴퓨터 자체에 저장됨)
+        save_to = f'instagram/static/images/profile_images/{filename}.{extension}'
+        # 파일 저장!
+        file.save(save_to)
+        
+        
+        doc = {'id': user_id, 'img':f'{filename}.{extension}'}
+        db.pic.insert_one(doc)
+        
+        if nick_receive != '' :
+            db.user.update_one({'id': user_id },{'$set':{'nick': nick_receive }})
 
-    return jsonify({'result':'success'})
+        return jsonify({'result':'success'})
+    except:
+        nick_receive = request.form['nick_give'] # input 닉네임
+        
+        token_receive = request.cookies.get('mytoken')
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms='HS256')
+        user = db.user.find_one({'id': payload['id']})
+        user_id = user['id']
 
-# 주소에다가 /fileshow/이미지타이틀 입력하면 그 이미지타이틀을 title이라는 변수로 받아옴
-@app.route('/fileshow/<title>')
-def file_show(title):
-    # title은 현재 이미지타이틀이므로, 그것을 이용해서 db에서 이미지 '파일'의 이름을 가지고 옴
-    img_info = db.camp.find_one({'title': title})
-    # 해당 이미지 정보를 jinja 형식으로 사용하기 위해 넘김
-    return render_template('showimg.html', img_info=img_info)
+        if nick_receive != '' :
+            db.user.update_one({'id': user_id },{'$set':{'nick': nick_receive }})
 
+        return jsonify({'result':'success'})

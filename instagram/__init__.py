@@ -9,7 +9,7 @@ def create_app():
     app = Flask(__name__)
 
 
-    from.views import login_view, sign_up,mypage,profile_change_view
+    from.views import login_view, sign_up,mypage,profile_change_view,change_pw_view
     from.main import main
 
     app.register_blueprint(login_view.login)
@@ -17,6 +17,7 @@ def create_app():
     app.register_blueprint(sign_up.sign_up)
     app.register_blueprint(mypage.mypage)
     app.register_blueprint(profile_change_view.profile)
+    app.register_blueprint(change_pw_view.change_pw)
     return app
     
     ''' 
