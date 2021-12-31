@@ -62,7 +62,7 @@ function register() {
                 login_sound.play();
                 // alert('회원가입이 완료되었습니다.');
                 window.setTimeout(function() {
-                    window.location.href = '/main/good';
+                    window.location.href = '/main';
                 }, 100);
 
                 } else {

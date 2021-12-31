@@ -47,6 +47,15 @@ function append_Value(Address, add_child) {
 
 //#region  오브젝트 find by query 매크로
 
+
+// const profile_img = document.createElement('img');
+//     profile_img.src = "../image/profile_images/{{image}}";
+//     document.getElementById('user-profile').appendChild(profile_img);
+
+
+
+
+
 const query_to_address = {
 // 1) Query_Value(싱글쿼리 찾기) 매크로
 // ex) Query_Value('# or.Query_to_Address li ul ol ...')

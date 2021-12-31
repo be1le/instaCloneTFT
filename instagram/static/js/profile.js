@@ -205,15 +205,16 @@ const calulator = {
   
   
   
-  function posting() {
+function posting() {
+
     let nick = $('#nick').val()
     let file = $('#file')[0].files[0]
     let form_data = new FormData()
 
     form_data.append("nick_give", nick)
-    form_data.append("file_give", file)
-
-
+    if (file) {
+        form_data.append("file_give", file)
+    }
     $.ajax({
         type: "POST",
         url: "/profile/fileupload",
