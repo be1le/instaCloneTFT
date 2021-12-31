@@ -1,0 +1,351 @@
+/* * 기호는 문서안에 모든 css를 적용한다. */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    max-width: 2560px;
+    margin: 0 auto;
+    background-color: rgb(247, 247, 247);
+}
+
+.navbar {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: #fff;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+}
+
+.nav-wrapper {
+    width: 100%;
+    max-width: 840px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-img {
+    height: 75%;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.search-box {
+    width: 275px;
+    height: 35px;
+    background: #fafafa;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    text-transform: capitalize;
+
+    margin-left: 120px;
+}
+
+.search-box::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.nav-items {
+    height: 22px;
+    display: fixed;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.icon {
+    height: 100%;
+    cursor: pointer;
+    margin: 0 8px;
+    display: inline-block;
+}
+
+.user-profile {
+    width: 22px;
+    border-radius: 50%;
+    background-image: url("../Images/profile-pic.png");
+    background-size: cover;
+}
+
+/*           HEADER 끝   프로필 시작            */
+
+.main {
+    width: 100%;
+    padding: 80px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 50px;
+
+    max-width: 2550px;
+}
+
+.upper-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: center;
+}
+
+.upper-col {
+    max-width: 425px;
+
+    padding: 0 17px;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 0.5px solid lightgray;
+    background-color: white;
+}
+
+.profile-card {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    margin-top: 30px;
+}
+.profile-card .profile-pic {
+    flex: 0 0 auto;
+    padding: 0;
+    background: none;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.profile-card:first-child .profile-pic {
+    max-width: 80px;
+    width: 100%;
+    height: 100%;
+    margin-right: 27px;
+
+    cursor: pointer;
+}
+
+.profile-card .profile-pic img {
+    border: none;
+}
+
+.profile-name {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+
+#settingimg {
+    max-width: 28px;
+    width: 100%;
+    height: 100%;
+    margin-left: 6%;
+
+    cursor: pointer;
+}
+
+.setting {
+    background-color: white;
+    border: 0.5px solid rgb(180, 180, 180);
+    font-weight: bold;
+    color: rgb(90, 90, 90);
+    width: 16rem;
+    height: 1.8rem;
+
+    margin-top: 4%;
+
+    cursor: pointer;
+}
+
+.username {
+    font-size: larger;
+    color: #000;
+}
+
+#mini-name {
+    font-weight: bold;
+    font-size: small;
+    margin: 20px 0 12px 20px;
+}
+
+.profile-pic {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 3px;
+    background: linear-gradient(45deg, rgb(255, 230, 0), rgb(255, 0, 128) 80%);
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+/*          프로필 끝     변경 부분 시작           */
+
+#inputs {
+    margin-top: 43px;
+}
+
+.title-old {
+    margin-bottom: 3px;
+}
+
+.title-new {
+    margin-bottom: 3px;
+    font-weight: 600;
+}
+
+#input-bar {
+    border: 0.5px solid lightgray;
+    background-color: rgb(247, 247, 247);
+    border-radius: 6px;
+
+    width: 18rem;
+    height: 2.3rem;
+
+    margin-top: 3px;
+    margin-bottom: 20px;
+}
+
+#input-bar::placeholder {
+    font-size: small;
+    padding-left: 6px;
+}
+
+.password-upload {
+    margin-top: 5px;
+}
+
+.nickname-desc {
+    color: rgb(138, 138, 138);
+    font-size: 11.5px;
+    margin-top: 15px;
+
+    width: 300px;
+}
+
+#submit {
+    background-color: aqua;
+    color: white;
+    background-color: rgb(75, 141, 255);
+
+    border: 0.5px solid rgb(247, 247, 247);
+    border-radius: 6px;
+
+    width: 7rem;
+    height: 2.1rem;
+
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 20px;
+
+    cursor: pointer;
+}
+
+#q-pw {
+    font-size: small;
+    color: rgb(75, 126, 255);
+
+    text-decoration: none;
+
+    margin: 40px 0;
+}
+
+/*     변경 부분 끝     FOOTER 시작    */
+
+#loginfooter {
+    margin-top: 40px;
+    max-width: 2550px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    color: rgb(193, 193, 193);
+}
+
+#footer1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    margin: 0 3%;
+}
+
+#loginfooter #footer1 .footers {
+    margin: 0 1%;
+    text-decoration: none;
+    font-size: small;
+
+    color: rgb(193, 193, 193);
+}
+
+#footer2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 1% 0;
+}
+
+#select {
+    position: relative;
+    margin-right: 3%;
+    border: none;
+    background-color: transparent;
+    color: rgb(193, 193, 193);
+    max-width: 60px;
+    width: 100%;
+}
+
+/*  FOOTER 끝    MOBILE버전 시작 */
+
+@media (max-width: 900px) {
+    .search-box {
+        display: none;
+    }
+    .nav-items {
+        padding-right: 0px;
+    }
+    .nav-wrapper,
+    .wrapper {
+        width: 90%;
+    }
+    .wrapper {
+        display: block;
+    }
+}
+@media (max-width: 400px) {
+    .nav-items {
+        padding-right: 0px;
+    }
+}
