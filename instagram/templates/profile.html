@@ -4,52 +4,110 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/profile.css">
+  <script src="../static/js/profile.js"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <title>Document</title>
+  <title>BLUECLUB profile</title>
 </head>
+
 <script>
-  function posting() {
-
-    let nick = $('#nick').val()
-    let file = $('#file')[0].files[0]
-    let form_data = new FormData()
-
-    form_data.append("nick_give", nick)
-    if (file) {
-        form_data.append("file_give", file)
-    }
-    $.ajax({
-        type: "POST",
-        url: "/profile/fileupload",
-        data: form_data,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-            alert(response["result"])
-            window.location.reload()
-        }
-    });
-  }
 
   function find_img() {
     let title = $('#find_title').val()
     document.getElementById('link').href = '/fileshow/'+title
   }
 
+  let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>`
+  let Instagram_Home = `<img src="../static/images/home.PNG" class="icon" alt="" id="Home" onclick=home()>`
+  let Instagram_Messenger = `<img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">`
+  let Instagram_Post = `<img src="../static/images/post.PNG" class="icon" alt="">`
+  let Instagram_Explore = `<img src="../static/images/explore.PNG" class="icon" alt="">`
+  let Instagram_Liked = `<img src="../static/images/like.PNG" class="icon" alt="">`
+
 </script>
+
 <body>
-  <div class="file-upload">
-    <input style="width:300px;" type="text" id="nick" placeholder="{{nickname}}">
-    <input type="file" id="file">
-    <button onclick="posting()">업로드</button>
-    <img src="../static/images/profile_images/{{image}}">
-    {{nickname}}
-  </div>
-  <hr>
-  <div>
-    <input style="width:300px;" onchange="find_img()" type="text" id="find_title" placeholder="볼 이미지의 제목을 입력해주세요">
-    <a id='link' href="#">업로드 한 이미지 보기</a>
-  </div>
+  <header>
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <script>
+                append_Value('.nav-wrapper', Instagram_Logo)
+            </script>
+            <input type="text" class="search-box" placeholder="search">
+            <div class="nav-items">
+                <script>
+                    append_Value('.nav-items', Instagram_Home)
+                    append_Value('.nav-items', Instagram_Messenger)
+                    append_Value('.nav-items', Instagram_Post)
+                    append_Value('.nav-items', Instagram_Explore)
+                    append_Value('.nav-items', Instagram_Liked)
+                </script>
+                <div class="icon user-profile" id="user-profile" onclick="mypage()"></div>
+            </div>
+        </div>
+    </nav>
+</header>
+  <section class="main">
+    <div class='upper-wrap'>
+      <div class="upper-col">
+        <div class="profile-card">
+          <div onclick="" class="profile-pic">
+              <img  src="../static/images/profile_images/{{image}}" alt="">
+          </div>
+              <div class='profile-name'>
+                  <p class="username">{{nickname}}</p>
+              </div>
+      </div>
+        <div id = "inputs">
+          <div class="nickname-upload">
+            <p class="title">닉네임</p>
+            <input style="width:300px;" type="text" id="input-bar" placeholder={{nickname}}>
+            <div class="nickname-desc">
+              <p>사람들이 이름, 별명 또는 비즈니스 이름 등 회원님의 알려진 이름을 사용하여 회원님의 계정을 찾을 수 있도록 도와주세요.</p>
+              <br>
+              <P>이름은 14일에 안에 두 번만 변경할 수 있습니다.</P>
+            </div>
+          </div>
+            <div class="file-upload">
+              <p class="title">프로필 사진</p>
+              <div class = 'file-box'>
+                <label class="file-label" for="file">
+                  업로드
+                </label>
+                <input type="file" id="file">   
+                <input class="upload-name" value="선택된 파일 없음" placeholder="선택된 파일 없음"> 
+              </div>
+              </div>
+          </div>
+            <button id = 'submit' onclick="posting()">제출</button>
+      </div>
+    </div>
+  </section>
+  <footer id=loginfooter>
+    <div id='footer1'>
+        <a class='footers' href="https://about.facebook.com/meta">Meta</a>
+        <a class='footers' href="https://about.instagram.com/">소개</a>
+        <a class='footers' href="https://about.instagram.com/blog">블로그</a>
+        <a class='footers' href="https://about.instagram.com/about-us/careers">채용 정보</a>
+        <a class='footers' href="https://help.instagram.com/">도움말</a>
+        <a class='footers' href="https://developers.facebook.com/docs/instagram">API</a>
+        <a class='footers' href="https://help.instagram.com/519522125107875">개인정보처리방침</a>
+        <a class='footers' href="https://help.instagram.com/581066165581870">약관</a>
+        <a class='footers' href="https://www.instagram.com/directory/profiles/">인기 계정</a>
+        <a class='footers' href="https://www.instagram.com/directory/hashtags/">해시태그</a>
+        <a class='footers' href="https://www.instagram.com/explore/locations/">위치</a>
+        <a class='footers' href="https://www.instagram.com/web/lite/">Instagram Lite</a>
+    </div>
+    <div id='footer2'>
+        <select id='select'>
+            <option>한국어</option>
+            <option>English</option>
+            <option>Español (España)</option>
+            <option>日本語</option>
+        </select>
+        <p>© 2021 Instagram from Meta</p>
+    </div>
+</footer>
 </body>
 </html>
