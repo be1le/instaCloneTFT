@@ -356,6 +356,10 @@ function mypage(){
     }, 200);
 }
 
+// 포스트 모달창 띄우기
+
+// 포스트 모달창 띄우기
+
 function home(){
     var home_sound = new Audio();
     home_sound.src = "../static/sounds/Page_Turned.mp3"
@@ -368,24 +372,68 @@ function home(){
     }, 300);
 }
 
+// function like(){
+    
+    
+//     document.getElementById("like").src = "../static/images/instagram_like.png";
+//     var home_sound = new Audio();
+//     home_sound.src = "../static/sounds/Page_Turned.mp3"
+//     home_sound.currentTime = 0;
+//     home_sound.volume - 1.0;
+//     home_sound.play();
+    
+// }
+
+// function save() {
+//     document.getElementById("save").src = "../static/images/save_color.png";
+//     var home_sound = new Audio();
+//     home_sound.src = "../static/sounds/Page_Turned.mp3"
+//     home_sound.currentTime = 0;
+//     home_sound.volume - 1.0;
+//     home_sound.play();
+    
+// }
+
+
+
+let lkcnt = 1;
 function like(){
-    
-    
-    document.getElementById("like").src = "../static/images/instagram_like.png";
+
+    if( lkcnt%2 ==1){
+        document.getElementById("like").src = "../static/images/instagram_like.png";
+        var home_sound = new Audio();
+        home_sound.src = "../static/sounds/Page_Turned.mp3"
+        home_sound.currentTime = 0;
+        home_sound.volume - 1.0;
+        home_sound.play();}
+    else{
+        document.getElementById("like").src =  "../static/images/like.PNG";
     var home_sound = new Audio();
-    home_sound.src = "../static/sounds/Page_Turned.mp3"
-    home_sound.currentTime = 0;
-    home_sound.volume - 1.0;
-    home_sound.play();
-    
+        home_sound.src = "../static/sounds/Page_Turned.mp3"
+        home_sound.currentTime = 0;
+        home_sound.volume - 1.0;
+        home_sound.play();
+    }
+    lkcnt++;
 }
 
+let svcnt = 1
 function save() {
-    document.getElementById("save").src = "../static/images/save_color.png";
+    if (svcnt%2==1){
+        document.getElementById("save").src = "../static/images/save_color.png";
     var home_sound = new Audio();
-    home_sound.src = "../static/sounds/Page_Turned.mp3"
-    home_sound.currentTime = 0;
-    home_sound.volume - 1.0;
-    home_sound.play();
-    
+        home_sound.src = "../static/sounds/Page_Turned.mp3"
+        home_sound.currentTime = 0;
+        home_sound.volume - 1.0;
+        home_sound.play();}
+    else {
+        document.getElementById("save").src = "../static/images/save.PNG";
+    var home_sound = new Audio();
+        home_sound.src = "../static/sounds/Page_Turned.mp3"
+        home_sound.currentTime = 0;
+        home_sound.volume - 1.0;
+        home_sound.play();
+    }
+    svcnt++;
 }
+  

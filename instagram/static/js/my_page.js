@@ -270,6 +270,7 @@ function save() {
     
 }
 
+<<<<<<< Updated upstream
 function profile(){
     
     var profile_sound = new Audio();
@@ -295,3 +296,20 @@ function change_pw() {
         window.location.href = '/change_pw';
     }, 700);
 }
+=======
+// 게시물 저장됨 이미지 upper-line
+let horizontalBar = document.getElementById("horizontal-underline");
+let horizontalMenus = document.querySelectorAll("nav:first-child a");
+
+function horizontalIndicator(e) {
+  horizontalBar.style.left = e.offsetLeft + "px";
+  horizontalBar.style.width = e.offsetWidth + "px";
+  horizontalBar.style.top = e.offsetTop + e.offsetHeight + "px";
+}
+
+horizontalMenus.forEach((menu) =>
+  menu.addEventListener("click", (e) =>
+    horizontalIndicator(e.currentTarget)
+  )
+);
+>>>>>>> Stashed changes

@@ -20,7 +20,6 @@ body {
 }
 
 .navbar {
-    z-index: 10;
     position: fixed;
     top: 0;
     left: 0;
@@ -431,4 +430,195 @@ body {
 
 #footer #footicon .footer_icon {
     width: 6%;
+}
+
+/*       모달창       */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+p {
+    margin-top: 10px;
+}
+.container {
+    width: 100%;
+}
+
+.popup-wrap {
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    padding: 15px;
+}
+.popup {
+    height: 450px;
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.popup-head {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 0.5px solid lightgray;
+}
+.head-title {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.body-titlebox img {
+    max-width: 100px;
+    width: 100%;
+}
+
+.file-desc {
+    margin-top: 20px;
+    font-size: larger;
+    font-weight: 200;
+}
+
+.write-desc {
+    margin-top: 20px;
+    font-size: larger;
+    font-weight: 200;
+
+    margin-bottom: 20px;
+}
+
+.file-box {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 60px;
+}
+
+.text-box {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 20px;
+}
+
+#text {
+    border: 0.5px solid lightgray;
+    background-color: rgb(247, 247, 247);
+    border-radius: 6px;
+
+    width: 18rem;
+    height: 2rem;
+
+    margin-top: 3px;
+    margin-bottom: 20px;
+
+    font-size: larger;
+
+    white-space: pre-wrap;
+
+    padding: 5px;
+}
+
+.file-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: rgb(255, 255, 255);
+    background-color: rgb(75, 141, 255);
+    border-radius: 6px;
+
+    cursor: pointer;
+    width: 7.3rem;
+    height: 2rem;
+    padding: 1px 0;
+
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+#file {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+.upload-name {
+    display: inline-block;
+    width: 14.5rem;
+    height: 2rem;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+
+    color: rgb(138, 138, 138);
+}
+
+.modalimg {
+    width: 100px;
+    height: 100px;
+    display: auto;
+    position: relative;
+    display: none;
+}
+
+.popup-body {
+    background-color: #ffffff;
+}
+.body-content {
+    width: 100%;
+}
+
+.write-content {
+    width: 100%;
+}
+
+.body-titlebox {
+    text-align: center;
+    width: 100%;
+
+    align-items: center;
+
+    margin-top: 50px;
+}
+
+.popup-foot {
+    width: 100%;
+    height: 50px;
+    border-top: 0.5px solid lightgray;
+}
+.pop-btn {
+    display: inline-flex;
+    width: 50%;
+    height: 100%;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.pop-btn.confirm {
+    border-right: 0.5px solid lightgray;
+}
+
+#hidden {
+    display: none;
 }

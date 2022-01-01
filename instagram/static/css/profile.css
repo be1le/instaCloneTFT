@@ -192,9 +192,13 @@ body {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    overflow: hidden;
     padding: 3px;
-    background: linear-gradient(45deg, rgb(255, 230, 0), rgb(255, 0, 128) 80%);
+
+    background: url("http://i38.photobucket.com/albums/e149/eloginko/profile_male_large_zpseedb2954.jpg");
+    background-position: -20px -10px;
+    width: 120px;
+    height: 120px;
+    display: inline-block;
 }
 
 .profile-pic img {
