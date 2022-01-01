@@ -185,6 +185,7 @@ body {
     padding: 0 20px;
 }
 
+
 .info .username {
     width: auto;
     font-weight: bold;
@@ -202,6 +203,7 @@ body {
 .info .user {
     display: flex;
     align-items: center;
+    width: 400px;
 }
 
 .info .profile-pic {

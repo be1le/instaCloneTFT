@@ -2,7 +2,7 @@ from flask import Blueprint, render_template ,jsonify, request
 import datetime
 import hashlib
 import jwt
-from wtforms import Form, BooleanField, StringField, PasswordField, validators
+
 
 from pymongo import MongoClient
 
@@ -18,7 +18,7 @@ login = Blueprint("login", __name__, url_prefix="/" ,  static_folder="static", t
 
 @login.route("/")
 def home():
- 
+
     msg = request.args.get("msg")
     return render_template("index.html" , msg = msg)
 

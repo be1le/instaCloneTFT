@@ -213,7 +213,117 @@ const calulator = {
 //#endregion
 
 
+function timeForToday(value) {
+    const today = new Date();
+
+    const betweenTime = Math.floor((today.getTime() - value) / 1000 / 60);
+    if (betweenTime < 1) return '방금전';
+    if (betweenTime < 60) {
+        return `${betweenTime}분전`;
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+        return `${betweenTimeHour}시간전`;
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 365) {
+        return `${betweenTimeDay}일전`;
+    }
+
+    return `${Math.floor(betweenTimeDay / 365)}년전`;
+}
+
 // 로그아웃  
+
+
+$(document).ready(function () {
+    loading();
+});
+
+function loading() {
+    $.ajax({
+        type: 'GET',
+        url: '/main/loadpost',
+        data: {},
+        success: function (response) {
+            let rows = response['feeds']
+            for (let i = 0; i < rows.length; i++) {
+                let text = rows[i]['text']
+                let nickname = rows[i]['nick']
+                let photo = rows[i]['photo']
+                let like = rows[i]['like']
+                let profile = rows[i]['profile']
+                let date = rows[i]['date']
+                
+                today = timeForToday(date)
+
+                let temp_html = `<div class="post">
+                <div class="info">
+                    <div class="user">
+                        <div class="profile-pic"><img src="../static/images/profile_images/${profile}" alt=""></div>
+                        <p class="feed-username">${nickname}</p>
+                    </div>
+                    <img src="../static/images/option.PNG" class="options" alt="">
+                </div>
+                <img src="../static/images/feed_images/${photo}" class="post-image" alt="">
+                <div class="post-content">
+                    <div class="reaction-wrapper">
+                        <img src="../static/images/like.PNG" id='like' class="icon" alt="" onclick=like()>
+                        <img src="../static/images/comment.PNG" class="icon" alt="">
+                        <img src="../static/images/send.PNG" class="icon" alt="">
+                        <img src="../static/images/save.PNG" id='save' class="save icon" alt="" onclick=save()>
+                    </div>
+                    <p class="likes">${like} likes</p>
+                    <p class="description"><span>${nickname} </span> ${text}</p>
+                    <p class="post-time">${today}</p>
+                </div>
+                <div class="comment-wrapper">
+                    <img src="../static/images/smile.PNG" class="icon" alt="">
+                    <input type="text" class="comment-box" placeholder="Add a comment">
+                    <button class="comment-btn">post</button>
+                </div>
+            </div>`
+                $('#post').append(temp_html)
+                }
+        }
+    })
+}
+
+function posting() {
+    let text = $('#feed_text').val()
+    let photo = $('#file')[0].files[0]
+    let form_data = new FormData()
+
+    form_data.append("text_give", text)
+    if (file) {
+        form_data.append("file_give", photo)
+    }
+    $.ajax({
+        type: "POST",
+        url: "/main/addpost",
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            alert(response["result"])
+
+            // var profile_sound = new Audio();
+            // profile_sound.src = "../static/sounds/profile.mp3"
+            // profile_sound.currentTime = 0;
+            // profile_sound.volume - 1.0;
+            // profile_sound.play();
+
+            // window.setTimeout(function() {
+            //     window.location.href = '/main';
+            // }, 700);
+        }
+    });
+
+}
+
 
 
 function logout(){

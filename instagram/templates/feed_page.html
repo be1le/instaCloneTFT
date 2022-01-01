@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>BLUECLUB feed</title>
-    <script src="../static/js/WEB_P2.js"></script>
+    <script async src="../static/js/WEB_P2.js"></script>
     <link rel="stylesheet" href="../static/css/WEB_P2.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
 <!--#region main images -->
     <script>
+        
         let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>`
         let Instagram_Home = `<img src="../static/images/home.PNG" class="icon" alt="" id="Home" onclick=home()>`
         let Instagram_Messenger = `<img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">`
@@ -38,15 +40,15 @@
                 <div class="profile-pic"><img src="../static/images/cover 6.png" alt=""></div>
                 <p class="story-username">steven</p>`
 
-        let Instagram_profile_01 = `<div class="post">
+        let Instagram_profile = `<div class="post">
         <div class="info">
             <div class="user">
                 <div class="profile-pic"><img src="../static/images/cover 1.png" alt=""></div>
-                <p class="feed-username">modern_web_channel</p>
+                <p class="feed-username">{{text}}</p>
             </div>
             <img src="../static/images/option.PNG" class="options" alt="">
         </div>
-        <img src="../static/images/cover 1.png" class="post-image" alt="">
+        <img src="../static/images/{{feed}}" class="post-image" alt="">
         <div class="post-content">
             <div class="reaction-wrapper">
                 <img src="../static/images/like.PNG" id='like' class="icon" alt="" onclick=like()>
@@ -64,58 +66,7 @@
             <button class="comment-btn">post</button>
         </div>
     </div>`
-        let Instagram_profile_02 = `<div class="post">
-        <div class="info">
-            <div class="user">
-                <div class="profile-pic"><img src="../static/images/cover 2.png" alt=""></div>
-                <p class="feed-username">modern_web_channel</p>
-            </div>
-            <img src="../static/images/option.PNG" class="options" alt="">
-        </div>
-        <img src="../static/images/cover 2.png" class="post-image" alt="">
-        <div class="post-content">
-            <div class="reaction-wrapper">
-                <img src="../static/images/like.PNG" class="icon" alt="">
-                <img src="../static/images/comment.PNG" class="icon" alt="">
-                <img src="../static/images/send.PNG" class="icon" alt="">
-                <img src="../static/images/save.PNG" class="save icon" alt="">
-            </div>
-            <p class="likes">1,012 likes</p>
-            <p class="description"><span>story-username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur tenetur veritatis placeat, molestiae impedit aut provident eum quo natus molestias?</p>
-            <p class="post-time">2 minutes ago</p>
-        </div>
-        <div class="comment-wrapper">
-            <img src="../static/images/smile.PNG" class="icon" alt="">
-            <input type="text" class="comment-box" placeholder="Add a comment">
-            <button class="comment-btn">post</button>
-        </div>
-    </div>`
-        let Instagram_profile_03 = `<div class="post">
-        <div class="info">
-            <div class="user">
-                <div class="profile-pic"><img src="../static/images/cover 3.png" alt=""></div>
-                <p class="feed-username">modern_web_channel</p>
-            </div>
-            <img src="../static/images/option.PNG" class="options" alt="">
-        </div>
-        <img src="../static/images/cover 3.png" class="post-image" alt="">
-        <div class="post-content">
-            <div class="reaction-wrapper">
-                <img src="../static/images/like.PNG" class="icon" alt="">
-                <img src="../static/images/comment.PNG" class="icon" alt="">
-                <img src="../static/images/send.PNG" class="icon" alt="">
-                <img src="../static/images/save.PNG" class="save icon" alt="">
-            </div>
-            <p class="likes">521 likes</p>
-            <p class="description"><span>story-username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur tenetur veritatis placeat, molestiae impedit aut provident eum quo natus molestias?</p>
-            <p class="post-time">10 minutes ago</p>
-        </div>
-        <div class="comment-wrapper">
-            <img src="../static/images/smile.PNG" class="icon" alt="">
-            <input type="text" class="comment-box" placeholder="Add a comment">
-            <button class="comment-btn">post</button>
-        </div>
-    </div>`
+        
         let Instagram_Suggestions_profile_01 = `<div class="profile-card">
                                                     <div class="profile-pic">
                                                     <img src="../static/images/cover 9.png" alt="">
@@ -208,43 +159,34 @@
     <section class="main">
         <div class="wrapper">
             <div class="left-col">
-                <div class="status-wrapper">
-                    <script>
-                        append_Value('.status-wrapper', Instagram_story_Image_01)
-                        append_Value('.status-wrapper', Instagram_story_Image_02)
-                        append_Value('.status-wrapper', Instagram_story_Image_03)
-                        append_Value('.status-wrapper', Instagram_story_Image_04)
-                        append_Value('.status-wrapper', Instagram_story_Image_05)
-                        append_Value('.status-wrapper', Instagram_story_Image_06)
+                <div><div class="status-card">
+                    <div class="profile-pic"><img src="../static/images/cover 1.png" alt=""></div>
+                    <p class="story-username">Muiler_88</p></div>
+                <div id='post'>
 
-
-                        append_Value('.left-col', Instagram_profile_01)
-                        append_Value('.left-col', Instagram_profile_02)
-                        append_Value('.left-col', Instagram_profile_03)
-
-                    </script>
-                </div>
             </div>
-            <div class="right-col">
-                <div class="profile-card">
-                    <div class="profile-pic">
-                        <img src="../static/images/profile_images/{{image}}" id = "#" alt="" onclick="mypage()">
-                    </div>
-                    <div class='profile-name'>
-                        <p class="username">{{nickname}}</p>
-                        <p class="sub-text">{{name}}</p>
-                    </div>
-                    <button class="action-btn" onclick="logout()">switch</button>
-                </div>
-                <p class="suggestion-text">회원님을 위한 추천</p>
-                <script>
-                    append_Value('.right-col', Instagram_Suggestions_profile_01)
-                    append_Value('.right-col', Instagram_Suggestions_profile_02)
-                    append_Value('.right-col', Instagram_Suggestions_profile_03)
-                    append_Value('.right-col', Instagram_Suggestions_profile_04)
-                    append_Value('.right-col', Instagram_Suggestions_profile_05)
-                </script>
             </div>
+            
+        </div>
+        <div class="right-col">
+            <div class="profile-card">
+                <div class="profile-pic">
+                    <img src="../static/images/profile_images/{{image}}" id = "#" alt="" onclick="mypage()">
+                </div>
+                <div class='profile-name'>
+                    <p class="username">{{nickname}}</p>
+                    <p class="sub-text">{{name}}</p>
+                </div>
+                <button class="action-btn" onclick="logout()">switch</button>
+            </div>
+            <p class="suggestion-text">회원님을 위한 추천</p>
+            <script>
+                append_Value('.right-col', Instagram_Suggestions_profile_01)
+                append_Value('.right-col', Instagram_Suggestions_profile_02)
+                append_Value('.right-col', Instagram_Suggestions_profile_03)
+                append_Value('.right-col', Instagram_Suggestions_profile_04)
+                append_Value('.right-col', Instagram_Suggestions_profile_05)
+            </script>
         </div>
     </section>
 </article>
