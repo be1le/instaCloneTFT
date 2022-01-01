@@ -1,12 +1,3 @@
-
-// 간단한 회원가입 함수입니다.
-// 아이디, 비밀번호, 닉네임을 받아 DB에 저장합니다.
-
-// 비밀번호 확인 변수 
-
-var a = true   
-
-
 function is_nickname(asValue) {
     var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/;
     return regExp.test(asValue);
@@ -19,19 +10,6 @@ function is_password(asValue) {
 
 
 
-function check_pw() {
-    let pw = $('#userpw').val()
-    if (!is_password(pw)) {
-        alert("비밀번호의 형식을 확인하세요 영문, 숫자는 1개 씩 무조건 포함, 일부 특수문자 사용 가능, 8-20자 길이")
-        a = false
-        $('#userpw').focus()
-        return;
-    } else {
-        a = true
-        return;
-    }
-}
-
 function check_dup() {
     let username = $("#userid").val() 
     
@@ -40,7 +18,7 @@ function check_dup() {
         $("#userid").focus()
         return;
     }
-    // $("#help-id").addClass("is-loading")
+
     $.ajax({
         type: "POST",
         url: "/sign/check_dup",
@@ -72,14 +50,40 @@ function check_dup() {
 
 
 function register() {
+    id= $('#userid').val()
+    pw= $('#userpw').val()
+    username= $('#username').val()
+    nickname= $('#usernick').val()
+    check= $('#check').val()
+
+    
+    if (id =="") {
+        alert('어떻게 왔냐고 돌아가')
+        return;
+    } else if (check != "확인완료") {
+        alert('어떻게 왔어 돌아가')
+        return;
+    }
+
+    if (pw == "") {
+        alert('비밀번호 가져와 돌아가')
+        return;
+    } else if (!is_password(pw)) {
+        alert('너도 비번 가져와 돌아가')
+        return;
+    } else {
+        alert('통과')
+    }
+
     $.ajax({
         type: "POST",
         url: "/sign/register",
         data: {
-            id_give: $('#userid').val(),
-            pw_give: $('#userpw').val(),
-            name_give : $('#username').val(),
-            nickname_give: $('#usernick').val()
+            id_give : id,
+            pw_give : pw,
+            name_give : username,
+            nickname_give : nickname
+
             
         },
         success: function (response) {
@@ -118,9 +122,16 @@ function disa() {
     var nick = $('#usernick').val();
     var name = $('#username').val();
     var check = $('#check').val();
-    if (id != "" && password !="" && nick !='' && name !='' && check == '확인완료' && true) {
+
+
+    if (id != "" && password !="" && nick !='' && name !='' && check == '확인완료' ) {
         $('#sign-up-btn').attr("disabled",false);
         $('#sign-up-btn').css('background-color', 'rgb(75, 186, 255)');
+        return
+    } else {
+        $('#sign-up-btn').attr("disabled",true);
+        $('#sign-up-btn').css('background-color', 'grey');
+        return
     }
 };
 
