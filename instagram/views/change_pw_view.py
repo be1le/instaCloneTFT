@@ -3,6 +3,7 @@ from datetime import datetime
 from pymongo import MongoClient
 import jwt
 import hashlib
+import re
 
 app = Flask(__name__)
 
@@ -55,12 +56,20 @@ def change():
     user_id = user['id']
     user_pw = user['pw']
 
+    
     if old == user_pw :
         if new_receive == new_2_receive:
-            pw_hash = hashlib.sha256(new_receive.encode('utf-8')).hexdigest()
+            if len(new_receive) < 8:
+                return jsonify({'result': 'fail','msg':'새 비밀번호가 8자 이하입니다.'})
+            elif re.search('[0-9]',new_receive) is None:
+                return jsonify({'result': 'fail','msg':'숫자를 포함해주세요.'})
+            elif re.search('[a-z]',new_receive) is None: 
+                return jsonify({'result': 'fail','msg':'영문 문자를 포함해주세요.'})
+            else:
+                pw_hash = hashlib.sha256(new_receive.encode('utf-8')).hexdigest()
             
-            db.user.update_one({'id':user_id},{'$set':{'pw': pw_hash}})
-            return jsonify({'result': 'success','msg':'비밀번호가 변경 되었습니다.'})
+                db.user.update_one({'id':user_id},{'$set':{'pw': pw_hash}})
+                return jsonify({'result': 'success','msg':'비밀번호가 변경 되었습니다.'})
         else:
             return jsonify({'result': 'fail','msg':'새 비밀번호가 서로 맞지않습니다.'})
     else:

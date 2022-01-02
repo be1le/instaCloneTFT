@@ -69,7 +69,7 @@ function register() {
         alert('비밀번호 가져와 돌아가')
         return;
     } else if (!is_password(pw)) {
-        alert('너도 비번 가져와 돌아가')
+        alert('똑바로 가져와 돌아가')
         return;
     } else {
         alert('통과')

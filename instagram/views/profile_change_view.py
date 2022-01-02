@@ -79,11 +79,19 @@ def file_upload():
         
         doc = {'id': user_id, 'img':f'{filename}.{extension}'}
         db.pic.insert_one(doc)
-        
-        if nick_receive != '' :
-            db.user.update_one({'id': user_id },{'$set':{'nick': nick_receive }})
+        fd_profile = f'{filename}.{extension}'
 
-        return jsonify({'result':'success'})
+        db.feed.update_many({'id': user_id},{'$set': {'profile': fd_profile}})
+
+        
+            
+
+
+        if nick_receive != '' :
+            db.user.update_many({'id': user_id },{'$set':{'nick': nick_receive }})
+            db.feed.update_many({'id': user_id},{'$set': {'nick': nick_receive }})
+
+        return jsonify({'result':'프로필 변경완료!'})
     except:
         nick_receive = request.form['nick_give'] # input 닉네임
         
@@ -95,4 +103,4 @@ def file_upload():
         if nick_receive != '' :
             db.user.update_one({'id': user_id },{'$set':{'nick': nick_receive }})
 
-        return jsonify({'result':'success'})
+        return jsonify({'result':'프로필 변경완료!'})

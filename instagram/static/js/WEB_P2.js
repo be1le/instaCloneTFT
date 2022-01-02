@@ -277,7 +277,6 @@ function cmt_write(value) {
 
     let form_data = new FormData()
 
-    alert(id)
     //1,2,3,4,5
     form_data.append("comment_give", comment)
     form_data.append("postid_give", postid)
@@ -290,7 +289,6 @@ function cmt_write(value) {
         processData: false,
         success: function (response) {
             alert(response["result"])
-
             window.setTimeout(function() {
                 window.location.href = '/main';
             }, 700);
