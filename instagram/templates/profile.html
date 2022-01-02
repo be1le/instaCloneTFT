@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +16,7 @@
 
   function find_img() {
     let title = $('#find_title').val()
-    document.getElementById('link').href = '/fileshow/'+title
+    document.getElementById('link').href = '/fileshow/' + title
   }
 
   let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>`
@@ -31,36 +32,36 @@
 <body>
   <header>
     <nav class="navbar">
-        <div class="nav-wrapper">
-            <script>
-                append_Value('.nav-wrapper', Instagram_Logo)
-            </script>
-            <input type="text" class="search-box" placeholder="search">
-            <div class="nav-items">
-                <script>
-                    append_Value('.nav-items', Instagram_Home)
-                    append_Value('.nav-items', Instagram_Messenger)
-                    append_Value('.nav-items', Instagram_Post)
-                    append_Value('.nav-items', Instagram_Explore)
-                    append_Value('.nav-items', Instagram_Liked)
-                    append_Value('.nav-items', Instagram_Profile)
-                </script>
-            </div>
+      <div class="nav-wrapper">
+        <script>
+          append_Value('.nav-wrapper', Instagram_Logo)
+        </script>
+        <input type="text" class="search-box" placeholder="search">
+        <div class="nav-items">
+          <script>
+            append_Value('.nav-items', Instagram_Home)
+            append_Value('.nav-items', Instagram_Messenger)
+            append_Value('.nav-items', Instagram_Post)
+            append_Value('.nav-items', Instagram_Explore)
+            append_Value('.nav-items', Instagram_Liked)
+            append_Value('.nav-items', Instagram_Profile)
+          </script>
         </div>
+      </div>
     </nav>
-</header>
+  </header>
   <section class="main">
     <div class='upper-wrap'>
       <div class="upper-col">
         <div class="profile-card">
           <div onclick="" class="profile-pic">
-              <!-- <img  src="../static/images/profile_images/{{image}}" alt=""> -->
+            <!-- <img  src="../static/images/profile_images/{{image}}" alt=""> -->
           </div>
-              <div class='profile-name'>
-                  <p class="username">{{nickname}}</p>
-              </div>
-      </div>
-        <div id = "inputs">
+          <div class='profile-name'>
+            <p class="username">{{nickname}}</p>
+          </div>
+        </div>
+        <div id="inputs">
           <div class="nickname-upload">
             <p class="title">닉네임</p>
             <input style="width:300px;" type="text" id="nick" placeholder={{nickname}}>
@@ -70,45 +71,46 @@
               <P>이름은 14일에 안에 두 번만 변경할 수 있습니다.</P>
             </div>
           </div>
-            <div class="file-upload">
-              <p class="title">프로필 사진</p>
-              <div class = 'file-box'>
-                <label class="file-label" for="file">
-                  업로드
-                </label>
-                <input type="file" id="file">   
-                <input class="upload-name" value="" placeholder="선택된 파일 없음"> 
-              </div>
-              </div>
+          <div class="file-upload">
+            <p class="title">프로필 사진</p>
+            <div class='file-box'>
+              <label class="file-label" for="file">
+                업로드
+              </label>
+              <input type="file" id="file">
+              <input class="upload-name" value="" placeholder="선택된 파일 없음">
+            </div>
           </div>
-            <button id = 'submit' onclick="posting()">제출</button>
+        </div>
+        <button id='submit' onclick="posting()">제출</button>
       </div>
     </div>
   </section>
   <footer id=loginfooter>
     <div id='footer1'>
-        <a class='footers' href="https://about.facebook.com/meta">Meta</a>
-        <a class='footers' href="https://about.instagram.com/">소개</a>
-        <a class='footers' href="https://about.instagram.com/blog">블로그</a>
-        <a class='footers' href="https://about.instagram.com/about-us/careers">채용 정보</a>
-        <a class='footers' href="https://help.instagram.com/">도움말</a>
-        <a class='footers' href="https://developers.facebook.com/docs/instagram">API</a>
-        <a class='footers' href="https://help.instagram.com/519522125107875">개인정보처리방침</a>
-        <a class='footers' href="https://help.instagram.com/581066165581870">약관</a>
-        <a class='footers' href="https://www.instagram.com/directory/profiles/">인기 계정</a>
-        <a class='footers' href="https://www.instagram.com/directory/hashtags/">해시태그</a>
-        <a class='footers' href="https://www.instagram.com/explore/locations/">위치</a>
-        <a class='footers' href="https://www.instagram.com/web/lite/">Instagram Lite</a>
+      <a class='footers' href="https://about.facebook.com/meta">Meta</a>
+      <a class='footers' href="https://about.instagram.com/">소개</a>
+      <a class='footers' href="https://about.instagram.com/blog">블로그</a>
+      <a class='footers' href="https://about.instagram.com/about-us/careers">채용 정보</a>
+      <a class='footers' href="https://help.instagram.com/">도움말</a>
+      <a class='footers' href="https://developers.facebook.com/docs/instagram">API</a>
+      <a class='footers' href="https://help.instagram.com/519522125107875">개인정보처리방침</a>
+      <a class='footers' href="https://help.instagram.com/581066165581870">약관</a>
+      <a class='footers' href="https://www.instagram.com/directory/profiles/">인기 계정</a>
+      <a class='footers' href="https://www.instagram.com/directory/hashtags/">해시태그</a>
+      <a class='footers' href="https://www.instagram.com/explore/locations/">위치</a>
+      <a class='footers' href="https://www.instagram.com/web/lite/">Instagram Lite</a>
     </div>
     <div id='footer2'>
-        <select id='select'>
-            <option>한국어</option>
-            <option>English</option>
-            <option>Español (España)</option>
-            <option>日本語</option>
-        </select>
-        <p>© 2021 Instagram from Meta</p>
+      <select id='select'>
+        <option>한국어</option>
+        <option>English</option>
+        <option>Español (España)</option>
+        <option>日本語</option>
+      </select>
+      <p>© 2021 Instagram from Meta</p>
     </div>
-</footer>
+  </footer>
 </body>
+
 </html>

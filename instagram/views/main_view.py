@@ -2,9 +2,11 @@ from flask import Blueprint, render_template, request,redirect,url_for,jsonify
 import jwt
 from datetime import datetime
 import time
-
+import math
 
 from pymongo import MongoClient
+from pymongo.common import RETRY_WRITES
+from werkzeug.wrappers import response
 
 client = MongoClient('mongodb+srv://test:sparta@cluster0.0pi7g.mongodb.net/Cluster0?retryWrites=true&w=majority') 
 db = client.dbsparta
@@ -30,9 +32,68 @@ def success():
         user_info = db.user.find_one({'id': payload['id']})
 
         user_pic = db.pic.find_one({'id': payload['id']})
+        
+
+        cmts = list(db.comment.find({},{'_id':False}))
+        feeds = list(db.feed.find({},{'_id':False}).sort("date",-1))
+        
+        
+        now_fd = [] # 계산된 시간 
+        for i in range(len(feeds)):
+            millis = int(round(time.time() * 1000))
+            fd_time = feeds[i]['date']
+            me_time = math.floor(((millis - fd_time)/(1000*60)))
+            me_timehour = math.floor(((millis - fd_time)/(1000*60*60))%24)
+            me_timeday = math.floor(((millis - fd_time)/(1000*60*60*24)))
+            me_timeyear = math.floor(me_timeday / 365)
+
+            if me_time < 1 :
+                now_fd.append('방금전')
+            elif me_time < 60 :
+                a = str(me_time) + '분전'
+                now_fd.append(a)
+
+            
+            elif me_timehour < 24 :
+                a = str(me_timehour) + '시간전'
+                now_fd.append(a)
+            
+            
+            elif me_timeday < 365 :
+                a = str(me_timeday) + '일전'
+                now_fd.append(a)
+            
+            elif me_timeyear >= 1 : 
+                a = str(me_timeyear) + '년전'
+                now_fd.append(a)
+
+        new_feeds=[] # 계산된 시간으로 새 리스트 
+        dic = dict()
+        for j in range(len(feeds)):
+            feed_id = feeds[j]['id']
+            feed_photo = feeds[j]['photo']
+            feed_like = feeds[j]['like']
+            feed_save = feeds[j]['save']
+            feed_text = feeds[j]['text']
+            feed_postid = feeds[j]['postid']
+            feed_date = now_fd[j]
+            feed_nick = feeds[j]['nick']
+            feed_profile = feeds[j]['profile']
+            dic = dict()
+            dic[1] = feed_id
+            dic[2] = feed_photo
+            dic[3] = feed_like
+            dic[4] = feed_save
+            dic[5] = feed_text
+            dic[6] = feed_postid
+            dic[7] = feed_date
+            dic[8] = feed_nick
+            dic[9] = feed_profile
+            new_feeds.append(dic)
+
 
         if user_pic != None:
-            return render_template('feed_page.html', nickname = user_info['nick'], name = user_info['name'], image = user_pic['img']) 
+            return render_template('feed_page.html', nickname = user_info['nick'], name = user_info['name'], image = user_pic['img'], cmts= cmts, feeds = new_feeds) 
         else :
             return render_template('feed_page.html', nickname = user_info['nick'], name = user_info['name']) # 프로필 사진이 없을때.
     except jwt.ExpiredSignatureError:
@@ -61,8 +122,10 @@ def add():
     # 여기는 프로필 사진 DB
     user_profile = db.pic.find_one({'id': payload['id']})
 
-    #postid 를 db의 길이 + 1을하여 지정해줌
-    postid = len(db.feed) + 1
+    all_feed = list(db.feed.find({},{'_id':False}))
+
+    #postid 를 db의 길이 + 1을하여 지정해줌 
+    postid = len(all_feed) + 1
 
     # 유저의 id , 닉네임 , 프로필 사진을 불러온다.
     user_id = user_info['id']
@@ -92,20 +155,62 @@ def add():
 
     db.feed.insert_one(doc)
 
+    return jsonify({'result':'success'})
 
 
 
-#불러 오기#
-@main.route("/loadpost", methods=["GET"])
-def movie_get():
+@main.route("/addcmt", methods=["POST"])
+def addcmt():
+
+        comment_receive = request.form['comment_give']
+        postid_receive = request.form['postid_give']
+        print(postid_receive)
+        token_receive = request.cookies.get('mytoken')
+
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms='HS256')
+        
+        # 여기는 유저 DB
+        user_info = db.user.find_one({'id': payload['id']})
+        pic_info = db.pic.find_one({'id': payload['id']})
+        
+
+
+        nickname = user_info['nick']
+        profile_pic = pic_info['img']
+
+        doc = {'nick': nickname, 'cmt': comment_receive, 'cmtid': postid_receive, 'img': profile_pic}
+        db.comment.insert_one(doc)
+        print(comment_receive)
+        return jsonify({'result':'댓글이 말대꾸?'})
+    # except:
+    #     return jsonify({'result':'허튼짓 금지'})
+
+
+
+@main.route("/cmt")
+def cmt():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms='HS256')
+        
+        user_info = db.user.find_one({'id': payload['id']})
+
+        user_pic = db.pic.find_one({'id': payload['id']})
+        
+
+        cmts = list(db.comment.find({},{'_id':False}))
+        
     
-    all_feeds = list(db.feed.find({},{'_id':False}).sort("date",-1))
-    all_comment = list(db.comment.find({},{'_id':False}).sort("date",-1))
-    return jsonify({'feeds': all_feeds}, {'comments': all_comment})
-
-
-
-
+ 
+        if user_pic != None:
+            return render_template('test.html', nickname = user_info['nick'], name = user_info['name'], image = user_pic['img'], cmts= cmts) 
+        else :
+            return render_template('test.html', nickname = user_info['nick'], name = user_info['name']) # 프로필 사진이 없을때.
+    except jwt.ExpiredSignatureError:
+        # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
+        return redirect(url_for('login.home', msg =  '로그인 시간이 만료되었습니다.'))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for('login.home', msg = '로그인 정보가 존재하지 않습니다.'))
 
 
 

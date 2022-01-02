@@ -7,7 +7,7 @@ $(function post(){
     });
     $("#close").click(function(){
         modalClose();  
-        window.location.href="feed_page.html";
+        window.location.href="/main";
     });
 
     function modalClose(){
@@ -24,7 +24,7 @@ $(function post(){
     });
     $("#close2").click(function(){
       modalClose();
-      window.location.href="feed_page.html";
+      window.location.href="/main";
   });
     function modalClose(){
       $("#popup2").fadeOut();

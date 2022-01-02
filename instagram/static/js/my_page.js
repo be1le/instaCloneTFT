@@ -270,7 +270,6 @@ function save() {
     
 }
 
-<<<<<<< Updated upstream
 function profile(){
     
     var profile_sound = new Audio();
@@ -296,7 +295,6 @@ function change_pw() {
         window.location.href = '/change_pw';
     }, 700);
 }
-=======
 // 게시물 저장됨 이미지 upper-line
 let horizontalBar = document.getElementById("horizontal-underline");
 let horizontalMenus = document.querySelectorAll("nav:first-child a");
@@ -312,4 +310,3 @@ horizontalMenus.forEach((menu) =>
     horizontalIndicator(e.currentTarget)
   )
 );
->>>>>>> Stashed changes

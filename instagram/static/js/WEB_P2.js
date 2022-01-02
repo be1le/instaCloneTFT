@@ -18,6 +18,7 @@
 // *******************************************************************************************************************
 // 1) alert(알림) 매크로
 // ex) Test_Alert('Test_Text')
+
 function alert_Value(Test_Text) {
     if (Test_Text == null) {
         return alert('입력 텍스트가 누락되었습니다')
@@ -238,61 +239,9 @@ function timeForToday(value) {
 // 로그아웃  
 
 
-$(document).ready(function () {
-    loading();
-});
-
-function loading() {
-    $.ajax({
-        type: 'GET',
-        url: '/main/loadpost',
-        data: {},
-        success: function (response) {
-            let rows = response['feeds']
-            for (let i = 0; i < rows.length; i++) {
-                let text = rows[i]['text']
-                let nickname = rows[i]['nick']
-                let photo = rows[i]['photo']
-                let like = rows[i]['like']
-                let profile = rows[i]['profile']
-                let date = rows[i]['date']
-                
-                today = timeForToday(date)
-
-                let temp_html = `<div class="post">
-                <div class="info">
-                    <div class="user">
-                        <div class="profile-pic"><img src="../static/images/profile_images/${profile}" alt=""></div>
-                        <p class="feed-username">${nickname}</p>
-                    </div>
-                    <img src="../static/images/option.PNG" class="options" alt="">
-                </div>
-                <img src="../static/images/feed_images/${photo}" class="post-image" alt="">
-                <div class="post-content">
-                    <div class="reaction-wrapper">
-                        <img src="../static/images/like.PNG" id='like' class="icon" alt="" onclick=like()>
-                        <img src="../static/images/comment.PNG" class="icon" alt="">
-                        <img src="../static/images/send.PNG" class="icon" alt="">
-                        <img src="../static/images/save.PNG" id='save' class="save icon" alt="" onclick=save()>
-                    </div>
-                    <p class="likes">${like} likes</p>
-                    <p class="description"><span>${nickname} </span> ${text}</p>
-                    <p class="post-time">${today}</p>
-                </div>
-                <div class="comment-wrapper">
-                    <img src="../static/images/smile.PNG" class="icon" alt="">
-                    <input type="text" class="comment-box" placeholder="Add a comment">
-                    <button class="comment-btn">post</button>
-                </div>
-            </div>`
-                $('#post').append(temp_html)
-                }
-        }
-    })
-}
 
 function posting() {
-    let text = $('#feed_text').val()
+    let text = $('#text').val()
     let photo = $('#file')[0].files[0]
     let form_data = new FormData()
 
@@ -310,15 +259,36 @@ function posting() {
         success: function (response) {
             alert(response["result"])
 
-            // var profile_sound = new Audio();
-            // profile_sound.src = "../static/sounds/profile.mp3"
-            // profile_sound.currentTime = 0;
-            // profile_sound.volume - 1.0;
-            // profile_sound.play();
+            window.setTimeout(function() {
+                window.location.href = '/main';
+            }, 700);
+        }
+    });
 
-            // window.setTimeout(function() {
-            //     window.location.href = '/main';
-            // }, 700);
+}
+
+function cmt_write() {
+    let nick = $('#nick').val()
+    let comment = $('#cmt').val()
+    let postid = $('id_for_cmt').val()
+    let form_data = new FormData()
+
+    form_data.append("nick_give", nick)
+    form_data.append("comment_give", comment)
+    form_data.append("postid_give", postid)
+    $.ajax({
+        type: "POST",
+        url: "/main/addcmt",
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            alert(response["result"])
+
+            window.setTimeout(function() {
+                window.location.href = '/main';
+            }, 700);
         }
     });
 
@@ -372,27 +342,6 @@ function home(){
     }, 300);
 }
 
-// function like(){
-    
-    
-//     document.getElementById("like").src = "../static/images/instagram_like.png";
-//     var home_sound = new Audio();
-//     home_sound.src = "../static/sounds/Page_Turned.mp3"
-//     home_sound.currentTime = 0;
-//     home_sound.volume - 1.0;
-//     home_sound.play();
-    
-// }
-
-// function save() {
-//     document.getElementById("save").src = "../static/images/save_color.png";
-//     var home_sound = new Audio();
-//     home_sound.src = "../static/sounds/Page_Turned.mp3"
-//     home_sound.currentTime = 0;
-//     home_sound.volume - 1.0;
-//     home_sound.play();
-    
-// }
 
 
 
@@ -401,6 +350,8 @@ function like(){
 
     if( lkcnt%2 ==1){
         document.getElementById("like").src = "../static/images/instagram_like.png";
+        
+
         var home_sound = new Audio();
         home_sound.src = "../static/sounds/Page_Turned.mp3"
         home_sound.currentTime = 0;
@@ -436,4 +387,5 @@ function save() {
     }
     svcnt++;
 }
-  
+
+

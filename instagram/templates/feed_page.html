@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,11 +9,13 @@
     <link rel="stylesheet" href="../static/css/WEB_P2.css">
     <script defer src='../static/js/modal.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-<!--#region main images -->
+    <!--#region main images -->
     <script>
-        
+
+
+
         let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>`
         let Instagram_Home = `<img src="../static/images/home.PNG" class="icon" alt="" id="Home" onclick=home()>`
         let Instagram_Messenger = `<img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">`
@@ -66,7 +69,7 @@
             <button class="comment-btn">post</button>
         </div>
     </div>`
-        
+
         let Instagram_Suggestions_profile_01 = `<div class="profile-card">
                                                     <div class="profile-pic">
                                                     <img src="../static/images/cover 9.png" alt="">
@@ -130,133 +133,186 @@
                     </div>
                         </div>`
     </script>
-<!--#endregion -->
+    <!--#endregion -->
 
 
 </head>
+
 <body>
-<header>
-    <nav class="navbar">
-        <div class="nav-wrapper">
-            <script>
-                append_Value('.nav-wrapper', Instagram_Logo)
-            </script>
-            <input type="text" class="search-box" placeholder="search">
-            <div class="nav-items">
+    <header>
+        <nav class="navbar">
+            <div class="nav-wrapper">
                 <script>
-                    append_Value('.nav-items', Instagram_Home)
-                    append_Value('.nav-items', Instagram_Messenger)
-                    append_Value('.nav-items', Instagram_Post)
-                    append_Value('.nav-items', Instagram_Explore)
-                    append_Value('.nav-items', Instagram_Liked)
-                    append_Value('.nav-items', Instagram_Profile)
+                    append_Value('.nav-wrapper', Instagram_Logo)
                 </script>
+                <input type="text" class="search-box" placeholder="search">
+                <div class="nav-items">
+                    <script>
+                        append_Value('.nav-items', Instagram_Home)
+                        append_Value('.nav-items', Instagram_Messenger)
+                        append_Value('.nav-items', Instagram_Post)
+                        append_Value('.nav-items', Instagram_Explore)
+                        append_Value('.nav-items', Instagram_Liked)
+                        append_Value('.nav-items', Instagram_Profile)
+                    </script>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
-<article>
-    <section class="main">
-        <div class="wrapper">
-            <div class="left-col">
-                <div><div class="status-card">
-                    <div class="profile-pic"><img src="../static/images/cover 1.png" alt=""></div>
-                    <p class="story-username">Muiler_88</p></div>
-                <div id='post'>
+        </nav>
+    </header>
+    <article>
+        <section class="main">
+            <div class="wrapper">
+                <div class="left-col">
+                    <div>
+                        <div class="status-card">
+                            <div class="profile-pic"><img src="../static/images/cover 1.png" alt=""></div>
+                            <p class="story-username">Muiler_88</p>
+                        </div>
+                        <div id='post'>
+                            {%for feed in feeds %}
+                            {% set nickname = feed.8 %}
+                            {% set like = feed.3 %}
+                            {% set text = feed.5 %}
+                            {% set today = feed.7 %}
+                            {% set postid = feed.6 %}
+                            {% set photo = feed.2 %}
+                            {% set profile = feed.9 %}
+                            
+                            <div class="post">
+                                <div class="info">
+                                    <div class="user">
+                                        <div class="profile-pic"><img src="../static/images/profile_images/{{profile}}"
+                                                alt=""></div>
+                                        <p class="feed-username">{{nickname}}</p>
+                                    </div>
+                                    <img src="../static/images/option.PNG" class="options" alt="">
+                                </div>
+                                <img src="../static/images/feed_images/{{photo}}" class="post-image" alt="">
+                                <div class="post-content">
+                                    <div class="reaction-wrapper">
+                                        <img src="../static/images/like.PNG" id='like' class="icon" alt=""
+                                            onclick=like()>
+                                        <img src="../static/images/comment.PNG" class="icon" alt="">
+                                        <img src="../static/images/send.PNG" class="icon" alt="">
+                                        <img src="../static/images/save.PNG" id='save' class="save icon" alt=""
+                                            onclick=save()>
+                                    </div>
+                                    <p class="likes">{{like}} likes</p>
+                                    <p class="description"><span>{{nickname}} </span> {{text}}</p>
+                                    <p class="post-time">{{today}}</p>
 
-            </div>
-            </div>
-            
-        </div>
-        <div class="right-col">
-            <div class="profile-card">
-                <div class="profile-pic">
-                    <img src="../static/images/profile_images/{{image}}" id = "#" alt="" onclick="mypage()">
+                                    {% block content %}
+
+                                {% endblock %}
+
+
+                                    <div class="comment-wrapper">
+                                        <img src="../static/images/smile.PNG" class="icon" alt="">
+                                        <input type="text" class="comment-box" id='cmt' placeholder="Add a comment">
+                                        <button class="comment-btn" onclick=cmt_write()>post</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
-                <div class='profile-name'>
-                    <p class="username">{{nickname}}</p>
-                    <p class="sub-text">{{name}}</p>
-                </div>
-                <button class="action-btn" onclick="logout()">switch</button>
+                    <div class="right-col">
+                        <div class="profile-card">
+                            <div class="profile-pic">
+                                <img src="../static/images/profile_images/{{image}}" id="#" alt="" onclick="mypage()">
+                            </div>
+                            <div class='profile-name'>
+                                <p class="username">{{nickname}}</p>
+                                <p class="sub-text">{{name}}</p>
+                            </div>
+                            <button class="action-btn" onclick="logout()">switch</button>
+                        </div>
+                        <p class="suggestion-text">회원님을 위한 추천</p>
+                        <script>
+                            append_Value('.right-col', Instagram_Suggestions_profile_01)
+                            append_Value('.right-col', Instagram_Suggestions_profile_02)
+                            append_Value('.right-col', Instagram_Suggestions_profile_03)
+                            append_Value('.right-col', Instagram_Suggestions_profile_04)
+                            append_Value('.right-col', Instagram_Suggestions_profile_05)
+                        </script>
+                    </div>
+                
             </div>
-            <p class="suggestion-text">회원님을 위한 추천</p>
-            <script>
-                append_Value('.right-col', Instagram_Suggestions_profile_01)
-                append_Value('.right-col', Instagram_Suggestions_profile_02)
-                append_Value('.right-col', Instagram_Suggestions_profile_03)
-                append_Value('.right-col', Instagram_Suggestions_profile_04)
-                append_Value('.right-col', Instagram_Suggestions_profile_05)
-            </script>
+
+        </section>
+    </article>
+    <div id='footer'>
+        <div id="footicon">
+            <img class='footer_icon' src="../static/images/home.PNG" alt="홈">
+            <img class='footer_icon' src="../static/images/search@3x.png" alt="검색">
+            <img class='footer_icon' src="../static/images/post.PNG" alt="트렌드">
+            <img class='footer_icon' src="../static/images/like.PNG" alt="좋아요">
+            <img class='footer_icon' src="../static/images/home.PNG" alt="홈">
         </div>
-    </section>
-</article>
-<div id = 'footer'>
-    <div id = "footicon">
-        <img class = 'footer_icon' src="../static/images/home.PNG" alt="홈">
-        <img class = 'footer_icon' src="../static/images/search@3x.png" alt="검색">
-        <img class = 'footer_icon' src="../static/images/post.PNG" alt="트렌드">
-        <img class = 'footer_icon' src="../static/images/like.PNG" alt="좋아요">
-        <img class = 'footer_icon' src="../static/images/home.PNG" alt="홈">
     </div>
-</div> 
 
-<!-- 모달창 -->
-  <div class="container">
-    <div class="popup-wrap" id="popup">
-      <div class="popup">
-        <div class="popup-head">
-            <span class="head-title">
-              새 게시물 만들기</span>
+    <!-- 모달창 -->
+    <div class="container">
+        <div class="popup-wrap" id="popup">
+            <div class="popup">
+                <div class="popup-head">
+                    <span class="head-title">
+                        새 게시물 만들기</span>
+                </div>
+                <!-- popup-body 부분에 사진 끌어 올리기 -->
+                <div class="popup popup-body">
+                    <div class="body-content">
+                        <div class="body-titlebox">
+                            <img src="../static/images/upload.png">
+                            <p class='file-desc'>사진과 동영상을 여기에 끌어다 놓으세요</p>
+                            <div class='file-box'>
+                                <label class="file-label" for="file">
+                                    컴퓨터에서 선택
+                                </label>
+                                <input type="file" id="file">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- popup-body 부분에 사진 끌어 올리기 -->
+                <div class="popup-foot">
+                    <span class="pop-btn confirm" id="confirm">확인</span>
+                    <span class="pop-btn close" id="close">창 닫기</span>
+                </div>
+            </div>
         </div>
-        <!-- popup-body 부분에 사진 끌어 올리기 -->       
-        <div class="popup popup-body">
-          <div class="body-content">
-            <div class="body-titlebox">
-              <img src="../static/images/upload.png">
-              <p class='file-desc'>사진과 동영상을 여기에 끌어다 놓으세요</p>
-              <div class = 'file-box'>
-                <label class="file-label" for="file">
-                  컴퓨터에서 선택
-                </label>
-                <input type="file" id="file">   
-              </div>
-            </div>  
-          </div>
-        </div>
-         <!-- popup-body 부분에 사진 끌어 올리기 -->
-        <div class="popup-foot">
-          <span class="pop-btn confirm" id="confirm">확인</span>
-          <span class="pop-btn close" id="close">창 닫기</span>
-        </div>
-      </div>
-  </div>
 
-  <!-- 글 작성 모달창 -->
-  <div class="popup-wrap" id="popup2">
-    <div class="popup">
-      <div class="popup-head">
-          <span class="head-title">
-            새 게시물 만들기</span>
-      </div>
-      <div class="popup-body">
-        <div class="write-content">
-          <div class="body-titlebox">
-            <p class='write-desc'>게시글을 작성해주세요</p>
-            <div class = 'text-box'>
-              <textarea id="text" placeholder="게시글은 50자 내외로 작성해주세요." rows="17rem" cols="8rem" wrap="soft" maxlength="50" onkeydown="resize(this)" onkeyup="resize(this)">
+        <!-- 글 작성 모달창 -->
+        <div class="popup-wrap" id="popup2">
+            <div class="popup">
+                <div class="popup-head">
+                    <span class="head-title">
+                        새 게시물 만들기</span>
+                </div>
+                <div class="popup-body">
+                    <div class="write-content">
+                        <div class="body-titlebox">
+                            <p class='write-desc'>게시글을 작성해주세요</p>
+                            <div class='text-box'>
+                                <textarea id="text" placeholder="게시글은 50자 내외로 작성해주세요." rows="17rem" cols="8rem"
+                                    wrap="soft" maxlength="50" onkeydown="resize(this)" onkeyup="resize(this)">
               </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <span class="pop-btn confirm" id="confirm2" onclick='posting()'>확인</span>
+                    <span class="pop-btn close" id="close2" onclick="modal_close()">창 닫기</span>
+                </div>
             </div>
-          </div>  
         </div>
-      </div>
-      <div class="popup-foot">
-        <span class="pop-btn confirm" id="confirm2">확인</span>
-        <span class="pop-btn close" id="close2" onclick="modal_close()">창 닫기</span>
-      </div>
     </div>
-</div>
-  </div>
 </body>
 
 </body>
+
 </html>
