@@ -267,13 +267,18 @@ function posting() {
 
 }
 
-function cmt_write() {
-    let nick = $('#nick').val()
-    let comment = $('#cmt').val()
-    let postid = $('id_for_cmt').val()
+
+
+function cmt_write(value) {
+    const id = value  
+    let comment = $('#cmt' + id).val()
+    let postid = Number($('#id_for_cmt' + id).val())
+    
+
     let form_data = new FormData()
 
-    form_data.append("nick_give", nick)
+    alert(id)
+    //1,2,3,4,5
     form_data.append("comment_give", comment)
     form_data.append("postid_give", postid)
     $.ajax({
@@ -346,11 +351,11 @@ function home(){
 
 
 let lkcnt = 1;
-function like(){
-
+function like(value){
+    const id = value  
     if( lkcnt%2 ==1){
-        document.getElementById("like").src = "../static/images/instagram_like.png";
-        
+        document.getElementById("like" + id ).src = "../static/images/instagram_like.png";
+
 
         var home_sound = new Audio();
         home_sound.src = "../static/sounds/Page_Turned.mp3"
@@ -358,7 +363,7 @@ function like(){
         home_sound.volume - 1.0;
         home_sound.play();}
     else{
-        document.getElementById("like").src =  "../static/images/like.PNG";
+        document.getElementById("like"  + id ).src =  "../static/images/like.PNG";
     var home_sound = new Audio();
         home_sound.src = "../static/sounds/Page_Turned.mp3"
         home_sound.currentTime = 0;
@@ -369,16 +374,17 @@ function like(){
 }
 
 let svcnt = 1
-function save() {
+function save(value) {
+    const id = value  
     if (svcnt%2==1){
-        document.getElementById("save").src = "../static/images/save_color.png";
+        document.getElementById("save" + id ).src = "../static/images/save_color.png";
     var home_sound = new Audio();
         home_sound.src = "../static/sounds/Page_Turned.mp3"
         home_sound.currentTime = 0;
         home_sound.volume - 1.0;
         home_sound.play();}
     else {
-        document.getElementById("save").src = "../static/images/save.PNG";
+        document.getElementById("save" + id ).src = "../static/images/save.PNG";
     var home_sound = new Audio();
         home_sound.src = "../static/sounds/Page_Turned.mp3"
         home_sound.currentTime = 0;

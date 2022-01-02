@@ -1,14 +1,8 @@
-{% extends 'feed_page.html'%}
 {% block content %}
 
-    {%for cmt in cmts %}
-    {% set nickname = cmt.nick %}
-    {% set cmt = cmt.cmt %}
-    {% set cmtid = cmt.cmtid %}
-    {% if cmtid == postid %}
+    
     <p class="description"><span>{{nickname}} </span> {{cmt}}</p>
-    {% endif %}
-    {% endfor %}
+  
 
 {% endblock %}
     

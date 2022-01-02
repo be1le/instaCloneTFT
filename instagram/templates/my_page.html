@@ -9,15 +9,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!--#region main images -->
-    <script>
-        let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>`
-        let Instagram_Home = `<img src="../static/images/home.PNG" class="icon" alt="" id="Home" onclick=home()>`
-        let Instagram_Messenger = `<img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">`
-        let Instagram_Post = `<img src="../static/images/post.PNG" class="icon" alt="">`
-        let Instagram_Explore = `<img src="../static/images/explore.PNG" class="icon" alt="">`
-        let Instagram_Liked = `<img src="../static/images/like.PNG" class="icon" alt="">`
-        let Instagram_Profile = `<img src="../static/images/profile_images/{{image}}" class="icon" alt="" onclick=mypage()>`
-    </script>
 <!--#endregion -->
 
 </head>
@@ -25,19 +16,18 @@
 <header>
     <nav class="navbar">
         <div class="nav-wrapper">
-            <script>
-                append_Value('.nav-wrapper', Instagram_Logo)
-            </script>
+            <img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>
             <input type="text" class="search-box" placeholder="search">
             <div class="nav-items">
-                <script>
-                    append_Value('.nav-items', Instagram_Home)
-                    append_Value('.nav-items', Instagram_Messenger)
-                    append_Value('.nav-items', Instagram_Post)
-                    append_Value('.nav-items', Instagram_Explore)
-                    append_Value('.nav-items', Instagram_Liked)
-                    append_Value('.nav-items', Instagram_Profile)
-                </script>
+                
+                <img src="../static/images/home.PNG" class="icon" alt="" id="Home" onclick=home()>
+                <img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">
+                <img src="../static/images/post.PNG" class="icon" alt="">
+                <img src="../static/images/explore.PNG" class="icon" alt="">
+                <img src="../static/images/like.PNG" class="icon" alt="">
+                <img src="../static/images/profile_images/{{image}}" class="icon" alt="" onclick=mypage()>
+
+
             </div>
         </div>
     </nav>
@@ -108,7 +98,6 @@
                     </div>
                 </div>
             <!-- desktop info start -->
-            <script src="../static/js/my_page.js"></script>
                 <div id='desktop-postinfo'>
                     <div id="horizontal-underline"></div>
                     <div class='desktop-info' onclick=" ">

@@ -69,8 +69,7 @@ def file_upload():
         if profile != None :
             profile_pic = profile['img']
             os.remove( f'instagram/static/images/profile_images/{profile_pic}' )
-        
-        db.pic.delete_one({ 'id': user_id })
+            db.pic.delete_one({ 'id': user_id })
 
         # 파일 저장 경로 설정 (파일은 db가 아니라, 서버 컴퓨터 자체에 저장됨)
         save_to = f'instagram/static/images/profile_images/{filename}.{extension}'

@@ -16,13 +16,7 @@
 
 
 
-        let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>`
-        let Instagram_Home = `<img src="../static/images/home.PNG" class="icon" alt="" id="Home" onclick=home()>`
-        let Instagram_Messenger = `<img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">`
-        let Instagram_Post = `<img src="../static/images/post.PNG" class="icon" alt="" onclick="post()" id='modal-open'>`
-        let Instagram_Explore = `<img src="../static/images/explore.PNG" class="icon" alt="">`
-        let Instagram_Liked = `<img src="../static/images/like.PNG" class="icon" alt="">`
-        let Instagram_Profile = `<img src="../static/images/profile_images/{{image}}" class="icon" alt="" onclick=mypage()>`
+
 
         let Instagram_story_Image_01 = `<div class="status-card">
                 <div class="profile-pic"><img src="../static/images/cover 1.png" alt=""></div>
@@ -43,95 +37,8 @@
                 <div class="profile-pic"><img src="../static/images/cover 6.png" alt=""></div>
                 <p class="story-username">steven</p>`
 
-        let Instagram_profile = `<div class="post">
-        <div class="info">
-            <div class="user">
-                <div class="profile-pic"><img src="../static/images/cover 1.png" alt=""></div>
-                <p class="feed-username">{{text}}</p>
-            </div>
-            <img src="../static/images/option.PNG" class="options" alt="">
-        </div>
-        <img src="../static/images/{{feed}}" class="post-image" alt="">
-        <div class="post-content">
-            <div class="reaction-wrapper">
-                <img src="../static/images/like.PNG" id='like' class="icon" alt="" onclick=like()>
-                <img src="../static/images/comment.PNG" class="icon" alt="">
-                <img src="../static/images/send.PNG" class="icon" alt="">
-                <img src="../static/images/save.PNG" id='save' class="save icon" alt="" onclick=save()>
-            </div>
-            <p class="likes">1,012 likes</p>
-            <p class="description"><span>story-username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur tenetur veritatis placeat, molestiae impedit aut provident eum quo natus molestias?</p>
-            <p class="post-time">2 minutes ago</p>
-        </div>
-        <div class="comment-wrapper">
-            <img src="../static/images/smile.PNG" class="icon" alt="">
-            <input type="text" class="comment-box" placeholder="Add a comment">
-            <button class="comment-btn">post</button>
-        </div>
-    </div>`
 
-        let Instagram_Suggestions_profile_01 = `<div class="profile-card">
-                                                    <div class="profile-pic">
-                                                    <img src="../static/images/cover 9.png" alt="">
-                                                </div>
-                                                <div class ='recommend'>
-                                                    <div class = "follow-name">
-                                                        <p class="username">ssyou__yiyy</p>
-                                                        <p class="sub-text">kimsarang_님이 팔로우합니다</p>
-                                                    </div>
-                                                    <div class="follow">
-                                                    <button class="action-btn">팔로우</button>
-                                                    </div>
-                                                </div>
-                                                </div>`
-        let Instagram_Suggestions_profile_02 = `<div class="profile-card">
-                                                    <div class="profile-pic">
-                                                    <img src="../static/images/cover 10.png" alt="">
-                                                </div>
-                                                <div class ='recommend'>
-                                                    <div class = "follow-name">
-                                                        <p class="username">som9413_dj</p>
-                                                        <p class="sub-text">cochon_cafe님이 팔로우합니다</p>
-                                                    </div>
-                                                    <button class="action-btn">팔로우</button>
-                                                </div>
-                                                </div>`
-        let Instagram_Suggestions_profile_03 = `<div class="profile-card">
-                                <div class="profile-pic">
-                                    <img src="../static/images/cover 11.png" alt="">
-                                </div>
-                                <div class ='recommend'>
-                                    <div class = "follow-name">
-                                        <p class="username">kimseokyong</p>
-                                        <p class="sub-text">bemill._.aa님 외 1명이 팔로우합니다</p>
-                                    </div>
-                                    <button class="action-btn">팔로우</button>
-                                </div>
-                                </div>`
-        let Instagram_Suggestions_profile_04 = `<div class="profile-card">
-                                <div class="profile-pic">
-                                    <img src="../static/images/cover 12.png" alt="">
-                                </div>
-                                <div class ='recommend'>
-                                <div class = "follow-name">
-                                    <p class="username">hi.dongg</p>
-                                    <p class="sub-text">bemill._.aa님 외 1명이 팔로우합니다</p>
-                                </div>
-                                <button class="action-btn">팔로우</button>
-                            </div>
-                                </div>`
-        let Instagram_Suggestions_profile_05 = `<div class="profile-card">
-                        <div class="profile-pic">
-                            <img src="../static/images/cover 13.png" alt="">
-                        </div>
-                        <div class ='recommend'>
-                        <div class = "follow-name">
-                            <p class="username">bu.choi_uls</p>
-                            <p class="sub-text">kiseokhwang님 외 1명이 팔로우합니다. </p>
-                        </div>
-                        <button class="action-btn">팔로우</button>
-                    </div>
-                        </div>`
+
     </script>
     <!--#endregion -->
 
@@ -139,33 +46,32 @@
 </head>
 
 <body>
+
     <header>
         <nav class="navbar">
             <div class="nav-wrapper">
-                <script>
-                    append_Value('.nav-wrapper', Instagram_Logo)
-                </script>
+                <img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>
                 <input type="text" class="search-box" placeholder="search">
                 <div class="nav-items">
-                    <script>
-                        append_Value('.nav-items', Instagram_Home)
-                        append_Value('.nav-items', Instagram_Messenger)
-                        append_Value('.nav-items', Instagram_Post)
-                        append_Value('.nav-items', Instagram_Explore)
-                        append_Value('.nav-items', Instagram_Liked)
-                        append_Value('.nav-items', Instagram_Profile)
-                    </script>
+                    <img src="../static/images/home.PNG" class="icon" alt="" id="Home" onclick=home()>
+                    <img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">
+                    <img src="../static/images/post.PNG" class="icon" alt="" onclick="post()" id='modal-open'>
+                    <img src="../static/images/explore.PNG" class="icon" alt="">
+                    <img src="../static/images/like.PNG" class="icon" alt="">
+                    <img src="../static/images/profile_images/{{image}}" class="icon" alt="" onclick=mypage()>
                 </div>
             </div>
         </nav>
     </header>
     <article>
         <section class="main">
+
+
             <div class="wrapper">
                 <div class="left-col">
                     <div>
                         <div class="status-card">
-                            <div class="profile-pic"><img src="../static/images/cover 1.png" alt=""></div>
+                            <div class="profile-pic"><img src="../static/images/profile_images/{{image}}" alt=""></div>
                             <p class="story-username">Muiler_88</p>
                         </div>
                         <div id='post'>
@@ -177,7 +83,7 @@
                             {% set postid = feed.6 %}
                             {% set photo = feed.2 %}
                             {% set profile = feed.9 %}
-                            
+                            {% set cmts = feed.10 %}
                             <div class="post">
                                 <div class="info">
                                     <div class="user">
@@ -190,56 +96,118 @@
                                 <img src="../static/images/feed_images/{{photo}}" class="post-image" alt="">
                                 <div class="post-content">
                                     <div class="reaction-wrapper">
-                                        <img src="../static/images/like.PNG" id='like' class="icon" alt=""
-                                            onclick=like()>
+                                        <img src="../static/images/like.PNG" id='like{{postid}}' class="icon"
+                                            alt="{{postid}}" onclick=like(this.alt)>
                                         <img src="../static/images/comment.PNG" class="icon" alt="">
                                         <img src="../static/images/send.PNG" class="icon" alt="">
-                                        <img src="../static/images/save.PNG" id='save' class="save icon" alt=""
-                                            onclick=save()>
+                                        <img src="../static/images/save.PNG" id='save{{postid}}' class="save icon"
+                                            alt="{{postid}}" onclick=save(this.alt)>
                                     </div>
                                     <p class="likes">{{like}} likes</p>
                                     <p class="description"><span>{{nickname}} </span> {{text}}</p>
                                     <p class="post-time">{{today}}</p>
 
-                                    {% block content %}
 
-                                {% endblock %}
+                                    {%for cmt in cmts %}
+                                    {% set nickname = cmt.nick %}
+                                    {% set cmt = cmt.cmt %}
+                                    <p class="description"><span>{{nickname}} </span> {{cmt}}</p>
+                                    {% endfor %}
 
 
                                     <div class="comment-wrapper">
+                                        <input style="display: none;" id="id_for_cmt{{postid}}" value={{postid}}>
                                         <img src="../static/images/smile.PNG" class="icon" alt="">
-                                        <input type="text" class="comment-box" id='cmt' placeholder="Add a comment">
-                                        <button class="comment-btn" onclick=cmt_write()>post</button>
+                                        <input type="text" class="comment-box" id='cmt{{postid}}'
+                                            placeholder="Add a comment">
+                                        <button class="comment-btn" id="{{postid}}"
+                                            onclick=cmt_write(this.id)>post</button>
                                     </div>
                                 </div>
 
 
                             </div>
                             {% endfor %}
+
                         </div>
                     </div>
                 </div>
-                    <div class="right-col">
-                        <div class="profile-card">
-                            <div class="profile-pic">
-                                <img src="../static/images/profile_images/{{image}}" id="#" alt="" onclick="mypage()">
-                            </div>
-                            <div class='profile-name'>
-                                <p class="username">{{nickname}}</p>
-                                <p class="sub-text">{{name}}</p>
-                            </div>
-                            <button class="action-btn" onclick="logout()">switch</button>
+                <div class="right-col">
+                    <div class="profile-card">
+                        <div class="profile-pic">
+                            <img src="../static/images/profile_images/{{image}}" id="#" alt="" onclick="mypage()">
                         </div>
-                        <p class="suggestion-text">회원님을 위한 추천</p>
-                        <script>
-                            append_Value('.right-col', Instagram_Suggestions_profile_01)
-                            append_Value('.right-col', Instagram_Suggestions_profile_02)
-                            append_Value('.right-col', Instagram_Suggestions_profile_03)
-                            append_Value('.right-col', Instagram_Suggestions_profile_04)
-                            append_Value('.right-col', Instagram_Suggestions_profile_05)
-                        </script>
+                        <div class='profile-name'>
+                            <p class="username">{{nickname}}</p>
+                            <p class="sub-text">{{name}}</p>
+                        </div>
+                        <button class="action-btn" onclick="logout()">switch</button>
                     </div>
-                
+                    <p class="suggestion-text">회원님을 위한 추천</p>
+                    <div class="profile-card">
+                        <div class="profile-pic">
+                            <img src="../static/images/cover 9.png" alt="">
+                        </div>
+                        <div class='recommend'>
+                            <div class="follow-name">
+                                <p class="username">ssyou__yiyy</p>
+                                <p class="sub-text">kimsarang_님이 팔로우합니다</p>
+                            </div>
+                            <div class="follow">
+                                <button class="action-btn">팔로우</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-card">
+                        <div class="profile-pic">
+                            <img src="../static/images/cover 10.png" alt="">
+                        </div>
+                        <div class='recommend'>
+                            <div class="follow-name">
+                                <p class="username">som9413_dj</p>
+                                <p class="sub-text">cochon_cafe님이 팔로우합니다</p>
+                            </div>
+                            <button class="action-btn">팔로우</button>
+                        </div>
+                    </div>
+                    <div class="profile-card">
+                        <div class="profile-pic">
+                            <img src="../static/images/cover 11.png" alt="">
+                        </div>
+                        <div class='recommend'>
+                            <div class="follow-name">
+                                <p class="username">kimseokyong</p>
+                                <p class="sub-text">bemill._.aa님 외 1명이 팔로우합니다</p>
+                            </div>
+                            <button class="action-btn">팔로우</button>
+                        </div>
+                    </div>
+                    <div class="profile-card">
+                        <div class="profile-pic">
+                            <img src="../static/images/cover 12.png" alt="">
+                        </div>
+                        <div class='recommend'>
+                            <div class="follow-name">
+                                <p class="username">hi.dongg</p>
+                                <p class="sub-text">bemill._.aa님 외 1명이 팔로우합니다</p>
+                            </div>
+                            <button class="action-btn">팔로우</button>
+                        </div>
+                    </div>
+                    <div class="profile-card">
+                        <div class="profile-pic">
+                            <img src="../static/images/cover 13.png" alt="">
+                        </div>
+                        <div class='recommend'>
+                            <div class="follow-name">
+                                <p class="username">bu.choi_uls</p>
+                                <p class="sub-text">kiseokhwang님 외 1명이 팔로우합니다. </p>
+                            </div>
+                            <button class="action-btn">팔로우</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </section>

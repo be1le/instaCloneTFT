@@ -38,6 +38,7 @@ def success():
         feeds = list(db.feed.find({},{'_id':False}).sort("date",-1))
         
         
+        
         now_fd = [] # 계산된 시간 
         for i in range(len(feeds)):
             millis = int(round(time.time() * 1000))
@@ -67,7 +68,11 @@ def success():
                 a = str(me_timeyear) + '년전'
                 now_fd.append(a)
 
+
+
+
         new_feeds=[] # 계산된 시간으로 새 리스트 
+        
         dic = dict()
         for j in range(len(feeds)):
             feed_id = feeds[j]['id']
@@ -79,6 +84,20 @@ def success():
             feed_date = now_fd[j]
             feed_nick = feeds[j]['nick']
             feed_profile = feeds[j]['profile']
+            fd_cmt = []
+            for i in range(len(cmts)):
+                if cmts[i]['cmtid'] == feed_postid:
+                    n_cmt = cmts[i]['cmt']
+                    nick = cmts[i]['nick']
+                    cmtid = cmts[i]['cmtid']
+                    cmt_dic = dict()
+                    cmt_dic['nick'] = nick
+                    cmt_dic['cmt'] = n_cmt
+                    cmt_dic['cmtid'] = cmtid
+                    
+                    fd_cmt.append(cmt_dic)
+                    
+
             dic = dict()
             dic[1] = feed_id
             dic[2] = feed_photo
@@ -89,7 +108,13 @@ def success():
             dic[7] = feed_date
             dic[8] = feed_nick
             dic[9] = feed_profile
+            dic[10] = fd_cmt
             new_feeds.append(dic)
+
+
+            
+
+
 
 
         if user_pic != None:
@@ -164,7 +189,7 @@ def addcmt():
 
         comment_receive = request.form['comment_give']
         postid_receive = request.form['postid_give']
-        print(postid_receive)
+        
         token_receive = request.cookies.get('mytoken')
 
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms='HS256')
@@ -174,11 +199,11 @@ def addcmt():
         pic_info = db.pic.find_one({'id': payload['id']})
         
 
-
+        cmt_id = int(postid_receive)
         nickname = user_info['nick']
         profile_pic = pic_info['img']
 
-        doc = {'nick': nickname, 'cmt': comment_receive, 'cmtid': postid_receive, 'img': profile_pic}
+        doc = {'nick': nickname, 'cmt': comment_receive, 'cmtid': cmt_id, 'img': profile_pic}
         db.comment.insert_one(doc)
         print(comment_receive)
         return jsonify({'result':'댓글이 말대꾸?'})
