@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>BLUECLUB feed</title>
@@ -72,7 +74,7 @@
                     <div>
                         <div class="status-card">
                             <div class="profile-pic"><img src="../static/images/profile_images/{{image}}" alt=""></div>
-                            <p class="story-username">Muiler_88</p>
+                            <p class="story-username">{{nickname}}</p>
                         </div>
                         <div id='post'>
                             {%for feed in feeds %}
@@ -93,7 +95,17 @@
                                     </div>
                                     <img src="../static/images/option.PNG" class="options" alt="">
                                 </div>
-                                <img src="../static/images/feed_images/{{photo}}" class="post-image" alt="">
+                                
+                                <!-- {% if photo %} -->
+                                    <img src="../static/images/feed_images/{{photo}}" class="post-image" alt="">
+                                    
+                                <!-- {% else %}
+                                    
+                                    <video src="../static/images/feed_images/{{photo}}" class="post-image" alt=""></video>
+                                {% endif %} -->
+                                    
+                                
+                                
                                 <div class="post-content">
                                     <div class="reaction-wrapper">
                                         <img src="../static/images/like.PNG" id='like{{postid}}' class="icon"
@@ -111,7 +123,7 @@
                                     {%for cmt in cmts %}
                                     {% set nickname = cmt.nick %}
                                     {% set cmt = cmt.cmt %}
-                                    <p class="description"><span>{{nickname}} </span> {{cmt}}</p>
+                                    <p class="cmt"><span>{{nickname}} </span> {{cmt}}</p>
                                     {% endfor %}
 
 
