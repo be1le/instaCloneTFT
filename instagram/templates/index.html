@@ -32,9 +32,13 @@
                 <div id='or-line'>
                     또는
                 </div>
-                <div id='facebook-login'>
+                <div id='facebook-login' onclick="getInfo()">
                     <img id='facebook-logo' src="../static/images/facebook.png">
-                    <a id='facebook-link' href="">Facebook으로 로그인</a>
+                    <a id='facebook-link'>Facebook으로 로그인</a> 
+                </div>
+                <div id='ready-login' style="display: none;"> 
+                <p type="button" class="btn-success" id="ready-open"
+                    >OPEN 준비중</p>
                 </div>
                 <a id='forgetPW' href="">비밀번호를 잊으셨나요?</a>
             </div>

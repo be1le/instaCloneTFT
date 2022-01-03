@@ -55,3 +55,10 @@ function sign_up() {
     }, 400);
 }
 
+function getInfo() {
+    if ($("#facebook-login").is(":visible")) {
+        $("#facebook-login").hide();
+    }
+    if($("#ready-login").show());
+}
+    
