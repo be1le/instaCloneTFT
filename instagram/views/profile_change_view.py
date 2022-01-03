@@ -48,39 +48,50 @@ def file_upload():
     try:
         nick_receive = request.form['nick_give'] # input 닉네임
         file = request.files['file_give'] #upload 파일
-        print(file)
         token_receive = request.cookies.get('mytoken')
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms='HS256')
         user = db.user.find_one({'id': payload['id']})
+
         user_id = user['id']
         user_profile = user['img']
         
         extension = file.filename.split('.')[-1]
 
-
         today = datetime.now()
         mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
         filename = f'{user_id}-{mytime}'
 
+        if user_profile == "default_profile.png":
+            save_to = f'instagram/static/images/profile_images/{filename}.{extension}'
+            file.save(save_to)
 
-        os.remove( f'instagram/static/images/profile_images/{user_profile}' )
-        # 파일 저장 경로 설정 (파일은 db가 아니라, 서버 컴퓨터 자체에 저장됨)
-        save_to = f'instagram/static/images/profile_images/{filename}.{extension}'
-        # 파일 저장!
-        file.save(save_to)
+            db.user.update_one({'id': user_id},{'$set':{'img': f'{filename}.{extension}'}})
+            if nick_receive != '' :
+                db.user.update_many({'id': user_id},{'$set':{'nick': nick_receive }})
+                db.feed.update_many({'id': user_id},{'$set': {'nick': nick_receive }})
+            
+            db.feed.update_many({'id': user_id},{'$set': {'profile':f'{filename}.{extension}'}})
+            return jsonify({'result':'프로필 변경완료!'})
+
+        elif user_profile != None :
+            os.remove( f'instagram/static/images/profile_images/{user_profile}' )
+            # 파일 저장 경로 설정 (파일은 db가 아니라, 서버 컴퓨터 자체에 저장됨)
+            save_to = f'instagram/static/images/profile_images/{filename}.{extension}'
+            # 파일 저장!
+            file.save(save_to)
+            
+            db.user.update_one({'id': user_id},{'$set':{'img': f'{filename}.{extension}'}})
+            a = f'{filename}.{extension}'
+            
+            db.feed.update_many({'id': user_id},{'$set': {'profile':f'{filename}.{extension}'}})
+            if nick_receive != '' :
+                db.user.update_many({'id': user_id},{'$set':{'nick': nick_receive }})
+                db.feed.update_many({'id': user_id},{'$set': {'nick': nick_receive }})
+            return jsonify({'result':'프로필 변경완료!'})
+
+
+
         
-        db.user.update_one({'id': user_id},{'$set':f'{filename}.{extension}'})
-        
-
-        db.feed.update_many({'id': user_id},{'$set': {'profile':f'{filename}.{extension}'}})
-
-
-
-        if nick_receive != '' :
-            db.user.update_many({'id': user_id},{'$set':{'nick': nick_receive }})
-            db.feed.update_many({'id': user_id},{'$set': {'nick': nick_receive }})
-
-        return jsonify({'result':'프로필 변경완료!'})
     except:
         nick_receive = request.form['nick_give'] # input 닉네임
         
@@ -92,4 +103,4 @@ def file_upload():
         if nick_receive != '' :
             db.user.update_one({'id': user_id },{'$set':{'nick': nick_receive }})
 
-        return jsonify({'result':'프로필 변경완료!'})
+        return jsonify({'result':'?!'})

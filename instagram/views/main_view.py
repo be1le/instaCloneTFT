@@ -119,7 +119,7 @@ def success():
             profile_dic[1] = nick
             profile_dic[2] = pict
             all_user.append(profile_dic)
-        print(all_user)
+
 
 
         return render_template('feed_page.html', nickname = user_info['nick'], name = user_info['name'], image = user_info['img'], cmts= cmts, feeds = new_feeds, all_user = all_user) 
