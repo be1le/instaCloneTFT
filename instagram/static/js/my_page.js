@@ -269,3 +269,44 @@ function save() {
     home_sound.play();
     
 }
+
+function profile(){
+    
+    var profile_sound = new Audio();
+    profile_sound.src = "../static/sounds/profile.mp3"
+    profile_sound.currentTime = 0;
+    profile_sound.volume - 1.0;
+    profile_sound.play();
+
+    window.setTimeout(function() {
+        window.location.href = '/profile';
+    }, 700);
+    
+}
+
+function change_pw() {
+    var profile_sound = new Audio();
+    profile_sound.src = "../static/sounds/profile.mp3"
+    profile_sound.currentTime = 0;
+    profile_sound.volume - 1.0;
+    profile_sound.play();
+
+    window.setTimeout(function() {
+        window.location.href = '/change_pw';
+    }, 700);
+}
+// 게시물 저장됨 이미지 upper-line
+// let horizontalBar = document.getElementById("horizontal-underline");
+// let horizontalMenus = document.querySelectorAll("nav:first-child a");
+
+// function horizontalIndicator(e) {
+//   horizontalBar.style.left = e.offsetLeft + "px";
+//   horizontalBar.style.width = e.offsetWidth + "px";
+//   horizontalBar.style.top = e.offsetTop + e.offsetHeight + "px";
+// }
+
+// horizontalMenus.forEach((menu) =>
+//   menu.addEventListener("click", (e) =>
+//     horizontalIndicator(e.currentTarget)
+//   )
+// );

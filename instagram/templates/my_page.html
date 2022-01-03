@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Momentum</title>
+    <title>BLUECLUB mypage</title>
     <script src="../static/js/my_page.js"></script>
     <link rel="stylesheet" href="../static/css/my_page.css">
+    <script defer src='../static/js/modal.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!--#region main images -->
-    <script>
-        let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>`
-        let Instagram_Home = `<img src="../static/images/home.PNG" class="icon" alt="" id="Home" onclick=home()>`
-        let Instagram_Messenger = `<img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">`
-        let Instagram_Post = `<img src="../static/images/post.PNG" class="icon" alt="">`
-        let Instagram_Explore = `<img src="../static/images/explore.PNG" class="icon" alt="">`
-        let Instagram_Liked = `<img src="../static/images/like.PNG" class="icon" alt="">`
-    </script>
 <!--#endregion -->
 
 </head>
@@ -24,19 +19,18 @@
 <header>
     <nav class="navbar">
         <div class="nav-wrapper">
-            <script>
-                append_Value('.nav-wrapper', Instagram_Logo)
-            </script>
+            <img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>
             <input type="text" class="search-box" placeholder="search">
             <div class="nav-items">
-                <script>
-                    append_Value('.nav-items', Instagram_Home)
-                    append_Value('.nav-items', Instagram_Messenger)
-                    append_Value('.nav-items', Instagram_Post)
-                    append_Value('.nav-items', Instagram_Explore)
-                    append_Value('.nav-items', Instagram_Liked)
-                </script>
-                <div class="icon user-profile" id="user-profile" onclick="mypage()"></div>
+                
+                <img src="../static/images/home.PNG" class="icon m-none" alt="" id="Home " onclick=home()>
+                <img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">
+                <img src="../static/images/post.PNG" class="icon m-none" alt="" onclick="post()" id='modal-open'>
+                <img src="../static/images/explore.PNG" class="icon m-none" alt="">
+                <img src="../static/images/like.PNG" class="icon m-none" alt="">
+                <img src="../static/images/profile_images/{{image}}" class="icon" alt="" onclick=mypage()>
+
+
             </div>
         </div>
     </nav>
@@ -47,15 +41,15 @@
             <div class="upper-col">
                 <div class="profile-card">
                     <div onclick="" class="profile-pic">
-                        <img  src="../static/images/profile-pic.png" alt="">
+                        <img  src="../static/images/profile_images/{{image}}" alt="">
                     </div>
                     <div class='desk-profile'>
                         <div class='profile-name'>
                             <p class="username">{{nickname}}</p>
-                            <button class="desk-setting" onclick="">프로필 편집</button>
-                            <img id='settingimg' onclick="" src="../static/images/setting.png">
+                            <button class="desk-setting" onclick="profile()">프로필 편집</button>
+                            <img id='settingimg' onclick="change_pw()" src="../static/images/setting.png">
                         </div>
-                        <button class="setting" onclick="">프로필 편집</button>
+                        
                         <div class='desk-info'>
                             <div class='desk-info-name'>
                                 <p class='desk-info-title'>게시물</p>
@@ -108,6 +102,7 @@
                 </div>
             <!-- desktop info start -->
                 <div id='desktop-postinfo'>
+                    <div id="horizontal-underline"></div>
                     <div class='desktop-info' onclick=" ">
                         <img class='desktop-infoicon' src="../static/images/feedgrid.png">
                         <p class='desktop-infotitle'>게시물</p>
@@ -218,5 +213,63 @@
         </div>
     </footer>
 </article>
+<!-- 모달창 -->
+<div class="container">
+    <div class="popup-wrap" id="popup">
+        <div class="popup">
+            <div class="popup-head">
+                <span class="head-title">
+                    새 게시물 만들기</span>
+            </div>
+            <!-- popup-body 부분에 사진 끌어 올리기 -->
+            <div class="popup popup-body">
+                <div class='modalimg'></div>
+                <div class="body-content">
+                    <div class="body-titlebox">
+                        <img src="../static/images/upload.png">
+                        <p class='file-desc'>사진과 동영상을 여기에 끌어다 놓으세요</p>
+                        <div class='file-box'>
+                            <label class="file-label" for="file">
+                                컴퓨터에서 선택
+                            </label>
+                            <input type="file" id="file">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- popup-body 부분에 사진 끌어 올리기 -->
+            <div class="popup-foot">
+                <span class="pop-btn confirm" id="confirm">확인</span>
+                <span class="pop-btn close" id="close3">창 닫기</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 글 작성 모달창 -->
+    <div class="popup-wrap" id="popup2">
+        <div class="popup">
+            <div class="popup-head">
+                <span class="head-title">
+                    새 게시물 만들기</span>
+            </div>
+            <div class="popup-body">
+                <div class="write-content">
+                    <div class="body-titlebox">
+                        <p class='write-desc'>게시글을 작성해주세요</p>
+                        <div class='text-box'>
+                            <textarea id="text" placeholder="게시글은 50자 내외로 작성해주세요." rows="17rem" cols="8rem"
+                                wrap="soft" maxlength="50" onkeydown="resize(this)" onkeyup="resize(this)">
+          </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-foot">
+                <span class="pop-btn confirm" id="confirm2" onclick='posting()'>확인</span>
+                <span class="pop-btn close" id="close4" onclick="modal_close()">창 닫기</span>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

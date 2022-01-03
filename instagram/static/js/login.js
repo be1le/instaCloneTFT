@@ -4,6 +4,7 @@ function disa() {
     if (id != "" && password !="") {
         $('#login-btn').attr("disabled",false);
         $('#login-btn').css('background-color', 'rgb(75, 186, 255)');
+        $("#login-btn").focus()
     }
 };
 
@@ -54,3 +55,14 @@ function sign_up() {
     }, 400);
 }
 
+function getInfo() {
+    if ($("#facebook-login").is(":visible")) {
+        $("#facebook-login").hide();
+    }
+    if($("#ready-login").show());
+}
+    
+
+function forgot() {
+    window.location.href = '/forgot'
+}

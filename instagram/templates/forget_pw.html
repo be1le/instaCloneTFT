@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/forget_pw.css">
+  <script src="../static/js/forget_pw.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  <title>BLUECLUB password</title>
+</head>
+
+<script>
+
+  function find_img() {
+    let title = $('#find_title').val()
+    document.getElementById('link').href = '/fileshow/'+title
+  }
+
+  let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>`
+</script>
+
+<body>
+  <header>
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <script>
+                append_Value('.nav-wrapper', Instagram_Logo)
+            </script>
+        </div>
+    </nav>
+</header>
+  <section class="main">
+    <div class='upper-wrap'>
+      <div class="upper-col">
+          <div onclick="" class="forget-pic">
+              <img  src="../static/images/forget-pw.png" alt="">
+          </div> 
+          <div class='forget-info'>
+            <p class='info1'>로그인에 문제가 있나요?</p>
+            <p class='info2'>아이디, 닉네임 정보를 입력하시면 계정에 다시 엑세스할 수 있는 임시 비밀번호를 드립니다.</p>
+        </div>
+            <div id = "inputs">
+          <div class="password-upload">
+            <p class="title">아이디</p>
+            <input style="width:300px;" type="text" id="input-bar-1" placeholder="">
+          </div>
+          <div class="password-upload">
+            <p class="title">닉네임</p>
+            <input style="width:300px;" type="text" id="input-bar-2" placeholder="">
+          </div>
+        </div>
+            <button id = 'submit' onclick="find()">임시 비밀번호 받기</button>
+            <div id='q'>
+            <p id = 'q-pw' onclick=" ">로그인으로 돌아가기</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer id=loginfooter>
+    <div id='footer1'>
+        <a class='footers' href="https://about.facebook.com/meta">Meta</a>
+        <a class='footers' href="https://about.instagram.com/">소개</a>
+        <a class='footers' href="https://about.instagram.com/blog">블로그</a>
+        <a class='footers' href="https://about.instagram.com/about-us/careers">채용 정보</a>
+        <a class='footers' href="https://help.instagram.com/">도움말</a>
+        <a class='footers' href="https://developers.facebook.com/docs/instagram">API</a>
+        <a class='footers' href="https://help.instagram.com/519522125107875">개인정보처리방침</a>
+        <a class='footers' href="https://help.instagram.com/581066165581870">약관</a>
+        <a class='footers' href="https://www.instagram.com/directory/profiles/">인기 계정</a>
+        <a class='footers' href="https://www.instagram.com/directory/hashtags/">해시태그</a>
+        <a class='footers' href="https://www.instagram.com/explore/locations/">위치</a>
+        <a class='footers' href="https://www.instagram.com/web/lite/">Instagram Lite</a>
+    </div>
+    <div id='footer2'>
+        <select id='select'>
+            <option>한국어</option>
+            <option>English</option>
+            <option>Español (España)</option>
+            <option>日本語</option>
+        </select>
+        <p>© 2021 Instagram from Meta</p>
+    </div>
+</footer>
+</body>
+</html>

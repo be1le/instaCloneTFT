@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template ,jsonify, request, session, redirect, url_for
+from flask import Blueprint, render_template ,jsonify, request
 import datetime
 import hashlib
 import jwt
+
 
 from pymongo import MongoClient
 
@@ -17,6 +18,7 @@ login = Blueprint("login", __name__, url_prefix="/" ,  static_folder="static", t
 
 @login.route("/")
 def home():
+
     msg = request.args.get("msg")
     return render_template("index.html" , msg = msg)
 
@@ -25,8 +27,9 @@ def api_login():
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give']
 
+    
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
-
+    print(pw_hash)
     result = db.user.find_one({'id': id_receive, 'pw': pw_hash})
     
     if result is not None:
@@ -61,5 +64,29 @@ def api_valid():
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
 
+@login.route('/forgot')
+def forgot():
+    return render_template('forget_pw.html')
 
 
+@login.route("/api/findpw", methods=['POST'])
+def api_find():
+    try:
+        userid_receive = request.form['id_give']
+        username_receive = request.form['name_give']
+
+        user_db = db.user.find_one({'id': userid_receive})
+
+        db_userid = user_db['id']
+        db_username = user_db['name']
+        db_userpw = user_db['pw'][0:5]
+
+        pw_hash = hashlib.sha256(db_userpw.encode('utf-8')).hexdigest()
+
+        if userid_receive == db_userid and username_receive == db_username:
+                db.user.update_one({'id': userid_receive },{'$set':{'pw': pw_hash }})
+                return jsonify ({"result":'success' ,'pw': db_userpw})
+        else:
+            return jsonify ({"result":'fail' ,'msg':'회원정보가 일치하지 않습니다'})
+    except:
+        return jsonify ({"result":'fail' ,'msg':'회원정보가 일치하지 않습니다'})

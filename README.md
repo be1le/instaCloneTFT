@@ -1,7 +1,6 @@
 # Blue club
-___
 ## _The place where manly men live and breathe._
-![Blue_club](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F2bafeb8f-00ab-469b-9ebc-68c516c2ea01%2Fvi_abt.jpg?table=block&id=66b44c47-9d04-4141-8fe8-81746a883127&spaceId=34bc531c-fb72-4b7d-bf53-df828258e8b0&width=1850&userId=b416935e-319c-4052-8424-715b6d587230&cache=v2)
+
 ___
 ## Move to Notion 
 [![N|Solid](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4uIEbjgRX5VyRTP6aECtukycjjOruy5qFStkjQWHHaxdbLg1OhieeguCMVFMzZ0P3DxA&usqp=CAU)](https://www.notion.so/2-66b44c479d0441418fe881746a883127)
@@ -11,9 +10,14 @@ ___
 ___
 # Develop and record list.
  GIT-HUB Tips!
-- [Tip1](https://www.notion.so/GIT-HUB-Honey-Tips-2021-12-29-7cdb846ac2d94bffb742959910a7bf84)
-- [Tip2](https://www.notion.so/GIT-HUB-HOW-TO-USE-2021-12-29-4982d19dac744e31b32e343fead2b2b3)
+- [Git-Hub Honey Tips!](https://www.notion.so/GIT-HUB-Honey-Tips-2021-12-29-7cdb846ac2d94bffb742959910a7bf84)
+- [Git-Hub How-To-Use](https://www.notion.so/GIT-HUB-HOW-TO-USE-2021-12-29-4982d19dac744e31b32e343fead2b2b3)
 
  Flask Tip
-- [Tip1](https://www.notion.so/Flask-Honey-Tips-2021-12-29-8cdf390757c84abb95efb74009ba43a7)
+- [Flask Honey Tips!](https://www.notion.so/Flask-Honey-Tips-2021-12-29-8cdf390757c84abb95efb74009ba43a7)
+- [Flask API SETTING](https://www.notion.so/2-FLASK-FLASK-API-SETTINGS-2021-12-29-42f00796d3b14d0283c9efa2f78ee3bf)
+
+# Develop Position
+![jpg](https://user-images.githubusercontent.com/91897199/147875954-f5b147b1-4dcf-40b7-9387-0cebd3bcfc70.png)
+
 

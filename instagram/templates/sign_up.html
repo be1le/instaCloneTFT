@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
     <head>
-
+        <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
         <!-- Webpage Title -->
-        <title>회원가입 페이지</title>
+        <title>BLUECLUB sign-up</title>
 
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -33,9 +34,10 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
+                                            
                                             <input type="text" class="input" id="userid" aria-describedby="emailHelp"
                                                 placeholder="아이디를 입력하세요">
-                                                <input type="submit" value="중복확인" class="id-check" onclick="check_dup()">
+                                                <input type="submit" value="중복확인" id='check' class="id-check" onclick="check_dup()">
                                         </div>
                                     </div>
                                 </div>
@@ -63,17 +65,17 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control">
-                                            <input type="password" class="input" id="userpw" onchange="disa()" placeholder="비밀번호">
+                                            <input type="password" class="input" id="userpw" onchange="disa()" placeholder="영문,숫자 필수 특수문자 사용가능 8-20자">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button id= sign-up-btn class="button-is-primary" onclick="register()" >가입</button>
+                            <button id= sign-up-btn class="button-is-primary" onclick="register()" disabled="disabled" >가입</button>
                         </div>
                 </div>
                 <div id = 'lower-container'>
                     <p id = 'q-register'>계정이 있으신가요?</p>
-                    <a id ='register' href="/">로그인</a>
+                    <a id ='register' onclick="back_to_login()">로그인</a>
                 </div>
                 <div id = 'download'>
                     앱을 다운로드하세요.
@@ -85,7 +87,7 @@
             </div>
             <footer id = loginfooter>
                 <div id='footer1'>
-                    <a class='footers' href="https://about.facebook.com/meta">Meta</a>
+                    <a class='footers' href="https://www.notion.so/2-66b44c479d0441418fe881746a883127">2조블루클럽</a>
                     <a class='footers' href="https://github.com/be1le/instaCloneTFT">소개</a>
                     <a class='footers' href="https://about.instagram.com/blog">블로그</a>
                     <a class='footers' href="https://about.instagram.com/about-us/careers">채용 정보</a>

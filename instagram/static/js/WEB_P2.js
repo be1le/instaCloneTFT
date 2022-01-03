@@ -18,6 +18,7 @@
 // *******************************************************************************************************************
 // 1) alert(알림) 매크로
 // ex) Test_Alert('Test_Text')
+
 function alert_Value(Test_Text) {
     if (Test_Text == null) {
         return alert('입력 텍스트가 누락되었습니다')
@@ -46,6 +47,15 @@ function append_Value(Address, add_child) {
 }
 
 //#region  오브젝트 find by query 매크로
+
+
+// const profile_img = document.createElement('img');
+//     profile_img.src = "../image/profile_images/{{image}}";
+//     document.getElementById('user-profile').appendChild(profile_img);
+
+
+
+
 
 const query_to_address = {
 // 1) Query_Value(싱글쿼리 찾기) 매크로
@@ -203,17 +213,114 @@ const calulator = {
 // *******************************************************************************************************************
 //#endregion
 
+// js로 구현하는 몇분전,몇시간전,몇달전,몇년전
+function timeForToday(value) {
+    const today = new Date();
 
+    const betweenTime = Math.floor((today.getTime() - value) / 1000 / 60);
+    if (betweenTime < 1) return '방금전';
+    if (betweenTime < 60) {
+        return `${betweenTime}분전`;
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+        return `${betweenTimeHour}시간전`;
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 365) {
+        return `${betweenTimeDay}일전`;
+    }
+
+    return `${Math.floor(betweenTimeDay / 365)}년전`;
+}
+
+
+
+/// 글쓰기 
+
+function posting() {
+    let text = $('#text').val()
+    let photo = $('#file')[0].files[0]
+    let form_data = new FormData()
+
+    form_data.append("text_give", text)
+    if (file) {
+        form_data.append("file_give", photo)
+    }
+    $.ajax({
+        type: "POST",
+        url: "/main/addpost",
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            alert(response["result"])
+
+            window.setTimeout(function() {
+                window.location.href = '/main';
+            }, 700);
+        }
+    });
+
+}
+
+//댓글 쓰기
+
+function cmt_write(value) {
+    const id = value  
+    let comment = $('#cmt' + id).val()
+    let postid = $('#id_for_cmt' + id).val()
+    
+
+    let form_data = new FormData()
+
+    //1,2,3,4,5
+    form_data.append("comment_give", comment)
+    form_data.append("postid_give", postid)
+    $.ajax({
+        type: "POST",
+        url: "/main/addcmt",
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            window.open("../static/images/sungmo.jpeg", "a", "width=425, height=668, left=100, top=50");
+            window.setTimeout(function() {
+                window.location.href = '/main';
+            }, 700);
+        }
+    });
+
+}
+
+let foll_count = true;
+let reset = true
+function follow(value){
+    const id = value
+    if (foll_count === reset ) {
+        document.getElementById(id).innerText = '팔로잉';
+        reset = !reset
+    }
+    else {
+        document.getElementById(id).innerText = '팔로우';
+        foll_count = !foll_count
+    }
+}
 // 로그아웃  
 
 
 function logout(){
+
     $.removeCookie('mytoken', {path: '/'});
-    // alert('로그아웃!')
+    
     
     
     var logout_sound = new Audio();
-    logout_sound.src = "../static/sounds/Page_Turned.mp3"
+    logout_sound.src = "../static/sounds/log_out.mp3"
     logout_sound.currentTime = 0;
     logout_sound.volume - 1.0;
     logout_sound.play();
@@ -222,6 +329,8 @@ function logout(){
         window.location.href='/';
     }, 400);
 }
+
+// 마이페이지 이동
 
 function mypage(){
 
@@ -236,36 +345,68 @@ function mypage(){
     }, 200);
 }
 
+// 포스트 모달창 띄우기
+
+// 포스트 모달창 띄우기
+
 function home(){
     var home_sound = new Audio();
     home_sound.src = "../static/sounds/Page_Turned.mp3"
     home_sound.currentTime = 0;
     home_sound.volume - 1.0;
     home_sound.play();
-    
-    window.setTimeout(function() {
-        window.location.href = '/main';
-    }, 300);
+    $('html').animate({scrollTop : 0})
+
 }
 
-function like(){
-    
-    
-    document.getElementById("like").src = "../static/images/instagram_like.png";
+
+
+
+
+
+
+let lkcnt = 1;
+function like(value){
+    const id = value  
+    if( lkcnt%2 ==1){
+        document.getElementById("like" + id ).src = "../static/images/instagram_like.png";
+
+        let a = document.getElementById('.likes'+ id).
+        console.log(a)
+
+        var home_sound = new Audio();
+        home_sound.src = "../static/sounds/Page_Turned.mp3"
+        home_sound.currentTime = 0;
+        home_sound.volume - 1.0;
+        home_sound.play();}
+    else{
+        document.getElementById("like"  + id ).src =  "../static/images/like.PNG";
     var home_sound = new Audio();
-    home_sound.src = "../static/sounds/Page_Turned.mp3"
-    home_sound.currentTime = 0;
-    home_sound.volume - 1.0;
-    home_sound.play();
-    
+        home_sound.src = "../static/sounds/Page_Turned.mp3"
+        home_sound.currentTime = 0;
+        home_sound.volume - 1.0;
+        home_sound.play();
+    }
+    lkcnt++;
 }
 
-function save() {
-    document.getElementById("save").src = "../static/images/save_color.png";
+let svcnt = 1
+function save(value) {
+    const id = value  
+    if (svcnt%2==1){
+        document.getElementById("save" + id ).src = "../static/images/save_color.png";
     var home_sound = new Audio();
-    home_sound.src = "../static/sounds/Page_Turned.mp3"
-    home_sound.currentTime = 0;
-    home_sound.volume - 1.0;
-    home_sound.play();
-    
+        home_sound.src = "../static/sounds/Page_Turned.mp3"
+        home_sound.currentTime = 0;
+        home_sound.volume - 1.0;
+        home_sound.play();}
+    else {
+        document.getElementById("save" + id ).src = "../static/images/save.PNG";
+    var home_sound = new Audio();
+        home_sound.src = "../static/sounds/Page_Turned.mp3"
+        home_sound.currentTime = 0;
+        home_sound.volume - 1.0;
+        home_sound.play();
+    }
+    svcnt++;
 }

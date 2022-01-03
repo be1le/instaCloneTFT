@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Momentum</title>
-    <script src="../static/js/WEB_P2.js"></script>
+    <title>BLUECLUB feed</title>
+    <script async src="../static/js/WEB_P2.js"></script>
     <link rel="stylesheet" href="../static/css/WEB_P2.css">
+    <script defer src='../static/js/modal.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
-<!--#region main images -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <!--#region main images -->
     <script>
-        let Instagram_Logo = `<img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>`
-        let Instagram_Home = `<img src="../static/images/home.PNG" class="icon" alt="" id="Home" onclick=home()>`
-        let Instagram_Messenger = `<img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">`
-        let Instagram_Post = `<img src="../static/images/post.PNG" class="icon" alt="">`
-        let Instagram_Explore = `<img src="../static/images/explore.PNG" class="icon" alt="">`
-        let Instagram_Liked = `<img src="../static/images/like.PNG" class="icon" alt="">`
+
+
+
+
 
         let Instagram_story_Image_01 = `<div class="status-card">
                 <div class="profile-pic"><img src="../static/images/cover 1.png" alt=""></div>
@@ -37,224 +39,221 @@
                 <div class="profile-pic"><img src="../static/images/cover 6.png" alt=""></div>
                 <p class="story-username">steven</p>`
 
-        let Instagram_profile_01 = `<div class="post">
-        <div class="info">
-            <div class="user">
-                <div class="profile-pic"><img src="../static/images/cover 1.png" alt=""></div>
-                <p class="feed-username">modern_web_channel</p>
-            </div>
-            <img src="../static/images/option.PNG" class="options" alt="">
-        </div>
-        <img src="../static/images/cover 1.png" class="post-image" alt="">
-        <div class="post-content">
-            <div class="reaction-wrapper">
-                <img src="../static/images/like.PNG" id='like' class="icon" alt="" onclick=like()>
-                <img src="../static/images/comment.PNG" class="icon" alt="">
-                <img src="../static/images/send.PNG" class="icon" alt="">
-                <img src="../static/images/save.PNG" id='save' class="save icon" alt="" onclick=save()>
-            </div>
-            <p class="likes">1,012 likes</p>
-            <p class="description"><span>story-username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur tenetur veritatis placeat, molestiae impedit aut provident eum quo natus molestias?</p>
-            <p class="post-time">2 minutes ago</p>
-        </div>
-        <div class="comment-wrapper">
-            <img src="../static/images/smile.PNG" class="icon" alt="">
-            <input type="text" class="comment-box" placeholder="Add a comment">
-            <button class="comment-btn">post</button>
-        </div>
-    </div>`
-        let Instagram_profile_02 = `<div class="post">
-        <div class="info">
-            <div class="user">
-                <div class="profile-pic"><img src="../static/images/cover 2.png" alt=""></div>
-                <p class="feed-username">modern_web_channel</p>
-            </div>
-            <img src="../static/images/option.PNG" class="options" alt="">
-        </div>
-        <img src="../static/images/cover 2.png" class="post-image" alt="">
-        <div class="post-content">
-            <div class="reaction-wrapper">
-                <img src="../static/images/like.PNG" class="icon" alt="">
-                <img src="../static/images/comment.PNG" class="icon" alt="">
-                <img src="../static/images/send.PNG" class="icon" alt="">
-                <img src="../static/images/save.PNG" class="save icon" alt="">
-            </div>
-            <p class="likes">1,012 likes</p>
-            <p class="description"><span>story-username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur tenetur veritatis placeat, molestiae impedit aut provident eum quo natus molestias?</p>
-            <p class="post-time">2 minutes ago</p>
-        </div>
-        <div class="comment-wrapper">
-            <img src="../static/images/smile.PNG" class="icon" alt="">
-            <input type="text" class="comment-box" placeholder="Add a comment">
-            <button class="comment-btn">post</button>
-        </div>
-    </div>`
-        let Instagram_profile_03 = `<div class="post">
-        <div class="info">
-            <div class="user">
-                <div class="profile-pic"><img src="../static/images/cover 3.png" alt=""></div>
-                <p class="feed-username">modern_web_channel</p>
-            </div>
-            <img src="../static/images/option.PNG" class="options" alt="">
-        </div>
-        <img src="../static/images/cover 3.png" class="post-image" alt="">
-        <div class="post-content">
-            <div class="reaction-wrapper">
-                <img src="../static/images/like.PNG" class="icon" alt="">
-                <img src="../static/images/comment.PNG" class="icon" alt="">
-                <img src="../static/images/send.PNG" class="icon" alt="">
-                <img src="../static/images/save.PNG" class="save icon" alt="">
-            </div>
-            <p class="likes">521 likes</p>
-            <p class="description"><span>story-username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur tenetur veritatis placeat, molestiae impedit aut provident eum quo natus molestias?</p>
-            <p class="post-time">10 minutes ago</p>
-        </div>
-        <div class="comment-wrapper">
-            <img src="../static/images/smile.PNG" class="icon" alt="">
-            <input type="text" class="comment-box" placeholder="Add a comment">
-            <button class="comment-btn">post</button>
-        </div>
-    </div>`
-        let Instagram_Suggestions_profile_01 = `<div class="profile-card">
-                                                    <div class="profile-pic">
-                                                    <img src="../static/images/cover 9.png" alt="">
-                                                </div>
-                                                <div class ='recommend'>
-                                                    <div class = "follow-name">
-                                                        <p class="username">ssyou__yiyy</p>
-                                                        <p class="sub-text">kimsarang_님이 팔로우합니다</p>
-                                                    </div>
-                                                    <div class="follow">
-                                                    <button class="action-btn">팔로우</button>
-                                                    </div>
-                                                </div>
-                                                </div>`
-        let Instagram_Suggestions_profile_02 = `<div class="profile-card">
-                                                    <div class="profile-pic">
-                                                    <img src="../static/images/cover 10.png" alt="">
-                                                </div>
-                                                <div class ='recommend'>
-                                                    <div class = "follow-name">
-                                                        <p class="username">som9413_dj</p>
-                                                        <p class="sub-text">cochon_cafe님이 팔로우합니다</p>
-                                                    </div>
-                                                    <button class="action-btn">팔로우</button>
-                                                </div>
-                                                </div>`
-        let Instagram_Suggestions_profile_03 = `<div class="profile-card">
-                                <div class="profile-pic">
-                                    <img src="../static/images/cover 11.png" alt="">
-                                </div>
-                                <div class ='recommend'>
-                                    <div class = "follow-name">
-                                        <p class="username">kimseokyong</p>
-                                        <p class="sub-text">bemill._.aa님 외 1명이 팔로우합니다</p>
-                                    </div>
-                                    <button class="action-btn">팔로우</button>
-                                </div>
-                                </div>`
-        let Instagram_Suggestions_profile_04 = `<div class="profile-card">
-                                <div class="profile-pic">
-                                    <img src="../static/images/cover 12.png" alt="">
-                                </div>
-                                <div class ='recommend'>
-                                <div class = "follow-name">
-                                    <p class="username">hi.dongg</p>
-                                    <p class="sub-text">bemill._.aa님 외 1명이 팔로우합니다</p>
-                                </div>
-                                <button class="action-btn">팔로우</button>
-                            </div>
-                                </div>`
-        let Instagram_Suggestions_profile_05 = `<div class="profile-card">
-                        <div class="profile-pic">
-                            <img src="../static/images/cover 13.png" alt="">
-                        </div>
-                        <div class ='recommend'>
-                        <div class = "follow-name">
-                            <p class="username">bu.choi_uls</p>
-                            <p class="sub-text">kiseokhwang님 외 1명이 팔로우합니다. </p>
-                        </div>
-                        <button class="action-btn">팔로우</button>
-                    </div>
-                        </div>`
+
+
     </script>
-<!--#endregion -->
+    <!--#endregion -->
 
 
 </head>
+
 <body>
-<header>
-    <nav class="navbar">
-        <div class="nav-wrapper">
-            <script>
-                append_Value('.nav-wrapper', Instagram_Logo)
-            </script>
-            <input type="text" class="search-box" placeholder="search">
-            <div class="nav-items">
-                <script>
-                    append_Value('.nav-items', Instagram_Home)
-                    append_Value('.nav-items', Instagram_Messenger)
-                    append_Value('.nav-items', Instagram_Post)
-                    append_Value('.nav-items', Instagram_Explore)
-                    append_Value('.nav-items', Instagram_Liked)
-                </script>
-                <div class="icon user-profile" id="user-profile" onclick="mypage()"></div>
-            </div>
-        </div>
-    </nav>
-</header>
-<article>
-    <section class="main">
-        <div class="wrapper">
-            <div class="left-col">
-                <div class="status-wrapper">
-                    <script>
-                        append_Value('.status-wrapper', Instagram_story_Image_01)
-                        append_Value('.status-wrapper', Instagram_story_Image_02)
-                        append_Value('.status-wrapper', Instagram_story_Image_03)
-                        append_Value('.status-wrapper', Instagram_story_Image_04)
-                        append_Value('.status-wrapper', Instagram_story_Image_05)
-                        append_Value('.status-wrapper', Instagram_story_Image_06)
 
-
-                        append_Value('.left-col', Instagram_profile_01)
-                        append_Value('.left-col', Instagram_profile_02)
-                        append_Value('.left-col', Instagram_profile_03)
-
-                    </script>
+    <header>
+        <nav class="navbar">
+            <div class="nav-wrapper">
+                <img src="../static/images/logo.PNG" class="brand-img" alt="" onclick=home()>
+                <input type="text" class="search-box" placeholder="search">
+                <div class="nav-items">
+                    <img src="../static/images/home.PNG" class="icon" alt="" id="Home" onclick=home()>
+                    <img src="../static/images/messenger.PNG" class="icon" alt="" id="Messanger">
+                    <img src="../static/images/post.PNG" class="icon" alt="" onclick="post()" id='modal-open'>
+                    <img src="../static/images/explore.PNG" class="icon" alt="">
+                    <img src="../static/images/like.PNG" class="icon" alt="">
+                    <img src="../static/images/profile_images/{{image}}" class="icon" alt="" onclick=mypage()>
                 </div>
             </div>
-            <div class="right-col">
-                <div class="profile-card">
-                    <div class="profile-pic">
-                        <img src="../static/images/profile-pic.png" alt="">
-                    </div>
+        </nav>
+    </header>
+    <article>
+        <section class="main">
+
+
+            <div class="wrapper">
+                <div class="left-col">
                     <div>
-                        <p class="username">{{nickname}}</p>
-                        <p class="sub-text">{{name}}</p>
+                        <div class="status-card">
+                            <div class="profile-pic"><img src="../static/images/profile_images/{{image}}" alt=""></div>
+                            <p class="story-username">{{nickname}}</p>
+                        </div>
+                        <div id='post'>
+                            {%for feed in feeds %}
+                            {% set nickname = feed.8 %}
+                            {% set like = feed.3 %}
+                            {% set text = feed.5 %}
+                            {% set today = feed.7 %}
+                            {% set postid = feed.6 %}
+                            {% set photo = feed.2 %}
+                            {% set profile = feed.9 %}
+                            {% set cmts = feed.10 %}
+                            {% set type = feed.11 %}
+                            <div class="post">
+                                <div class="info">
+                                    <div class="user">
+                                        <div class="profile-pic"><img src="../static/images/profile_images/{{profile}}"
+                                                alt=""></div>
+                                        <p class="feed-username">{{nickname}}</p>
+                                    </div>
+                                    <img src="../static/images/option.PNG" class="options" alt="">
+                                </div>
+                                
+                                {% if type == '.png' or type =='.img'%}
+                                    <img src="../static/images/feed_images/{{photo}}" class="post-image" alt="">
+                                    <!-- png img -->
+                                {% endif %}
+                                {% if type == '.mp4' %}
+                                    <video src="../static/images/feed_images/{{photo}}" class="post-image" alt="" controls autoplay></video>
+                                    <!-- mp4 -->
+                                {% endif %}
+                                    
+                                
+                                
+                                <div class="post-content">
+                                    <div class="reaction-wrapper">
+                                        <img src="../static/images/like.PNG" id='like{{postid}}' class="icon"
+                                            alt="{{postid}}" onclick=like(this.alt)>
+                                        <img src="../static/images/comment.PNG" class="icon" alt="">
+                                        <img src="../static/images/send.PNG" class="icon" alt="">
+                                        <img src="../static/images/save.PNG" id='save{{postid}}' class="save icon"
+                                            alt="{{postid}}" onclick=save(this.alt)>
+                                    </div>
+                                    <p class="likes{{postid}}">{{like}} likes</p>
+                                    <p class="description"><span>{{nickname}} </span> {{text}}</p>
+                                    <p class="post-time">{{today}}</p>
+
+
+                                    {%for cmt in cmts %}
+                                    {% set nickname = cmt.nick %}
+                                    {% set cmt = cmt.cmt %}
+                                    <p class="cmt"><span>{{nickname}} </span> {{cmt}}</p>
+                                    {% endfor %}
+
+
+                                    <div class="comment-wrapper">
+                                        <input style="display: none;" id="id_for_cmt{{postid}}" value={{postid}}>
+                                        <img src="../static/images/smile.PNG" class="icon" alt="">
+                                        <input type="text" class="comment-box" id='cmt{{postid}}'
+                                            placeholder="Add a comment">
+                                        <button class="comment-btn" id="{{postid}}"
+                                            onclick=cmt_write(this.id)>post</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            {% endfor %}
+
+                        </div>
                     </div>
-                    <button class="action-btn" onclick="logout()">switch</button>
                 </div>
-                <p class="suggestion-text">회원님을 위한 추천</p>
-                <script>
-                    append_Value('.right-col', Instagram_Suggestions_profile_01)
-                    append_Value('.right-col', Instagram_Suggestions_profile_02)
-                    append_Value('.right-col', Instagram_Suggestions_profile_03)
-                    append_Value('.right-col', Instagram_Suggestions_profile_04)
-                    append_Value('.right-col', Instagram_Suggestions_profile_05)
-                </script>
+                <div class="right-col">
+                    <div class="profile-card">
+                        <div class="profile-pic">
+                            <img src="../static/images/profile_images/{{image}}" id="#" alt="" onclick="mypage()">
+                        </div>
+                        <div class='profile-name'>
+                            <p class="username">{{nickname}}</p>
+                            <p class="sub-text">{{name}}</p>
+                        </div>
+                        <button class="action-btn" onclick="logout()" >switch</button>
+                    </div>
+                    <p class="suggestion-text">회원님을 위한 추천</p>
+                    
+                    {% for user in all_user %}
+
+                    {% set nickname = user.1 %}
+                    {% set profile = user.2 %}
+                    <div class="profile-card">
+                        <div class="profile-pic">
+                            <img src="../static/images/profile_images/{{profile}}" alt="">
+                        </div>
+                        <div class='recommend'>
+                            <div class="follow-name">
+                                <p class="username">{{nickname}}</p>
+                                <p class="sub-text">{{nickname}}님이 팔로우합니다</p>
+                            </div>
+                            <div class="follow">
+                                <button class="action-btn" id="foll{{loop.index}}" onclick="follow(this.id)" value="텍스트">팔로우</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+        </section>
+    </article>
+    <div id='footer'>
+        <div id="footicon">
+            <img class='footer_icon' src="../static/images/home.PNG" alt="홈">
+            <img class='footer_icon' src="../static/images/search@3x.png" alt="검색">
+            <img class='footer_icon' src="../static/images/post.PNG" alt="트렌드">
+            <img class='footer_icon' src="../static/images/like.PNG" alt="좋아요">
+            <img class='footer_icon' src="../static/images/home.PNG" alt="홈">
+        </div>
+    </div>
+
+    <!-- 모달창 -->
+    <div class="container">
+        <div class="popup-wrap" id="popup">
+            <div class="popup">
+                <div class="popup-head">
+                    <span class="head-title">
+                        새 게시물 만들기</span>
+                </div>
+                <!-- popup-body 부분에 사진 끌어 올리기 -->
+                <div class="popup popup-body">
+                    <div class="modalimg"></div>
+                    <div class="body-content">
+                        <div class="body-titlebox">
+                            <img src="../static/images/upload.png">
+                            <p class='file-desc'>사진과 동영상을 여기에 끌어다 놓으세요</p>
+                            <div class='file-box'>
+                                <label class="file-label" for="file">
+                                    컴퓨터에서 선택
+                                </label>
+                                <input type="file" id="file">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- popup-body 부분에 사진 끌어 올리기 -->
+                <div class="popup-foot">
+                    <span class="pop-btn confirm" id="confirm">확인</span>
+                    <span class="pop-btn close" id="close">창 닫기</span>
+                </div>
             </div>
         </div>
-    </section>
-</article>
-<div id = 'footer'>
-    <div id = "footicon">
-        <img class = 'footer_icon' src="../static/images/home.PNG" alt="홈">
-        <img class = 'footer_icon' src="../static/images/search@3x.png" alt="검색">
-        <img class = 'footer_icon' src="../static/images/post.PNG" alt="트렌드">
-        <img class = 'footer_icon' src="../static/images/like.PNG" alt="좋아요">
-        <img class = 'footer_icon' src="../static/images/home.PNG" alt="홈">
+
+        <!-- 글 작성 모달창 -->
+        <div class="popup-wrap" id="popup2">
+            <div class="popup">
+                <div class="popup-head">
+                    <span class="head-title">
+                        새 게시물 만들기</span>
+                </div>
+                <div class="popup-body">
+                    <div class="write-content">
+                        <div class="body-titlebox">
+                            <p class='write-desc'>게시글을 작성해주세요</p>
+                            <div class='text-box'>
+                                <textarea id="text" placeholder="게시글은 50자 내외로 작성해주세요." rows="17rem" cols="8rem"
+                                    wrap="soft" maxlength="50" onkeydown="resize(this)" onkeyup="resize(this)">
+              </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-foot">
+                    <span class="pop-btn confirm" id="confirm2" onclick='posting()'>확인</span>
+                    <span class="pop-btn close" id="close2" onclick="modal_close()">창 닫기</span>
+                </div>
+            </div>
+        </div>
     </div>
-</div> 
 </body>
+
+</body>
+
 </html>

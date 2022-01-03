@@ -1,0 +1,294 @@
+/* * 기호는 문서안에 모든 css를 적용한다. */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    max-width: 2560px;
+    margin: 0 auto;
+    background-color: rgb(247, 247, 247);
+}
+
+.navbar {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: #fff;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+}
+
+.nav-wrapper {
+    width: 100%;
+    max-width: 840px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-img {
+    height: 75%;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+/*           HEADER 끝   프로필 시작            */
+
+.main {
+    width: 100%;
+    padding: 80px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 50px;
+
+    max-width: 2550px;
+}
+
+.upper-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: center;
+}
+
+.upper-col {
+    max-width: 425px;
+
+    padding: 0 17px;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 0.5px solid lightgray;
+    background-color: white;
+}
+
+.forget-pic {
+    background: none;
+    max-width: 40px;
+    max-height: 40px;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+
+    margin-top: 30px;
+}
+
+.forget-pic img {
+    border: none;
+    width: 80px;
+    height: 80px;
+}
+
+.forget-info {
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+}
+.info1 {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.info2 {
+    color: rgb(151, 151, 151);
+    font-size: small;
+}
+
+/*          프로필 끝     변경 부분 시작           */
+
+#inputs {
+    margin-top: 20px;
+}
+
+.title {
+    margin-bottom: 3px;
+    font-weight: 600;
+}
+
+#input-bar-1 {
+    border: 0.5px solid lightgray;
+    background-color: rgb(247, 247, 247);
+    border-radius: 6px;
+
+    width: 18rem;
+    height: 2.3rem;
+
+    margin-top: 3px;
+    margin-bottom: 20px;
+}
+#input-bar-2 {
+    border: 0.5px solid lightgray;
+    background-color: rgb(247, 247, 247);
+    border-radius: 6px;
+
+    width: 18rem;
+    height: 2.3rem;
+
+    margin-top: 3px;
+    margin-bottom: 20px;
+}
+
+#input-bar::placeholder {
+    font-size: small;
+    padding-left: 6px;
+}
+
+.password-upload {
+    margin-top: 5px;
+}
+
+.nickname-desc {
+    color: rgb(138, 138, 138);
+    font-size: 11.5px;
+    margin-top: 15px;
+
+    width: 300px;
+}
+
+#submit {
+    background-color: aqua;
+    color: white;
+    background-color: rgb(75, 141, 255);
+
+    border: 0.5px solid rgb(247, 247, 247);
+    border-radius: 6px;
+
+    width: 9rem;
+    height: 2.1rem;
+
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    cursor: pointer;
+}
+
+#q-pw {
+    font-size: small;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+#q {
+    background-color: rgb(247, 247, 247);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 6px;
+
+    width: 25rem;
+    height: 2.3rem;
+
+    display: flex;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+#q:hover {
+    border: none;
+    background-color: rgb(75, 141, 255);
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    transition-duration: 0.3s;
+}
+
+/*     변경 부분 끝     FOOTER 시작    */
+
+#loginfooter {
+    margin-top: 40px;
+    max-width: 2550px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    color: rgb(193, 193, 193);
+}
+
+#footer1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    margin: 0 3%;
+}
+
+#loginfooter #footer1 .footers {
+    margin: 0 1%;
+    text-decoration: none;
+    font-size: small;
+
+    color: rgb(193, 193, 193);
+}
+
+#footer2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 1% 0;
+}
+
+#select {
+    position: relative;
+    margin-right: 3%;
+    border: none;
+    background-color: transparent;
+    color: rgb(193, 193, 193);
+    max-width: 60px;
+    width: 100%;
+}
+
+/*  FOOTER 끝    MOBILE버전 시작 */
+
+@media (max-width: 900px) {
+    .search-box {
+        display: none;
+    }
+    .nav-items {
+        padding-right: 0px;
+    }
+    .nav-wrapper,
+    .wrapper {
+        width: 90%;
+    }
+    .wrapper {
+        display: block;
+    }
+}
+@media (max-width: 400px) {
+    .nav-items {
+        padding-right: 0px;
+    }
+}
