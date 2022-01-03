@@ -9,6 +9,11 @@ $(function post(){
         modalClose();  
         window.location.href="/main";
     });
+    // mypage close 사진올리기창에서 새로고침
+    $("#close3").click(function(){
+      modalClose();  
+      window.location.href="/mypage";
+  });
 
     function modalClose(){
       $("#popup").fadeOut();
@@ -26,6 +31,12 @@ $(function post(){
       modalClose();
       window.location.href="/main";
   });
+  // mypage close 글 올리기 창에서 새로고침
+  $("#close4").click(function(){
+    modalClose();
+    window.location.href="/mypage";
+});
+
     function modalClose(){
       $("#popup2").fadeOut();
     }
@@ -69,7 +80,11 @@ function uploadFiles(e) {
             "outline": "none",
             "background-size": "100% 100%",
             "width": "300px",
-            "height": "300px"
+            "height": "300px",
+            "border": "0.5px solid lightgray",
+            "object-fit": "cover",
+            "position": "relative",
+            "transform": "translate(50, 50)",
         });
     }else{
       alert('이미지가 아닙니다.');

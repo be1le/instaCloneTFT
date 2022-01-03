@@ -110,13 +110,12 @@ input::placeholder {
 }
 #upper-container #facebook-login {
     display: flex;
-    margin: 4% 0;
-}
+    margin: 10px 0;
 
-#facebook-login {
-    display: flex;
     justify-content: center;
     align-items: center;
+
+    cursor: pointer;
 }
 
 #facebook-login #facebook-logo {
@@ -132,6 +131,21 @@ input::placeholder {
     text-decoration: none;
 
     margin-top: 1%;
+}
+
+#ready-login {
+    display: flex;
+    margin: 10px 0;
+    justify-content: center;
+    align-items: center;
+
+    width: 425px;
+}
+
+#ready-open {
+    max-width: 100%;
+    color: #9b9b9b;
+    font-weight: 600;
 }
 
 #upper-container #forgetPW {
@@ -190,13 +204,12 @@ input::placeholder {
 }
 
 #loginfooter {
-    max-width: 1440px;
+    margin-top: 40px;
+    max-width: 2550px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-
-    margin-top: 5%;
+    justify-content: center;
 
     color: rgb(193, 193, 193);
 }
@@ -205,6 +218,8 @@ input::placeholder {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    margin: 0 3%;
 }
 
 #loginfooter #footer1 .footers {
@@ -219,12 +234,39 @@ input::placeholder {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    margin: 1% 0;
 }
 
 #select {
+    position: relative;
     margin-right: 3%;
     border: none;
     background-color: transparent;
     color: rgb(193, 193, 193);
-    width: 4%;
+    max-width: 60px;
+    width: 100%;
+}
+
+/*  FOOTER 끝    MOBILE버전 시작 */
+
+@media (max-width: 900px) {
+    .search-box {
+        display: none;
+    }
+    .nav-items {
+        padding-right: 0px;
+    }
+    .nav-wrapper,
+    .wrapper {
+        width: 90%;
+    }
+    .wrapper {
+        display: block;
+    }
+}
+@media (max-width: 400px) {
+    .nav-items {
+        padding-right: 0px;
+    }
 }
