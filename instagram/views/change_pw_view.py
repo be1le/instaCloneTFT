@@ -57,6 +57,11 @@ def change():
     user_pw = user['pw']
 
     
+    #re ( 정규식 연산) 모듈을 사용하여 파이썬에서 비밀번호 조건 검사 
+    #.search( pattern, string) 
+    # string 을 검사하여 pattern 에 들어가는 정규식과 일치하면 일치 객체 반환 (일치객체는 항상 True를 가짐),
+    # 일치하지 않으면 None 을 반환 합니다 
+    # 이것을 이용하여 정규표현식을 파이썬에서 구현하여 변경될 새비밀번호가 유효한지를 검사하게 함
     if old == user_pw :
         if new_receive == new_2_receive:
             if len(new_receive) < 8:

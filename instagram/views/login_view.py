@@ -64,4 +64,21 @@ def api_valid():
 
 
 
+@login.route("/api/findpw", methods=['POST'])
+def api_find():
+    
+    userid_receive = request.form['id_give']
+    username_receive = request.form['name_give']
 
+    user_db = db.user.find_one({'id': userid_receive})
+
+    db_userid = user_db['id']
+    db_username = user_db['name']
+    db_userpw = user_db['pw'][0:5]
+
+    if userid_receive == db_userid & username_receive == db_username:
+            db.user.update_one({'id': userid_receive },{'$set':{'pw': db_userpw }})
+
+            return jsonify({'result': db_userpw})
+    else:
+        return jsonify({'result': '회원정보가 일치하지 않습니다'})

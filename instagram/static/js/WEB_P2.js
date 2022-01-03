@@ -213,7 +213,7 @@ const calulator = {
 // *******************************************************************************************************************
 //#endregion
 
-
+// js로 구현하는 몇분전,몇시간전,몇달전,몇년전
 function timeForToday(value) {
     const today = new Date();
 
@@ -236,9 +236,9 @@ function timeForToday(value) {
     return `${Math.floor(betweenTimeDay / 365)}년전`;
 }
 
-// 로그아웃  
 
 
+/// 글쓰기 
 
 function posting() {
     let text = $('#text').val()
@@ -267,12 +267,12 @@ function posting() {
 
 }
 
-
+//댓글 쓰기
 
 function cmt_write(value) {
     const id = value  
     let comment = $('#cmt' + id).val()
-    let postid = Number($('#id_for_cmt' + id).val())
+    let postid = $('#id_for_cmt' + id).val()
     
 
     let form_data = new FormData()
@@ -288,7 +288,7 @@ function cmt_write(value) {
         contentType: false,
         processData: false,
         success: function (response) {
-            alert(response["result"])
+            window.open("../static/images/sungmo.jpeg", "a", "width=425, height=668, left=100, top=50");
             window.setTimeout(function() {
                 window.location.href = '/main';
             }, 700);
@@ -298,11 +298,13 @@ function cmt_write(value) {
 }
 
 
+// 로그아웃  
+
 
 function logout(){
 
     $.removeCookie('mytoken', {path: '/'});
-    // alert('로그아웃!')
+    
     
     
     var logout_sound = new Audio();
@@ -315,6 +317,8 @@ function logout(){
         window.location.href='/';
     }, 400);
 }
+
+// 마이페이지 이동
 
 function mypage(){
 
@@ -339,13 +343,32 @@ function home(){
     home_sound.currentTime = 0;
     home_sound.volume - 1.0;
     home_sound.play();
-    
-    window.setTimeout(function() {
-        window.location.href = '/main';
-    }, 300);
+    $('html').animate({scrollTop : 0})
+
 }
 
 
+
+
+
+// let foll_count = 1;
+
+// function follow(value){
+//     const id = value
+    
+    
+//     if (foll_count%2 == 1){
+//         document.getElementById(id).innerText = '팔로잉';
+//         console.log(foll_count)
+//         foll_count ++;
+//     } else {
+//         document.getElementById(id).innerText = '팔로우';
+//         console.log(foll_count)
+//         foll_count --;
+//     }
+    
+    
+// }
 
 
 let lkcnt = 1;
@@ -354,6 +377,8 @@ function like(value){
     if( lkcnt%2 ==1){
         document.getElementById("like" + id ).src = "../static/images/instagram_like.png";
 
+        let a = document.getElementById('.likes'+ id).
+        console.log(a)
 
         var home_sound = new Audio();
         home_sound.src = "../static/sounds/Page_Turned.mp3"
@@ -391,5 +416,3 @@ function save(value) {
     }
     svcnt++;
 }
-
-

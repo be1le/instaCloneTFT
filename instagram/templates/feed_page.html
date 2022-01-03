@@ -86,6 +86,7 @@
                             {% set photo = feed.2 %}
                             {% set profile = feed.9 %}
                             {% set cmts = feed.10 %}
+                            {% set type = feed.11 %}
                             <div class="post">
                                 <div class="info">
                                     <div class="user">
@@ -96,13 +97,14 @@
                                     <img src="../static/images/option.PNG" class="options" alt="">
                                 </div>
                                 
-                                <!-- {% if photo %} -->
+                                {% if type == '.png' or type =='.img'%}
                                     <img src="../static/images/feed_images/{{photo}}" class="post-image" alt="">
-                                    
-                                <!-- {% else %}
-                                    
-                                    <video src="../static/images/feed_images/{{photo}}" class="post-image" alt=""></video>
-                                {% endif %} -->
+                                    <!-- png img -->
+                                {% endif %}
+                                {% if type == '.mp4' %}
+                                    <video src="../static/images/feed_images/{{photo}}" class="post-image" alt="" controls autoplay></video>
+                                    <!-- mp4 -->
+                                {% endif %}
                                     
                                 
                                 
@@ -115,7 +117,7 @@
                                         <img src="../static/images/save.PNG" id='save{{postid}}' class="save icon"
                                             alt="{{postid}}" onclick=save(this.alt)>
                                     </div>
-                                    <p class="likes">{{like}} likes</p>
+                                    <p class="likes{{postid}}">{{like}} likes</p>
                                     <p class="description"><span>{{nickname}} </span> {{text}}</p>
                                     <p class="post-time">{{today}}</p>
 
@@ -156,68 +158,26 @@
                         <button class="action-btn" onclick="logout()">switch</button>
                     </div>
                     <p class="suggestion-text">회원님을 위한 추천</p>
+                    
+                    {% for user in all_user %}
+
+                    {% set nickname = user.1 %}
+                    {% set profile = user.2 %}
                     <div class="profile-card">
                         <div class="profile-pic">
-                            <img src="../static/images/cover 9.png" alt="">
+                            <img src="../static/images/profile_images/{{profile}}" alt="">
                         </div>
                         <div class='recommend'>
                             <div class="follow-name">
-                                <p class="username">ssyou__yiyy</p>
-                                <p class="sub-text">kimsarang_님이 팔로우합니다</p>
+                                <p class="username">{{nickname}}</p>
+                                <p class="sub-text">{{nickname}}님이 팔로우합니다</p>
                             </div>
                             <div class="follow">
-                                <button class="action-btn">팔로우</button>
+                                <button class="action-btn" id="foll{{loop.index}}" onclick="follow(this.id)">팔로우</button>
                             </div>
                         </div>
                     </div>
-                    <div class="profile-card">
-                        <div class="profile-pic">
-                            <img src="../static/images/cover 10.png" alt="">
-                        </div>
-                        <div class='recommend'>
-                            <div class="follow-name">
-                                <p class="username">som9413_dj</p>
-                                <p class="sub-text">cochon_cafe님이 팔로우합니다</p>
-                            </div>
-                            <button class="action-btn">팔로우</button>
-                        </div>
-                    </div>
-                    <div class="profile-card">
-                        <div class="profile-pic">
-                            <img src="../static/images/cover 11.png" alt="">
-                        </div>
-                        <div class='recommend'>
-                            <div class="follow-name">
-                                <p class="username">kimseokyong</p>
-                                <p class="sub-text">bemill._.aa님 외 1명이 팔로우합니다</p>
-                            </div>
-                            <button class="action-btn">팔로우</button>
-                        </div>
-                    </div>
-                    <div class="profile-card">
-                        <div class="profile-pic">
-                            <img src="../static/images/cover 12.png" alt="">
-                        </div>
-                        <div class='recommend'>
-                            <div class="follow-name">
-                                <p class="username">hi.dongg</p>
-                                <p class="sub-text">bemill._.aa님 외 1명이 팔로우합니다</p>
-                            </div>
-                            <button class="action-btn">팔로우</button>
-                        </div>
-                    </div>
-                    <div class="profile-card">
-                        <div class="profile-pic">
-                            <img src="../static/images/cover 13.png" alt="">
-                        </div>
-                        <div class='recommend'>
-                            <div class="follow-name">
-                                <p class="username">bu.choi_uls</p>
-                                <p class="sub-text">kiseokhwang님 외 1명이 팔로우합니다. </p>
-                            </div>
-                            <button class="action-btn">팔로우</button>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
 
             </div>

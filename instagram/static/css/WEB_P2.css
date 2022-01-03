@@ -247,11 +247,13 @@ body {
     margin: 10px 0;
     font-size: 13px;
     line-height: 20px;
+    color: rgb(82, 79, 79);
 }
 
 .cmt span {
-    font-weight: bold;
+    font-weight: 650;
     margin-right: 10px;
+    color: rgba(0, 0, 0, 0.849);
 }
 
 .post-time {

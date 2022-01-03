@@ -1,3 +1,4 @@
+from re import split
 from flask import Blueprint, render_template, request,redirect,url_for,jsonify
 import jwt
 from datetime import datetime
@@ -33,28 +34,31 @@ def success():
 
         user_pic = db.pic.find_one({'id': payload['id']})
         
+        
 
         cmts = list(db.comment.find({},{'_id':False}))
         feeds = list(db.feed.find({},{'_id':False}).sort("date",-1))
         
-        
-        
+        all_user_info = list(db.user.find({},{'_id':False}))
+        all_pic = list(db.pic.find({},{'_id':False}))
+
         now_fd = [] # 계산된 시간 
         for i in range(len(feeds)):
-            millis = int(round(time.time() * 1000))
+            millis = int(round(time.time()))
             fd_time = feeds[i]['date']
-            me_time = math.floor(((millis - fd_time)/(1000*60)))
-            me_timehour = math.floor(((millis - fd_time)/(1000*60*60))%24)
-            me_timeday = math.floor(((millis - fd_time)/(1000*60*60*24)))
+            me_time = math.floor(((millis - fd_time)/60))
+            me_timehour = math.floor((me_time/60))
+            me_timeday = math.floor((me_timehour/24))
             me_timeyear = math.floor(me_timeday / 365)
 
             if me_time < 1 :
                 now_fd.append('방금전')
+                
             elif me_time < 60 :
                 a = str(me_time) + '분전'
                 now_fd.append(a)
 
-            
+                
             elif me_timehour < 24 :
                 a = str(me_timehour) + '시간전'
                 now_fd.append(a)
@@ -71,8 +75,7 @@ def success():
 
 
 
-        new_feeds=[] # 계산된 시간으로 새 리스트 
-        
+        new_feeds=[] # 계산된 시간과 댓글 리스트를 포함한 새 리스트 
         dic = dict()
         for j in range(len(feeds)):
             feed_id = feeds[j]['id']
@@ -84,6 +87,7 @@ def success():
             feed_date = now_fd[j]
             feed_nick = feeds[j]['nick']
             feed_profile = feeds[j]['profile']
+            feed_photo_type = feeds[j]['photo'].split('.')[-1]
             fd_cmt = []
             for i in range(len(cmts)):
                 if cmts[i]['cmtid'] == feed_postid:
@@ -97,7 +101,6 @@ def success():
                     
                     fd_cmt.append(cmt_dic)
                     
-
             dic = dict()
             dic[1] = feed_id
             dic[2] = feed_photo
@@ -109,18 +112,27 @@ def success():
             dic[8] = feed_nick
             dic[9] = feed_profile
             dic[10] = fd_cmt
+            dic[11] = f'.{feed_photo_type}'
             new_feeds.append(dic)
 
-
-            
-
-
-
+        all_user = []
+        for user in all_user_info:
+            nick = user['nick']
+            user_id = user['id']
+            for pic in all_pic:
+                pic_id = pic['id']
+                pict = pic['img']
+                if user_id == pic_id:
+                    profile_dic = dict()
+                    profile_dic[1] = nick
+                    profile_dic[2] = pict
+                    all_user.append(profile_dic)
+        print(all_user)
 
         if user_pic != None:
-            return render_template('feed_page.html', nickname = user_info['nick'], name = user_info['name'], image = user_pic['img'], cmts= cmts, feeds = new_feeds) 
+            return render_template('feed_page.html', nickname = user_info['nick'], name = user_info['name'], image = user_pic['img'], cmts= cmts, feeds = new_feeds, all_user = all_user) 
         else :
-            return render_template('feed_page.html', nickname = user_info['nick'], name = user_info['name'], cmts= cmts, feeds = new_feeds) # 프로필 사진이 없을때.
+            return render_template('feed_page.html', nickname = user_info['nick'], name = user_info['name'], cmts= cmts, feeds = new_feeds, all_user = all_user) # 프로필 사진이 없을때.
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
         return redirect(url_for('login.home', msg =  '로그인 시간이 만료되었습니다.'))
@@ -165,7 +177,7 @@ def add():
 
     ############# 시간 저장 변수 ######################
     today = datetime.now()
-    millis = int(round(time.time() * 1000))
+    millis = int(round(time.time()))
     post_time = today.strftime('%Y-%m-%d-%H-%M-%S')
 
     #파일이름 저-장
@@ -183,7 +195,7 @@ def add():
     return jsonify({'result':'success'})
 
 
-
+### 댓글 작성 부분 ###
 @main.route("/addcmt", methods=["POST"])
 def addcmt():
 
@@ -200,6 +212,7 @@ def addcmt():
         
 
         cmt_id = int(postid_receive)
+
         nickname = user_info['nick']
         profile_pic = pic_info['img']
 
@@ -209,34 +222,6 @@ def addcmt():
         return jsonify({'result':'댓글이 말대꾸?'})
     # except:
     #     return jsonify({'result':'허튼짓 금지'})
-
-
-
-@main.route("/cmt")
-def cmt():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms='HS256')
-        
-        user_info = db.user.find_one({'id': payload['id']})
-
-        user_pic = db.pic.find_one({'id': payload['id']})
-        
-
-        cmts = list(db.comment.find({},{'_id':False}))
-        
-    
- 
-        if user_pic != None:
-            return render_template('test.html', nickname = user_info['nick'], name = user_info['name'], image = user_pic['img'], cmts= cmts) 
-        else :
-            return render_template('test.html', nickname = user_info['nick'], name = user_info['name']) # 프로필 사진이 없을때.
-    except jwt.ExpiredSignatureError:
-        # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
-        return redirect(url_for('login.home', msg =  '로그인 시간이 만료되었습니다.'))
-    except jwt.exceptions.DecodeError:
-        return redirect(url_for('login.home', msg = '로그인 정보가 존재하지 않습니다.'))
-
 
 
 
