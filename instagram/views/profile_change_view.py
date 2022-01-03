@@ -26,12 +26,10 @@ def success():
         
         user_info = db.user.find_one({'id': payload['id']})
         
-        user_pic = db.pic.find_one({'id': payload['id']})
 
-        if user_pic != None:
-            return render_template('profile.html', nickname = user_info['nick'], name = user_info['name'], image = user_pic['img']) 
-        else :
-            return render_template('profile.html', nickname = user_info['nick'], name = user_info['name']) # 프로필 사진이 없을때.
+
+        return render_template('profile.html', nickname = user_info['nick'], name = user_info['name'], image = user_info['img']) 
+
 
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
@@ -50,12 +48,12 @@ def file_upload():
     try:
         nick_receive = request.form['nick_give'] # input 닉네임
         file = request.files['file_give'] #upload 파일
-        
+        print(file)
         token_receive = request.cookies.get('mytoken')
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms='HS256')
         user = db.user.find_one({'id': payload['id']})
         user_id = user['id']
-
+        user_profile = user['img']
         
         extension = file.filename.split('.')[-1]
 
@@ -64,31 +62,22 @@ def file_upload():
         mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
         filename = f'{user_id}-{mytime}'
 
-        profile = db.pic.find_one({'id': user_id})
-        
-        if profile != None :
-            profile_pic = profile['img']
-            os.remove( f'instagram/static/images/profile_images/{profile_pic}' )
-            db.pic.delete_one({ 'id': user_id })
 
+        os.remove( f'instagram/static/images/profile_images/{user_profile}' )
         # 파일 저장 경로 설정 (파일은 db가 아니라, 서버 컴퓨터 자체에 저장됨)
         save_to = f'instagram/static/images/profile_images/{filename}.{extension}'
         # 파일 저장!
         file.save(save_to)
         
+        db.user.update_one({'id': user_id},{'$set':f'{filename}.{extension}'})
         
-        doc = {'id': user_id, 'img':f'{filename}.{extension}'}
-        db.pic.insert_one(doc)
-        fd_profile = f'{filename}.{extension}'
 
-        db.feed.update_many({'id': user_id},{'$set': {'profile': fd_profile}})
+        db.feed.update_many({'id': user_id},{'$set': {'profile':f'{filename}.{extension}'}})
 
-        
-            
 
 
         if nick_receive != '' :
-            db.user.update_many({'id': user_id },{'$set':{'nick': nick_receive }})
+            db.user.update_many({'id': user_id},{'$set':{'nick': nick_receive }})
             db.feed.update_many({'id': user_id},{'$set': {'nick': nick_receive }})
 
         return jsonify({'result':'프로필 변경완료!'})

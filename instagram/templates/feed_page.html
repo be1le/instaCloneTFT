@@ -155,7 +155,7 @@
                             <p class="username">{{nickname}}</p>
                             <p class="sub-text">{{name}}</p>
                         </div>
-                        <button class="action-btn" onclick="logout()">switch</button>
+                        <button class="action-btn" onclick="logout()" >switch</button>
                     </div>
                     <p class="suggestion-text">회원님을 위한 추천</p>
                     
@@ -173,7 +173,7 @@
                                 <p class="sub-text">{{nickname}}님이 팔로우합니다</p>
                             </div>
                             <div class="follow">
-                                <button class="action-btn" id="foll{{loop.index}}" onclick="follow(this.id)">팔로우</button>
+                                <button class="action-btn" id="foll{{loop.index}}" onclick="follow(this.id)" value="텍스트">팔로우</button>
                             </div>
                         </div>
                     </div>

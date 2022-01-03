@@ -351,24 +351,6 @@ function home(){
 
 
 
-// let foll_count = 1;
-
-// function follow(value){
-//     const id = value
-    
-    
-//     if (foll_count%2 == 1){
-//         document.getElementById(id).innerText = '팔로잉';
-//         console.log(foll_count)
-//         foll_count ++;
-//     } else {
-//         document.getElementById(id).innerText = '팔로우';
-//         console.log(foll_count)
-//         foll_count --;
-//     }
-    
-    
-// }
 
 
 let lkcnt = 1;

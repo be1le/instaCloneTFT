@@ -67,7 +67,37 @@ function uploadFiles(e) {
     e.stopPropagation();
     e.preventDefault();
     dragOver(e);
-  
+
+    let nick = $('#nick').val()
+    let file = $(e.target)[0].files[0]
+    let form_data = new FormData()
+
+    form_data.append("nick_give", nick)
+    if (file) {
+        form_data.append("file_give", file)
+    }
+    $.ajax({
+        type: "POST",
+        url: "/profile/fileupload",
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            alert(response["result"])
+            var profile_sound = new Audio();
+            profile_sound.src = "../static/sounds/profile.mp3"
+            profile_sound.currentTime = 0;
+            profile_sound.volume - 1.0;
+            profile_sound.play();
+
+            window.setTimeout(function() {
+                window.location.href = '/main';
+            }, 700);
+        }
+    });
+
+
     e.dataTransfer = e.originalEvent.dataTransfer;
     var files = e.target.files || e.dataTransfer.files;
     if (files.length > 1) {

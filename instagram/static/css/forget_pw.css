@@ -129,7 +129,18 @@ body {
     font-weight: 600;
 }
 
-#input-bar {
+#input-bar-1 {
+    border: 0.5px solid lightgray;
+    background-color: rgb(247, 247, 247);
+    border-radius: 6px;
+
+    width: 18rem;
+    height: 2.3rem;
+
+    margin-top: 3px;
+    margin-bottom: 20px;
+}
+#input-bar-2 {
     border: 0.5px solid lightgray;
     background-color: rgb(247, 247, 247);
     border-radius: 6px;
@@ -166,7 +177,7 @@ body {
     border: 0.5px solid rgb(247, 247, 247);
     border-radius: 6px;
 
-    width: 7rem;
+    width: 9rem;
     height: 2.1rem;
 
     font-weight: bold;

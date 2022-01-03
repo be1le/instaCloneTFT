@@ -1,5 +1,6 @@
 from flask import render_template, request, jsonify
 from flask.blueprints import Blueprint
+import os
 
 from pymongo import MongoClient
 
@@ -41,8 +42,8 @@ def register():
 
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
 
-    db.user.insert_one({'id': id_receive, 'pw': pw_hash, 'name': name_receive, 'nick': nickname_receive})
-    
+    db.user.insert_one({'id': id_receive, 'pw': pw_hash, 'name': name_receive, 'nick': nickname_receive, 'img': 'default_profile.png'})
+
 
     result = db.user.find_one({'id': id_receive, 'pw': pw_hash})
     

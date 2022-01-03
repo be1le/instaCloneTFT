@@ -29,18 +29,14 @@ def success():
     
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms='HS256')
-        
         user_info = db.user.find_one({'id': payload['id']})
 
-        user_pic = db.pic.find_one({'id': payload['id']})
-        
         
 
         cmts = list(db.comment.find({},{'_id':False}))
         feeds = list(db.feed.find({},{'_id':False}).sort("date",-1))
         
         all_user_info = list(db.user.find({},{'_id':False}))
-        all_pic = list(db.pic.find({},{'_id':False}))
 
         now_fd = [] # 계산된 시간 
         for i in range(len(feeds)):
@@ -118,21 +114,16 @@ def success():
         all_user = []
         for user in all_user_info:
             nick = user['nick']
-            user_id = user['id']
-            for pic in all_pic:
-                pic_id = pic['id']
-                pict = pic['img']
-                if user_id == pic_id:
-                    profile_dic = dict()
-                    profile_dic[1] = nick
-                    profile_dic[2] = pict
-                    all_user.append(profile_dic)
+            pict = user['img']
+            profile_dic = dict()
+            profile_dic[1] = nick
+            profile_dic[2] = pict
+            all_user.append(profile_dic)
         print(all_user)
 
-        if user_pic != None:
-            return render_template('feed_page.html', nickname = user_info['nick'], name = user_info['name'], image = user_pic['img'], cmts= cmts, feeds = new_feeds, all_user = all_user) 
-        else :
-            return render_template('feed_page.html', nickname = user_info['nick'], name = user_info['name'], cmts= cmts, feeds = new_feeds, all_user = all_user) # 프로필 사진이 없을때.
+
+        return render_template('feed_page.html', nickname = user_info['nick'], name = user_info['name'], image = user_info['img'], cmts= cmts, feeds = new_feeds, all_user = all_user) 
+
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
         return redirect(url_for('login.home', msg =  '로그인 시간이 만료되었습니다.'))
@@ -156,8 +147,7 @@ def add():
     # 여기는 유저 DB
     user_info = db.user.find_one({'id': payload['id']})
 
-    # 여기는 프로필 사진 DB
-    user_profile = db.pic.find_one({'id': payload['id']})
+
 
     all_feed = list(db.feed.find({},{'_id':False}))
 
@@ -167,7 +157,7 @@ def add():
     # 유저의 id , 닉네임 , 프로필 사진을 불러온다.
     user_id = user_info['id']
     user_nick = user_info['nick']
-    user_profile = user_profile['img']
+    user_profile = user_info['img']
     
     like = 0
     save = 0
@@ -208,13 +198,12 @@ def addcmt():
         
         # 여기는 유저 DB
         user_info = db.user.find_one({'id': payload['id']})
-        pic_info = db.pic.find_one({'id': payload['id']})
-        
+
 
         cmt_id = int(postid_receive)
 
         nickname = user_info['nick']
-        profile_pic = pic_info['img']
+        profile_pic = user_info['img']
 
         doc = {'nick': nickname, 'cmt': comment_receive, 'cmtid': cmt_id, 'img': profile_pic}
         db.comment.insert_one(doc)

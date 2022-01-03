@@ -62,3 +62,7 @@ function getInfo() {
     if($("#ready-login").show());
 }
     
+
+function forgot() {
+    window.location.href = '/forgot'
+}

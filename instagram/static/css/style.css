@@ -152,7 +152,7 @@ input::placeholder {
     margin-top: 3%;
     font-size: small;
     color: rgb(75, 126, 255);
-
+    cursor: pointer;
     text-decoration: none;
 }
 

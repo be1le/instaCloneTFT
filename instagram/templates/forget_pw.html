@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../static/css/forget_pw.css">
-  <script src="../static/js/pw.js"></script>
+  <script src="../static/js/forget_pw.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
@@ -45,14 +45,14 @@
             <div id = "inputs">
           <div class="password-upload">
             <p class="title">아이디</p>
-            <input style="width:300px;" type="password" id="input-bar" placeholder="">
+            <input style="width:300px;" type="text" id="input-bar-1" placeholder="">
           </div>
           <div class="password-upload">
             <p class="title">닉네임</p>
-            <input style="width:300px;" type="password" id="input-bar" placeholder="">
+            <input style="width:300px;" type="text" id="input-bar-2" placeholder="">
           </div>
         </div>
-            <button id = 'submit' onclick="change()">임시 비밀번호 받기</button>
+            <button id = 'submit' onclick="find()">임시 비밀번호 받기</button>
             <div id='q'>
             <p id = 'q-pw' onclick=" ">로그인으로 돌아가기</p>
         </div>

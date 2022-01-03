@@ -209,46 +209,6 @@ const delCookie = function delCookie_by_name(name){
     document.cookie = Cookie;
 }
 
-function change() {
-
-    
-    $.ajax({
-        type: "POST",
-        url: "/change_pw/go",
-        data: {
-            old_password_give: $('#input-bar-1').val(),
-            new_password_give: $('#input-bar-2').val(),
-            check_new_password_give: $('#input-bar-3').val(),
-        },
-        success: function (response) {
-            if (response['result'] == "fail") {
-                alert(response['msg'])
-
-                } else {
-                console.log(response['result']);
-                alert(response['msg'])
-                
-                $.removeCookie('mytoken', {path: '/'});
-                
-                
-                var login_sound = new Audio();
-                login_sound.src = "../static/sounds/log_out.mp3"
-                login_sound.currentTime = 0;
-                login_sound.volume - 1.0;
-                login_sound.play();
-
-                window.setTimeout(function() {
-                    window.location.href = '/';
-                }, 500);
-                
-                
-                }
-
-
-            } 
-        }
-    )
-}
 
 function mypage(){
 
@@ -273,4 +233,38 @@ function home(){
     window.setTimeout(function() {
         window.location.href = '/main';
     }, 300);
+}
+
+function find(){
+    let id = $('#input-bar-1').val()
+    let name = $('#input-bar-2').val()
+    let form_data = new FormData()
+
+    form_data.append("id_give", id)
+    form_data.append("name_give", name)
+
+    $.ajax({
+        type: "POST",
+        url: "/api/findpw",
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if (response["result"] == 'success'){
+            alert('임시비밀번호는  '+ response["pw"]+"입니다.\n로그인 후 반드시 비밀번호를 변경해주시기 바랍니다.")
+            var profile_sound = new Audio();
+            profile_sound.src = "../static/sounds/profile.mp3"
+            profile_sound.currentTime = 0;
+            profile_sound.volume - 1.0;
+            profile_sound.play();
+
+            window.setTimeout(function() {
+                window.location.href = '/';
+            }, 700);
+        } else {
+            alert(response['msg'])
+        }
+        }
+    });
 }
