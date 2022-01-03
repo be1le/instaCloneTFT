@@ -297,7 +297,19 @@ function cmt_write(value) {
 
 }
 
-
+let foll_count = true;
+let reset = true
+function follow(value){
+    const id = value
+    if (foll_count === reset ) {
+        document.getElementById(id).innerText = '팔로잉';
+        reset = !reset
+    }
+    else {
+        document.getElementById(id).innerText = '팔로우';
+        foll_count = !foll_count
+    }
+}
 // 로그아웃  
 
 
